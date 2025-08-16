@@ -1,0 +1,31 @@
+ .search-box {
+     border: 1px solid #b7b7b7;
+     margin-right: 15px;
+     padding: 8px 20px;
+     border-radius: 25px;
+     margin: 20px 10px;
+     width: 600px;
+     height: 40px;
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+
+ }
+
+ .search-box input {
+     border: 0;
+     outline: 0;
+     background: transparent;
+     font-size: 20px;
+     color: #737373;
+     cursor: text;
+ }
+
+ .search-box input:focus {
+     color: black;
+ }
+
+ .search-box img {
+     width: 25px;
+     cursor: pointer;
+ }
