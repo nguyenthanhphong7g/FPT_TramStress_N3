@@ -1,0 +1,222 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+.login-container {
+    max-width: 410px;
+    margin: 0 auto;
+    border-radius: 0.5rem;
+    padding: 2rem 1.5rem;
+    background-color: #F9F8FF;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.login-container .form-title {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.login-container .sosial-login {
+    display: flex;
+    gap: 1.31rem;
+}
+
+.sosial-login .sosial-button {
+    display: flex;
+    width: 100%;
+    gap: 0.81rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.75rem 0;
+    align-self: center;
+    border-radius: 0.31rem;
+    justify-content: center;
+    background: #F9F8FF;
+    border: 1px solid #D5CBFF;
+    transition: 0.3s ease;
+}
+
+.sosial-login .sosial-button:hover {
+    background: #f1eff9;
+    border-color: #2a567a;
+}
+
+
+.login-container .separator {
+    margin: 0.8rem 0;
+    text-align: center;
+    position: relative;
+}
+
+.login-container .separator span {
+    position: relative;
+    z-index: 1;
+    background: #F9F8FF;
+    padding: 0 0.9rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.login-container .separator::after {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 1px;
+    background: black;
+}
+
+.login-form {
+    padding: 20px;
+}
+
+.login-form .input-header {
+    color: rgb(148, 145, 145);
+    font-size: 12px;
+}
+
+.login-form .input-wrapper {
+    height: 35px;
+    width: 100%;
+    position: relative;
+    margin-bottom: 0.8rem;
+    background-color: #f0f8ff;
+}
+
+.login-form .input-wrapper .input-feild {
+    height: 100%;
+    width: 100%;
+    /* outline: none; */
+    font-size: 0.8rem;
+    border-radius: 0.31rem;
+    border: none;
+    background-color: rgba(179, 219, 255, 0.2);
+    padding: 0 1.25rem 0 3.12rem;
+    transition: 0.2s ease;
+}
+
+.login-form .input-wrapper .input-feild::placeholder {
+    color: rgb(148, 145, 145);
+}
+
+.login-form .input-wrapper .input-feild:focus {
+    border-color: #2a567a;
+}
+
+.login-form .input-wrapper i {
+    color: black;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: 0.2s ease;
+    font-size: 1.2rem;
+
+}
+
+.login-form .input-wrapper i:not(.eye-icon) {
+    left: 0.9rem;
+    pointer-events: none;
+}
+
+.login-form .input-wrapper .input-feild:focus~i:not(.eye-icon) {
+    color: #2a567a;
+}
+
+.login-form .input-wrapper i.eye-icon {
+    font-size: 1.25rem;
+    cursor: pointer;
+    right: 0.9rem;
+    display: none;
+}
+
+.login-form .input-wrapper .input-feild:valid~i.eye-icon {
+    display: block;
+}
+
+.login-form .forgot-pass-link {
+    display: block;
+    float: right;
+    width: fit-content;
+    margin-top: -0.46rem;
+    color: #2a567a;
+}
+
+.login-form .login-button {
+    width: 100%;
+    height: 40px;
+    cursor: pointer;
+    font-size: 16px;
+    outline: none;
+    border: none;
+    color: black;
+    font-weight: 600;
+    background: #B3DBFF;
+    margin-top: 1rem;
+    border-radius: 0.31rem;
+}
+
+.login-form .login-button:hover {
+    background: #2a567a;
+    color: #fff;
+}
+
+.login-container .signup-text {
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin: 2rem 0 0.31rem;
+}
+
+.login-container a {
+    color: #2a567a;
+    font-size: 12px;
+    font-weight: 400;
+    text-decoration: none;
+}
+
+.login-container a:hover {
+    text-decoration: underline;
+}
+
+.footer {
+    margin: 10px 20px;
+}
+
+.footer .left {
+    float: left;
+}
+
+.footer .right {
+    float: right;
+}
+
+.input-error {
+    border: 1px solid red;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.8rem;
+    margin-top: 4px;
+}
+
+.input-error {
+    border-color: red;
+}
+
+.input-error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.input-wrapper-error .input-icon,
+.input-wrapper-error .eye-icon {
+    color: red;
+}

@@ -1,0 +1,88 @@
+.container .underline-text {
+    color: rgba(42, 86, 122, 0.75);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.history-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    border-radius: 12px;
+    align-items: stretch; /* Đảm bảo 2 khối cao bằng nhau */
+    flex-wrap: wrap; /* Cho phép xuống dòng khi màn hình hẹp */
+}
+
+.history-chart,
+.history-calendar {
+    flex: 1;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: box-shadow 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column; /* Nội dung xếp theo cột */
+    min-width: 320px; /* Đảm bảo khối không quá nhỏ */
+}
+
+.history-chart:hover,
+.history-calendar:hover {
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+.history-test {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.history-test p {
+    margin-bottom: 0px
+
+}
+.save-btn {
+  padding: 5px 8px;
+  background: #B3DBFF;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  min-width: 75px;
+  height: auto;
+  font-size: 16px;
+  justify-content: center;
+}
+
+.save-btn:hover {
+  background: #2a567a;
+}
+/* Tablet (dưới 1024px) */
+@media (max-width: 1024px) and (min-width : 768px){
+    .history-container {
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .history-chart,
+    .history-calendar {
+        padding: 12px;
+    }
+}
+
+/* Mobile ngang (dưới 768px) */
+@media (max-width: 768px) {
+    .history-container {
+        flex-direction: column; /* Chuyển 2 khối thành 1 cột */
+        gap: 40px;
+    }
+
+    .history-chart,
+    .history-calendar {
+        min-width: 100%;
+    }
+    .container, .container-sm {
+    max-width: 800px !important; /* giá trị bạn muốn */
+  }
+}

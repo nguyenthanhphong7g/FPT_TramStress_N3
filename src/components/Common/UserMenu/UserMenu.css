@@ -1,0 +1,27 @@
+.user-menu-card {
+  position: absolute;
+  top: 60px;
+  right: 10px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
+  padding: 8px 0;
+  z-index: 1000;
+}
+
+.user-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.user-menu-item:hover {
+  background: #f5f5f5;
+}
+
+.menu-icon {
+  font-size: 16px;
+}

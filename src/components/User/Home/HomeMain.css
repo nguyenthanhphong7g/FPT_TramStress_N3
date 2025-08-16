@@ -1,0 +1,51 @@
+.home-emotion {
+    display: flex;
+    gap: 50px;
+}
+.home-emotion .main {
+    display: flex;
+    gap :20px;
+    flex : 1;
+    margin-left: 20px;
+    margin-top: 60px;
+}
+
+.home-emotion .main img {
+    height: 160px;
+    width: 160px;
+}
+
+
+.home-emotion .main .text {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.home-emotion .text h2 {
+    font-size: 24px;
+    text-decoration: underline;
+    text-decoration-color: #FFC7C2;
+}
+.home-emotion .text span {
+    font-size: 16px;
+}
+.home-emotion .text .save-btn {
+    margin-left: auto;
+    width: 200px;
+    margin-top: 40px;
+}
+
+.home-emotion .bar {
+    flex: 1;
+    background-color: rgba(179, 219, 255, 0.25);
+    padding: 10px;
+    border-radius: 20px;
+}
+
+@media (max-width: 768px) {
+    .home-emotion {
+        display: flex;
+        flex-direction: column;
+}
+}

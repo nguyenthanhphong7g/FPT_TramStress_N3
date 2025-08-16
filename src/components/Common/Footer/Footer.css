@@ -1,0 +1,88 @@
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to right, #2A567A, #B3DBFF);
+  padding: 10px 20px;
+}
+
+.footer-left {
+  width: 26vh;
+}
+
+.footer-left h2 {
+  font-family: 'Playball', cursive;
+  font-size: 30px;
+  color: #fff;
+}
+
+.footer-center .footer-menu {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-center .footer-menu li a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 12px;
+}
+
+.footer-right {
+  display: flex;
+  gap: 12px;
+  margin-right: 80px;
+}
+
+@media (max-width: 1024px) and (min-width: 768px) {
+  .footer-left {
+    width: 20vh;
+  }
+
+  .footer-left h2 {
+    font-size: 20px;
+  }
+
+  .footer-center .footer-menu {
+    gap: 12px;
+  }
+
+  .footer-center .footer-menu li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 10px;
+  }
+
+  .footer-right {
+    margin-right: 40px;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .footer-left {
+    width: 10vh;
+  }
+
+  .footer-left h2 {
+    display: none;
+  }
+
+  .footer-center .footer-menu {
+    gap: 10px;
+  }
+
+  .footer-center .footer-menu li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 10px;
+  }
+
+  .footer-right {
+    margin-right: 10px;
+  }
+
+
+}

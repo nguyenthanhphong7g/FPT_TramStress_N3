@@ -1,0 +1,87 @@
+.input-header {
+  color: rgb(148, 145, 145);
+  font-size: 12px;
+}
+
+.input-wrapper {
+  height: 35px;
+  width: 100%;
+  position: relative;
+  margin-bottom: 0.8rem;
+  background-color: #f0f8ff;
+}
+
+.input-wrapper .input-feild {
+  height: 100%;
+  width: 100%;
+  /* outline: none; */
+  font-size: 0.8rem;
+  border-radius: 0.31rem;
+  border: none;
+  background-color: rgba(179, 219, 255, 0.2);
+  padding: 0 1.25rem 0 3.12rem;
+  transition: 0.2s ease;
+}
+
+.input-wrapper .input-feild::placeholder {
+  color: rgb(148, 145, 145);
+}
+
+.input-wrapper .input-feild:focus {
+  border-color: #2a567a;
+}
+
+.input-wrapper i {
+  color: black;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: 0.2s ease;
+  font-size: 1.2rem;
+
+}
+
+.input-wrapper i:not(.eye-icon) {
+  left: 0.9rem;
+  pointer-events: none;
+}
+
+.input-wrapper .input-feild:focus~i:not(.eye-icon) {
+  color: #2a567a;
+}
+
+.input-wrapper i.eye-icon {
+  font-size: 1.25rem;
+  cursor: pointer;
+  right: 0.9rem;
+  display: none;
+}
+
+.input-wrapper .input-feild:valid~i.eye-icon {
+  display: block;
+}
+
+.input-error {
+  border: 1px solid red;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 4px;
+}
+
+.input-error {
+  border-color: red;
+}
+
+.input-error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.input-wrapper-error .input-icon,
+.input-wrapper-error .eye-icon {
+  color: red;
+}
