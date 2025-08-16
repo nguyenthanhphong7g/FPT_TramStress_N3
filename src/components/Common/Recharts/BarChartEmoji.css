@@ -1,0 +1,59 @@
+.barchart-container {
+    width: 100%;
+    height: 400px;
+}
+
+.barchart-buttons {
+    margin-bottom: 30px;
+}
+
+.barchart-buttons button {
+    margin-right: 8px;
+    padding: 5px 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: #e0e0e0;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.barchart-buttons button:hover {
+    transform: scale(1.1);
+    background-color: #fff;
+    border: 1px solid #000;
+}
+
+.barchart-buttons button:active {
+    background-color: #c0c0c0;
+}
+
+.date {
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.custom-tooltip {
+    background: #fff;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+.recharts-surface {
+    outline: none !important;
+}
+
+.recharts-tooltip-cursor {
+  display: none;
+}
+
+.recharts-rectangle {
+    transition: transform 0.2s, filter 0.2s;
+}
+
+.recharts-rectangle:hover {
+    filter: brightness(1.2) contrast(1.1) drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+    transition: all 0.3s ease; 
+}

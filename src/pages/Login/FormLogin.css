@@ -1,0 +1,88 @@
+.form-login-container {
+  display: grid;
+  grid-template-columns: 4fr 6fr;
+  height: 100vh;
+  background-image: 'Login.png';
+}
+
+.form-login-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  position: relative;
+}
+.form-login-form h1 {
+  position: absolute;
+  top: 20px;
+  left: 40px;
+  margin: 0;
+  font-family: 'Playball', cursive;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.form-login-image {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  background-image: url('/src/assets/images/login.png');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.form-login-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.form-login-image .overlay {
+  position: absolute;
+  top: 10%;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.3);
+  /* mờ trắng */
+  padding: 20px;
+  backdrop-filter: blur(8px);
+  color: white;
+  text-align: center;
+
+}
+
+.form-login-image .quote {
+  font-family: 'Playball', cursive;
+  font-size: 40px;
+
+}
+
+.form-login-image .author {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+  float: right;
+  font-family: 'Playball', cursive;
+}
+
+@media (max-width: 768px) {
+  .form-login-image {
+    display: none;
+  }
+
+  .form-login-form {
+    flex: 1 1 100%;
+    width: 100vh;
+    background-image: url('/src/assets/images/login.png');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+
+  .form-login-container {
+    flex-direction: column;
+    padding: 20px;
+  }
+}
