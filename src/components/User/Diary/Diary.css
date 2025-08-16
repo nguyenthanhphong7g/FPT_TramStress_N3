@@ -1,0 +1,134 @@
+.diary-container {
+  display: flex;
+  justify-content: center;
+  /* gap: 40px; */
+  padding: 20px;
+  background: linear-gradient(to bottom, #cbe5ff, #b6e3b6);
+  min-height: 100vh;
+  margin: auto;
+  align-items: flex-start;
+  
+}
+.diary-box fixed-size{
+  /* margin-left: -100px; */
+}
+.diary-box {
+  background: #d3f5d3;
+  border-radius: 15px;
+  padding: 20px;
+  width: 900px;
+  height: 200x;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-left: 10px;
+  border: 2px solid black;
+  margin-top: 50px;
+}
+
+
+.diary-title {
+  font-style: italic;
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.date-picker {
+  padding: 5px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.text-area-box {
+  background-size: cover;
+  border-radius: 10px;
+  padding: 10px;
+  border:2px solid black;
+
+}
+
+.text-area {
+  width: 100%;
+  height: 550px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  line-height: 26px;
+  background-image: repeating-linear-gradient(
+    white,
+    white 25px,
+    black 25px,
+    black 26px
+  );
+  border-radius: 5px;
+  border:2px solid black;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.prev-btn {
+   background: red;
+  color: white;
+  border: none;
+  padding: 5px 15px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.save-btn {
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 5px 15px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  /* background: url("/src/assets/images/imgLayout01.jpg") no-repeat center; */
+  background-size: contain;
+  padding: 20px 0;
+  margin-left: 150px;
+  margin-top: 50px;
+}
+
+.right-panel select {
+  appearance: none;
+  background-color: transparent;
+  background-image: url("../../../../src/assets/images/UserDay.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  padding: 8px 24px;
+  width: 160px;
+  text-align: center;
+  border-radius: 20px;
+}
+
+.right-panel select option {
+  color: black;
+}
+
+
+.cat-img {
+  width: 120px;
+  background: transparent;
+}
