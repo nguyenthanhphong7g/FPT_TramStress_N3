@@ -1,0 +1,39 @@
+* {
+    font-size: 16px;
+
+}
+
+.BoLoc {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+.BoLoc ul {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+    padding-left: 40px;
+    overflow-x: scroll;
+}
+
+.BoLoc ul::-webkit-scrollbar {
+    display: none;
+}
+
+.BoLoc ul li {
+    border: solid #909090 1px;
+    border-radius: 50px;
+    width: 100px;
+    padding: 10px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.BoLoc .active {
+    background-color: #74acdf;
+    color: white;
+    border:none;
+}

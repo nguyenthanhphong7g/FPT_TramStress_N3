@@ -26,7 +26,8 @@ function UserLayout() {
   const sidebarItems = [
     { icon: <FaHome />, label: "Home", path: "/userlayout/home" },
     { icon: <FaHeart />, label: "Góc thư giãn", path: "/#" },
-    { icon: <FaBook />, label: "Góc nhật ký", path: "/#" },
+    { icon: <FaHeart />, label: "Góc thư giãn", path: "/userlayout/relax" },
+    { icon: <FaBook />, label: "Góc nhật ký", path: "/userlayout/diary" },
     { icon: <FaUserFriends />, label: "Góc tư vấn", path: "/#" },
     { icon: <FaPaw />, label: "Góc thú cưng", path: "/userlayout/login" },
     { icon: <FaSmile />, label: "Góc cảm xúc", path: "/userlayout/emotion" },
@@ -34,7 +35,7 @@ function UserLayout() {
 
   const menuItems = [
     { label: 'Home', href: '/userlayout/home' },
-    { label: 'Góc thư giãn', path: '/#' },
+    { label: 'Góc thư giãn', path: '/userlayout/relax' },
     { label: 'Góc nhật ký', path: '/#' },
     { label: 'Góc tư vấn', path: '/#' },
     { label: 'Góc thú cưng', path: '/userlayout/login' },
