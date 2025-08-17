@@ -5,7 +5,8 @@ import UserLayout from "../layouts/UserLayout/UserLayout";
 import FormSign from "../pages/Login/FormSign";
 import FormLogin from "../pages/Login/FormLog";
 import UserEmotion from "../pages/User/UserEmotion";
-import UserHome from "../pages/User/UserHome";
+import UserHome from '../pages/User/UserHome';
+import UserSetting from "../pages/User/UserSetting";
 import Test from "../components/User/Emotion/Test/Test";
 import Diary from "../components/User/Diary/Diary"
 import UserRelax from "../pages/User/UserRelax";
@@ -32,11 +33,11 @@ function AppRoutes() {
           <Route path="home" element={<UserHome />} />
           <Route path="home/test" element={<Test />} />
           <Route path="emotion" element={<UserEmotion />} />
+          <Route path="setting" element={<UserSetting />} />
           <Route path="emotion/test" element={<Test />} />
           <Route path="diary" element={<Diary />} />
           <Route path="relax" element={<UserRelax />} />
           <Route path="/userlayout/relax/:slug" element={<UserRelaxSeeAll />} />
-
         </Route>
       </Route>
     </Routes>

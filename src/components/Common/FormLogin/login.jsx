@@ -27,18 +27,20 @@ const Login = () => {
     });
 
     const onSubmit = (data) => {
-        const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
+    const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
 
-        const matchedUser = storedUsers.find(
-            (user) => user.email === data.email && user.password === data.password
-        );
+    const matchedUser = storedUsers.find(
+      (user) => user.email === data.email && user.password === data.password
+    );
 
-        if (matchedUser) {
-            navigate("/userlayout/home", { state: matchedUser });
-        } else {
-            alert("Email hoặc mật khẩu không đúng!");
-        }
-    };
+    if (matchedUser) {
+  localStorage.setItem("currentUser", JSON.stringify(matchedUser)); 
+  navigate("/userlayout/home");
+} else {
+  alert("Email hoặc mật khẩu không đúng!");
+}
+  };
+
 
 
     const handleRegisterClick = () => {
