@@ -7,6 +7,7 @@ import FormLogin from "../pages/Login/FormLog";
 import UserEmotion from "../pages/User/UserEmotion";
 import UserHome from '../pages/User/UserHome';
 import UserRelax from "../pages/User/UserRelax";
+import UserRelaxSeeAll from "../pages/User/UserRelaxSeeAll";
 
 // Giả lập role, sau này sẽ lấy từ API hoặc state management
 const userRole = "user"; // "admin" | "user" | "guest"
@@ -29,6 +30,8 @@ function AppRoutes() {
           <Route path="home" element={<UserHome />} />
           <Route path="emotion" element={<UserEmotion />} />
           <Route path="relax" element={<UserRelax />} />
+          <Route path="/userlayout/relax/:slug" element={<UserRelaxSeeAll />} />
+
         </Route>
       </Route>
     </Routes>
