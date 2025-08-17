@@ -1,33 +1,24 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as Yup from 'yup';
 import InputFeild from './InputFeild';
 import SosialLogin from './SosialLogin';
 import './login.css';
 import { useNavigate } from 'react-router-dom';
+import { signinSchema } from '../Schema/Schema';
 
-const schema = Yup.object().shape({
-    email: Yup.string()
-        .required('Bạn chưa nhập email')
-        .email('Email không hợp lệ'),
-    password: Yup.string()
-        .required('Bạn chưa nhập mật khẩu')
-        .min(8, 'Mật khẩu cần ít nhất 8 ký tự')
-        .matches(/[a-z]/, 'Mật khẩu cần ít nhất 1 chữ thường')
-        .matches(/[A-Z]/, 'Mật khẩu cần ít nhất 1 chữ hoa')
-        .matches(/\d/, 'Mật khẩu cần ít nhất 1 số')
-        .matches(/[@$!%*?&^#]/, 'Mật khẩu cần ít nhất 1 ký tự đặc biệt (@$!%*?&^#)'),
-});
 
 const Signin = () => {
     const navigate = useNavigate();
-    const {
-        register,
-        handleSubmit,
-        formState: { errors }
-    } = useForm({
-        resolver: yupResolver(schema)
-    });
+
+
+const {
+  register,
+  handleSubmit,
+  formState: { errors }
+} = useForm({
+  resolver: yupResolver(signinSchema)
+});
+
 
     const onSubmit = (data) => {
         const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
@@ -45,7 +36,7 @@ const Signin = () => {
     };
 
     const handleLoginClick = () => {
-        navigate('/'); 
+        navigate('/');
     }
 
     return (

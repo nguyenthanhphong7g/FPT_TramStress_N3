@@ -1,12 +1,27 @@
 import SidebarFormLayout from '../../components/Common/Sidebar/SidebarFormLayout';
 import { FaHome, FaHeart, FaBook, FaUserFriends, FaPaw, FaSmile } from 'react-icons/fa';
 import Header from '../../components/Common/Header/Header';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import Footer from '../../components/Common/Footer/Footer';
 import '../layout.css';
+import { useEffect, useState } from 'react';
 
 function UserLayout() {
+  const navigate = useNavigate();
+  const [notifications, setNotifications] = useState([]);
 
+  // Lấy dữ liệu từ localStorage khi load app
+  useEffect(() => {
+    const stored = JSON.parse(localStorage.getItem("notifications")) || [];
+    setNotifications(stored);
+  }, []);
+
+  const handleNotificationRead = (index) => {
+    const updated = [...notifications];
+    updated[index].read = true;
+    setNotifications(updated);
+    localStorage.setItem("notifications", JSON.stringify(updated));
+  };
 
   const sidebarItems = [
     { icon: <FaHome />, label: "Home", path: "/userlayout/home" },
@@ -28,7 +43,12 @@ function UserLayout() {
 
   return (
     <div>
-      <Header/>
+      <Header
+      title="Hôm nay bạn thế nào ?"
+      onSettingClick={() => navigate("/userlayout/setting")}
+      notifications={notifications}
+      onNotificationRead={handleNotificationRead}
+    />
       <div className="main-content">
         <SidebarFormLayout sidebarItems={sidebarItems} />
         <div className="page-content">

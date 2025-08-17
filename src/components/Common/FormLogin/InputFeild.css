@@ -85,3 +85,63 @@
 .input-wrapper-error .eye-icon {
   color: red;
 }
+
+.input-error {
+    border: 1px solid red;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.8rem;
+    margin-top: 4px;
+}
+
+.input-error {
+    border-color: red;
+}
+
+.input-error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.input-wrapper-error .input-icon,
+.input-wrapper-error .eye-icon {
+    color: red;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-feild {
+  width: 100%;
+  padding: 10px 40px 10px 40px; /* chừa chỗ cho icon bên trái + mũi tên bên phải */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: white;
+  font-size: 14px;
+  appearance: none; /* bỏ mũi tên mặc định */
+}
+
+.input-icon {
+  position: absolute;
+  left: 10px;
+  font-size: 20px;
+  color: #777;
+}
+
+.arrow-icon {
+  position: absolute;
+  right: 10px;
+  font-size: 22px;
+  color: #777;
+  pointer-events: none;
+}
+
+.input-error {
+  border-color: red;
+}

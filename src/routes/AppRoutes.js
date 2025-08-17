@@ -6,6 +6,7 @@ import FormSign from "../pages/Login/FormSign";
 import FormLogin from "../pages/Login/FormLog";
 import UserEmotion from "../pages/User/UserEmotion";
 import UserHome from '../pages/User/UserHome';
+import UserSetting from "../pages/User/UserSetting";
 
 // Giả lập role, sau này sẽ lấy từ API hoặc state management
 const userRole = "user"; // "admin" | "user" | "guest"
@@ -27,6 +28,7 @@ function AppRoutes() {
         <Route path="/userlayout" element={<UserLayout />}>
           <Route path="home" element={<UserHome />} />
           <Route path="emotion" element={<UserEmotion />} />
+          <Route path="setting" element={<UserSetting />} />
         </Route>
       </Route>
     </Routes>
