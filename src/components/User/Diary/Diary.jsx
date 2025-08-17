@@ -1,33 +1,86 @@
-import "./../Diary/Diary.css"
+import "./../Diary/Diary.css";
 import { useEffect, useState } from "react";
 import { FaSave } from "react-icons/fa";
 import imgCat01 from "./../../../assets/images/CatDiary.png";
-import MiniCalendar from "./MiniCalendar"; 
+import MiniCalendar from "./MiniCalendar";
 
-function Home() {
-  const [year, setYear] = useState(2025);
-  const [month, setMonth] = useState(7);
-  const [day, setDay] = useState(10);
+function Diary() {
+  const today = new Date();
+
+  const [year, setYear] = useState(today.getFullYear());
+  const [month, setMonth] = useState(today.getMonth() + 1);
+  const [day, setDay] = useState(today.getDate());
   const [content, setContent] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
+  const [modalDate, setModalDate] = useState("");
 
+  // State cho modal
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalContent, setModalContent] = useState("");
 
+  // Load dữ liệu lần đầu
   useEffect(() => {
-    const saved = localStorage.getItem("myDiary");
-    if (saved) {
-      const { year, month, day, content } = JSON.parse(saved);
-      setYear(year);
-      setMonth(month);
-      setDay(day);
-      setContent(content);
-    }
+    loadDiary(year, month, day);
   }, []);
 
+  // Hàm load nhật ký theo ngày
+  const loadDiary = (y, m, d) => {
+    setYear(y);
+    setMonth(m);
+    setDay(d);
+
+    const saved = JSON.parse(localStorage.getItem("myDiarys") || "{}");
+    const key = `${y}-${m}-${d}`;
+    setContent(saved[key] || "");
+  };
+
+  // Lưu nhật ký
+  const saveDiary = () => {
+    const saved = JSON.parse(localStorage.getItem("myDiarys") || "{}");
+    const key = `${year}-${month}-${day}`;
+    saved[key] = content;
+    localStorage.setItem("myDiarys", JSON.stringify(saved));
+    alert(`Đã lưu nhật ký ngày ${day}/${month}/${year} ✅`);
+  };
+
+  // Xóa nhật ký
+  const deleteDiary = () => {
+    const saved = JSON.parse(localStorage.getItem("myDiarys") || "{}");
+    const key = `${year}-${month}-${day}`;
+    if (saved[key]) {
+      delete saved[key];
+      localStorage.setItem("myDiarys", JSON.stringify(saved));
+      setContent("");
+      alert(`Đã xóa nhật ký ngày ${day}/${month}/${year}`);
+    } else {
+      alert("Không có nhật ký để xóa!");
+    }
+  };
+
+  // Khi chọn ngày trong MiniCalendar
+  const handleSelectDate = (y, m, d) => {
+    const selectedDate = new Date(y, m - 1, d);
+    const isPastDate =
+      selectedDate <
+      new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+    const saved = JSON.parse(localStorage.getItem("myDiarys") || "{}");
+    const key = `${y}-${m}-${d}`;
+
+    if (isPastDate) {
+      // Lưu ngày được chọn
+      setModalDate(`${d}/${m}/${y}`);
+      // Mở modal
+      setModalContent(saved[key] || "📌 Chưa có nhật ký ngày này.");
+      setModalOpen(true);
+    } else {
+      loadDiary(y, m, d);
+    }
+  };
   return (
     <div className="diary-container">
       {/* Khung nhật ký */}
       <div className="diary-box">
-        <h2 className="diary-title">Nhật ký nha !!!</h2>
+        <h2 className="diary-title">📖 Nhật ký hôm nay</h2>
 
         <input
           type="date"
@@ -37,9 +90,7 @@ function Home() {
             .padStart(2, "0")}`}
           onChange={(e) => {
             const [y, m, d] = e.target.value.split("-").map(Number);
-            setYear(y);
-            setMonth(m);
-            setDay(d);
+            loadDiary(y, m, d);
           }}
         />
 
@@ -53,31 +104,11 @@ function Home() {
         </div>
 
         <div className="button-group">
-          <button
-            className="prev-btn"
-            onClick={() => {
-              setContent("");
-              alert(
-                `Nhật ký chưa được lưu!`
-              );
-            }}
-          >
+          <button className="prev-btn" onClick={deleteDiary}>
             Xóa nhật ký
           </button>
 
-          <button
-            type="button"
-            className="save-btn"
-            onClick={() => {
-              const diaryData = { year, month, day, content };
-              localStorage.setItem("myDiary", JSON.stringify(diaryData));
-              console.log("Đã lưu vào localStorage!");
-              setContent("");
-              alert(
-                `Hôm nay bạn đã ghi nhật ký ngày ${day}/${month}/${year} ✅`
-              );
-            }}
-          >
+          <button type="button" className="save-btn-diary" onClick={saveDiary}>
             <FaSave /> Lưu
           </button>
         </div>
@@ -85,14 +116,17 @@ function Home() {
 
       {/* Panel bên phải */}
       <div className="right-panel">
-        <select value={year} onChange={(e) => setYear(Number(e.target.value))}>
+        <select
+          value={year}
+          onChange={(e) => loadDiary(Number(e.target.value), month, day)}
+        >
           <option value={2025}>Năm 2025</option>
           <option value={2024}>Năm 2024</option>
         </select>
 
         <select
           value={month}
-          onChange={(e) => setMonth(Number(e.target.value))}
+          onChange={(e) => loadDiary(year, Number(e.target.value), day)}
         >
           {[...Array(12)].map((_, i) => (
             <option key={i + 1} value={i + 1}>
@@ -101,7 +135,10 @@ function Home() {
           ))}
         </select>
 
-        <select value={day} onChange={(e) => setDay(Number(e.target.value))}>
+        <select
+          value={day}
+          onChange={(e) => loadDiary(year, month, Number(e.target.value))}
+        >
           {[...Array(31)].map((_, i) => (
             <option key={i + 1} value={i + 1}>
               Ngày {i + 1}
@@ -110,12 +147,28 @@ function Home() {
         </select>
 
         {/* Lịch mini */}
-        <MiniCalendar year={year} month={month} day={day} />
+        <MiniCalendar
+          year={year}
+          month={month}
+          day={day}
+          onSelectDate={handleSelectDate}
+        />
 
         <img src={imgCat01} alt="Mèo" className="cat-img" />
       </div>
+
+      {/* Modal hiển thị nhật ký ngày trước */}
+      {modalOpen && (
+        <div className="modal-overlay" onClick={() => setModalOpen(false)}>
+          <div className="modal-box" onClick={(e) => e.stopPropagation()}>
+            <h3>📅 Nhật ký ngày {modalDate}</h3>
+            <p>{modalContent}</p>
+            <button onClick={() => setModalOpen(false)}>Đóng</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
-export default Home;
+export default Diary;
