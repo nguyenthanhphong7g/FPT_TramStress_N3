@@ -9,7 +9,7 @@
   font-size: 14px;
 }
 
-.calendar-header {
+.calendar-header-diary {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   text-align: center;
@@ -26,7 +26,7 @@
   row-gap: 6px; /* khoảng cách giữa các dòng */
 }
 
-.calendar-day {
+.calendar-day-diary {
   border-radius: 50%;
   width: 32px;
   height: 32px;
@@ -36,24 +36,77 @@
   font-size: 13px;
   cursor: default;
 }
+/* .calendar-day-diary {
+  padding: 8px;
+  border: 1px solid #ddd;
+  text-align: center;
+  border-radius: 6px;
+  cursor: default;
+  transition: all 0.2s ease-in-out;
+} */
+
+/* .calendar-day-diary.past {
+  cursor: pointer;
+}
+
+.calendar-day-diary.past:hover {
+  background-color: #cce5ff; 
+  transform: scale(1.1);    
+}
+ */
 
 
-
-.calendar-day.sat {
+.calendar-day-diary.sat {
   color: red;
 }
 
 
-.calendar-day.sun {
+.calendar-day-diary.sun {
   color: green;
 }
 
-.calendar-day.selected {
+.calendar-day-diary.selected {
   background-color: #ff6b6b;
   color: white;
 }
 
 
-.calendar-day.empty {
+.calendar-day-diary.empty {
   color: #999;
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-box {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-box h3 {
+  margin-top: 0;
+}
+
+.modal-box button {
+  margin-top: 15px;
+  padding: 8px 16px;
+  border: none;
+  background: #4caf50;
+  /* color: white; */
+  border-radius: 8px;
+  cursor: pointer;
 }

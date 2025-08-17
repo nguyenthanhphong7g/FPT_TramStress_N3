@@ -10,7 +10,6 @@ function UserLayout() {
 
   const sidebarItems = [
     { icon: <FaHome />, label: "Home", path: "/userlayout/home" },
-    { icon: <FaHeart />, label: "Góc thư giãn", path: "/#" },
     { icon: <FaHeart />, label: "Góc thư giãn", path: "/userlayout/relax" },
     { icon: <FaBook />, label: "Góc nhật ký", path: "/userlayout/diary" },
     { icon: <FaUserFriends />, label: "Góc tư vấn", path: "/#" },
