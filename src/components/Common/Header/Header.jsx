@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { FiSettings, FiBell, FiUser } from "react-icons/fi";
+import {FiBell, FiUser } from "react-icons/fi";
 import NotificationPanel from "../NotificationPanel/NotificationPanel.";
 import UserMenu from "../UserMenu/UserMenu";
 import "./Header.css";
@@ -12,6 +12,7 @@ const Header = ({
 }) => {
   const [isNotiOpen, setIsNotiOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
 
   const notiRef = useRef(null);
   const userRef = useRef(null);
@@ -36,7 +37,21 @@ const Header = ({
     }
   };
 
-  // click outside
+  useEffect(() => {
+    const savedUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (savedUser) setCurrentUser(savedUser);
+
+    const handleStorageChange = () => {
+      const updatedUser = JSON.parse(localStorage.getItem("currentUser"));
+      setCurrentUser(updatedUser);
+    };
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -65,13 +80,13 @@ const Header = ({
       </div>
 
       <div className="header-right">
-        <button
+        {/* <button
           className="header-action-btn"
           title="Cài đặt"
           onClick={onSettingClick}
         >
           <FiSettings className="icon" />
-        </button>
+        </button> */}
 
         <div ref={notiRef} style={{ display: "inline-block" }}>
           <button
@@ -104,12 +119,23 @@ const Header = ({
             title="Tài khoản"
             onClick={toggleUserMenu}
           >
-            <FiUser className="icon" />
+            {currentUser?.avatar ? (
+              <img
+                src={currentUser.avatar}
+                alt="avatar"
+                className="header-avatar"
+              />
+            ) : (
+              <FiUser className="icon" />
+            )}
           </button>
           <UserMenu
-            isOpen={isUserMenuOpen}
-            onClose={() => setIsUserMenuOpen(false)}
-          />
+  isOpen={isUserMenuOpen}
+  currentUser={currentUser}
+  onClick={() => onSettingClick()
+  }
+/>
+
         </div>
       </div>
     </header>

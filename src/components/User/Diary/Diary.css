@@ -83,7 +83,7 @@
   cursor: pointer;
 }
 
-.save-btn {
+.diary-container .save-btn {
   background: #4caf50;
   color: white;
   border: none;

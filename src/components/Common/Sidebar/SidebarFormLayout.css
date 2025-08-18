@@ -3,7 +3,7 @@
   padding: 20px;
   border-right: 1px solid #ddd;
   min-height: 100vh;
-  max-width: 26vh;
+  width: 26vh;
 }
 
 .sidebar-menu {
@@ -47,6 +47,9 @@
   .form-content {
     padding: 30px;
   }
+  .sidebar-item span {
+    font-size: 12px;
+  }
 }
 
 @media (min-width: 768px) {
@@ -67,7 +70,7 @@
 
 @media screen and (max-width: 768px) {
   .sidebar {
-    width: 72px;
+    width: 10vh;
   }
 
   .sidebar-item {
@@ -81,14 +84,14 @@
   }
 
   .sidebar-item .icon:hover {
-    transform: scale(1.5);
+    transform: scale(2);
     /* color: #fff; */
   }
   .sidebar-item.active .icon:hover, .sidebar-item .icon:active{
-    transform: scale(1.5);
+    transform: scale(2);
   }
   .sidebar-item.active .icon {
-    transform: scale(1.4);
+    transform: scale(1.8);
     color: #fff;
 
   }
