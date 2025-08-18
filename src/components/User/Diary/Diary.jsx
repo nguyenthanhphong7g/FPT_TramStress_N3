@@ -40,6 +40,7 @@ function Diary() {
     saved[key] = content;
     localStorage.setItem("myDiarys", JSON.stringify(saved));
     alert(`Đã lưu nhật ký ngày ${day}/${month}/${year} ✅`);
+    setContent(""); // Xóa nội dung sau khi lưu
   };
 
   // Xóa nhật ký
@@ -82,18 +83,6 @@ function Diary() {
       <div className="diary-box">
         <h2 className="diary-title">📖 Nhật ký hôm nay</h2>
 
-        <input
-          type="date"
-          className="date-picker"
-          value={`${year}-${month.toString().padStart(2, "0")}-${day
-            .toString()
-            .padStart(2, "0")}`}
-          onChange={(e) => {
-            const [y, m, d] = e.target.value.split("-").map(Number);
-            loadDiary(y, m, d);
-          }}
-        />
-
         <div className="text-area-box">
           <textarea
             className="text-area"
@@ -115,36 +104,60 @@ function Diary() {
       </div>
 
       {/* Panel bên phải */}
+
       <div className="right-panel">
-        <select
-          value={year}
-          onChange={(e) => loadDiary(Number(e.target.value), month, day)}
-        >
-          <option value={2025}>Năm 2025</option>
-          <option value={2024}>Năm 2024</option>
-        </select>
+        <div className="right-panel-day">
+          <div className="select-field">
+            <label htmlFor="day" className="sr-only">
+              Ngày
+            </label>
+            <select
+              id="day"
+              className="day-select"
+              value={day}
+              onChange={(e) => loadDiary(year, month, Number(e.target.value))}
+            >
+              {[...Array(31)].map((_, i) => (
+                <option key={i + 1} value={i + 1}>
+                  Ngày {i + 1}
+                </option>
+              ))}
+            </select>
+          </div>
 
-        <select
-          value={month}
-          onChange={(e) => loadDiary(year, Number(e.target.value), day)}
-        >
-          {[...Array(12)].map((_, i) => (
-            <option key={i + 1} value={i + 1}>
-              Tháng {i + 1}
-            </option>
-          ))}
-        </select>
+          <div className="select-field">
+            <label htmlFor="month" className="sr-only">
+              Tháng
+            </label>
+            <select
+              id="month"
+              className="day-select"
+              value={month}
+              onChange={(e) => loadDiary(year, Number(e.target.value), day)}
+            >
+              {[...Array(12)].map((_, i) => (
+                <option key={i + 1} value={i + 1}>
+                  Tháng {i + 1}
+                </option>
+              ))}
+            </select>
+          </div>
 
-        <select
-          value={day}
-          onChange={(e) => loadDiary(year, month, Number(e.target.value))}
-        >
-          {[...Array(31)].map((_, i) => (
-            <option key={i + 1} value={i + 1}>
-              Ngày {i + 1}
-            </option>
-          ))}
-        </select>
+          <div className="select-field">
+            <label htmlFor="year" className="sr-only">
+              Năm
+            </label>
+            <select
+              id="year"
+              className="day-select"
+              value={year}
+              onChange={(e) => loadDiary(Number(e.target.value), month, day)}
+            >
+              <option value={2025}>Năm 2025</option>
+              <option value={2024}>Năm 2024</option>
+            </select>
+          </div>
+        </div>
 
         {/* Lịch mini */}
         <MiniCalendar
