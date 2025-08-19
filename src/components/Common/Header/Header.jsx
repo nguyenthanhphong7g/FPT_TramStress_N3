@@ -1,96 +1,102 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { FiSettings, FiBell, FiUser } from 'react-icons/fi';
-import NotificationPanel from '../NotificationPanel/NotificationPanel.';
-import UserMenu from '../UserMenu/UserMenu';
-import './Header.css';
+import React, { useState, useEffect, useRef } from "react";
+import {FiBell, FiUser } from "react-icons/fi";
+import NotificationPanel from "../NotificationPanel/NotificationPanel.";
+import UserMenu from "../UserMenu/UserMenu";
+import "./Header.css";
 
-const Header = () => {
+const Header = ({
+  title = "Hôm nay bạn thế nào?",
+  onSettingClick,
+  notifications = [],
+  onNotificationRead = () => {},
+}) => {
   const [isNotiOpen, setIsNotiOpen] = useState(false);
-  const [unreadCount, setUnreadCount] = useState(0);
-  const [notifications, setNotifications] = useState([]);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
 
   const notiRef = useRef(null);
   const userRef = useRef(null);
 
-  const toggleNoti = () => {
-  setIsNotiOpen(prev => {
-    if (!prev) setIsUserMenuOpen(false); 
-    return !prev;
-  });
-};
+  const unreadCount = notifications.filter((n) => !n.read).length;
 
-const toggleUserMenu = () => {
-  setIsUserMenuOpen(prev => {
-    if (!prev) setIsNotiOpen(false); 
-    return !prev;
-  });
-};
+  const toggleNoti = () =>
+    setIsNotiOpen((prev) => {
+      if (!prev) setIsUserMenuOpen(false);
+      return !prev;
+    });
 
-
-  useEffect(() => {
-    const storedNotis = JSON.parse(localStorage.getItem('notifications')) || [];
-    setNotifications(storedNotis);
-    setUnreadCount(storedNotis.filter(n => !n.read).length);
-  }, []);
-
-  useEffect(() => {
-    if (isNotiOpen) {
-      const storedNotis = JSON.parse(localStorage.getItem('notifications')) || [];
-      setNotifications(storedNotis);
-      setUnreadCount(storedNotis.filter(n => !n.read).length);
-    }
-  }, [isNotiOpen]);
+  const toggleUserMenu = () =>
+    setIsUserMenuOpen((prev) => {
+      if (!prev) setIsNotiOpen(false);
+      return !prev;
+    });
 
   const handleNotificationClick = (index) => {
-    if (!Array.isArray(notifications) || !notifications[index]) return;
-
-    const updated = [...notifications];
-    if (!updated[index].read) {
-      updated[index].read = true;
-      localStorage.setItem('notifications', JSON.stringify(updated));
-      setNotifications(updated);
-
-      const unread = updated.filter(n => !n.read).length;
-      setUnreadCount(unread);
+    if (notifications[index] && !notifications[index].read) {
+      onNotificationRead(index);
     }
   };
 
   useEffect(() => {
+    const savedUser = JSON.parse(localStorage.getItem("currentUser"));
+    if (savedUser) setCurrentUser(savedUser);
+
+    const handleStorageChange = () => {
+      const updatedUser = JSON.parse(localStorage.getItem("currentUser"));
+      setCurrentUser(updatedUser);
+    };
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
+
+  useEffect(() => {
     const handleClickOutside = (event) => {
       if (
-        notiRef.current && !notiRef.current.contains(event.target) &&
-        userRef.current && !userRef.current.contains(event.target)
+        notiRef.current &&
+        !notiRef.current.contains(event.target) &&
+        userRef.current &&
+        !userRef.current.contains(event.target)
       ) {
         setIsNotiOpen(false);
         setIsUserMenuOpen(false);
       }
     };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () =>
+      document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   return (
     <header className="header-container">
-      <div className="header-left"><span>Trạm Stress</span></div>
+      <div className="header-left">
+        <span>Trạm Stress</span>
+      </div>
 
       <div className="header-center">
-        <h2>Hôm nay bạn thế nào?</h2>
+        <h2>{title}</h2>
       </div>
 
       <div className="header-right">
-        <button className="header-action-btn" title="Cài đặt">
+        {/* <button
+          className="header-action-btn"
+          title="Cài đặt"
+          onClick={onSettingClick}
+        >
           <FiSettings className="icon" />
-        </button>
+        </button> */}
 
-        <div ref={notiRef} style={{ display: 'inline-block' }}>
+        <div ref={notiRef} style={{ display: "inline-block" }}>
           <button
-            className={`header-action-btn header-action-btn-bell ${isNotiOpen ? 'active' : ''}`}
+            className={`header-action-btn header-action-btn-bell ${
+              isNotiOpen ? "active" : ""
+            }`}
             title="Thông báo"
             onClick={toggleNoti}
           >
-            <div style={{ position: 'relative' }}>
+            <div style={{ position: "relative" }}>
               <FiBell className="icon" />
               {unreadCount > 0 && !isNotiOpen && (
                 <span className="noti-badge">{unreadCount}</span>
@@ -105,18 +111,31 @@ const toggleUserMenu = () => {
           />
         </div>
 
-        <div ref={userRef} style={{ display: 'inline-block' }}>
+        <div ref={userRef} style={{ display: "inline-block" }}>
           <button
-            className={`header-action-btn header-action-btn-user ${isUserMenuOpen ? 'active' : ''}`}
+            className={`header-action-btn header-action-btn-user ${
+              isUserMenuOpen ? "active" : ""
+            }`}
             title="Tài khoản"
             onClick={toggleUserMenu}
           >
-            <FiUser className="icon" />
+            {currentUser?.avatar ? (
+              <img
+                src={currentUser.avatar}
+                alt="avatar"
+                className="header-avatar"
+              />
+            ) : (
+              <FiUser className="icon" />
+            )}
           </button>
           <UserMenu
-            isOpen={isUserMenuOpen}
-            onClose={() => setIsUserMenuOpen(false)}
-          />
+  isOpen={isUserMenuOpen}
+  currentUser={currentUser}
+  onClick={() => onSettingClick()
+  }
+/>
+
         </div>
       </div>
     </header>

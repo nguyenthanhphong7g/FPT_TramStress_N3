@@ -8,6 +8,7 @@ import yoga from '../../../../assets/images/Relax/yoga.png'
 const relaxContent = [
   {
     title: 'Phổ biến',
+    slug: 'popular',
     items: [
       { type: 'baitap', img: yoga, text: 'Yoga giảm stress và căng thẳng cho người mới' },
       { type: 'giaidieu', img: rain, text: 'Tiếng mưa thư giãn' },
@@ -16,6 +17,7 @@ const relaxContent = [
   },
   {
     title: 'Bài tập',
+    slug: 'exercise',
     items: Array(4).fill({
       type: 'baitap',
       img: yoga,
@@ -24,6 +26,7 @@ const relaxContent = [
   },
   {
     title: 'Giai điệu',
+    slug: 'music',
     items: Array(4).fill({
       type: 'giaidieu',
       img: rain,
@@ -32,6 +35,7 @@ const relaxContent = [
   },
   {
     title: 'Lời hay',
+    slug: 'word',
     items: [
       { type: 'loihay', img: sunset, text: 'Không quan trọng việc bạn đi chậm thế nào, miễn là đừng bao giờ dừng lại', author: 'Khổng Tử' },
       { type: 'loihay', img: sunset, text: 'Không quan trọng việc bạn đi chậm thế nào, miễn là đừng bao giờ dừng lại', author: 'Khổng Tử' },

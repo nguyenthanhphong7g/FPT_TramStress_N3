@@ -1,51 +1,46 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
-import * as Yup from 'yup';
 import InputFeild from './InputFeild';
 import SosialLogin from './SosialLogin';
 import './login.css';
 import { useNavigate } from 'react-router-dom';
+import { signinSchema } from '../Schema/Schema';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const schema = Yup.object().shape({
-    email: Yup.string()
-        .required('Bạn chưa nhập email')
-        .email('Email không hợp lệ'),
-    password: Yup.string()
-        .required('Bạn chưa nhập mật khẩu')
-        .min(8, 'Mật khẩu cần ít nhất 8 ký tự')
-        .matches(/[a-z]/, 'Mật khẩu cần ít nhất 1 chữ thường')
-        .matches(/[A-Z]/, 'Mật khẩu cần ít nhất 1 chữ hoa')
-        .matches(/\d/, 'Mật khẩu cần ít nhất 1 số')
-        .matches(/[@$!%*?&^#]/, 'Mật khẩu cần ít nhất 1 ký tự đặc biệt (@$!%*?&^#)'),
-});
 
 const Signin = () => {
     const navigate = useNavigate();
-    const {
-        register,
-        handleSubmit,
-        formState: { errors }
-    } = useForm({
-        resolver: yupResolver(schema)
-    });
+
+
+const {
+  register,
+  handleSubmit,
+  formState: { errors }
+} = useForm({
+  resolver: yupResolver(signinSchema)
+});
+
 
     const onSubmit = (data) => {
         const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
         const emailExists = storedUsers.some((user) => user.email === data.email);
 
         if (emailExists) {
-            alert("Email đã được đăng ký trước đó. Vui lòng dùng email khác!");
+            // alert("Email đã được đăng ký trước đó. Vui lòng dùng email khác!");
+            toast.error("Email đã được đăng ký trước đó. Vui lòng dùng email khác!");
             return;
         }
         storedUsers.push(data);
         localStorage.setItem("users", JSON.stringify(storedUsers));
 
-        alert("Đăng ký thành công!");
+        // alert("Đăng ký thành công!");
+        toast.success("Đăng ký thành công!");
         navigate("/", { state: data });
     };
 
     const handleLoginClick = () => {
-        navigate('/'); 
+        navigate('/');
     }
 
     return (
@@ -81,6 +76,7 @@ const Signin = () => {
                 <a href="#" className='left'>Tiếp tục với vai trò khách</a>
                 <a href="#" className='right' onClick={handleLoginClick}>Vậy thì bắt đầu thôi </a>
             </div>
+            <ToastContainer position="top-right" autoClose={2000} />
         </div>
     );
 };
