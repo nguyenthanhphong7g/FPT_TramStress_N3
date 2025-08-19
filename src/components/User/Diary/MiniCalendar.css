@@ -9,7 +9,7 @@
   font-size: 14px;
 }
 
-.mini-calendar .calendar-header {
+.calendar-header-diary {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   text-align: center;
@@ -18,14 +18,15 @@
   padding-bottom: 5px;
 }
 
-.mini-calendar .calendar-days {
+.calendar-days {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   text-align: center;
   margin-top: 8px;
   row-gap: 6px; /* khoảng cách giữa các dòng */
 }
-.mini-calendar .calendar-day {
+
+.calendar-day-diary {
   border-radius: 50%;
   width: 32px;
   height: 32px;
@@ -55,21 +56,22 @@
  */
 
 
-.mini-calendar .calendar-day.sat {
+.calendar-day-diary.sat {
   color: red;
 }
 
-.mini-calendar .calendar-day.sun {
+
+.calendar-day-diary.sun {
   color: green;
 }
 
-.mini-calendar .calendar-day.selected {
+.calendar-day-diary.selected {
   background-color: #ff6b6b;
   color: white;
 }
 
 
-.mini-calendar .calendar-day.empty {
+.calendar-day-diary.empty {
   color: #999;
 }
 .modal-overlay {
