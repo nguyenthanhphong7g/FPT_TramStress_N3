@@ -37,18 +37,25 @@ const NoiDung = ({ refs }) => {
           </div>
 
           <div className='noidung-bottom'>
-            {section.items.map((item, itemIdx) => (
+            {section.items.slice(0, 4).map((item, itemIdx) => (
               <div
                 key={itemIdx}
                 className={`${item.type} ${item.type === 'loihay' &&
-                    activeIndex === itemIdx &&
-                    activeSection === sectionIdx
-                    ? 'show'
-                    : ''
+                  activeIndex === itemIdx &&
+                  activeSection === sectionIdx
+                  ? 'show'
+                  : ''
                   }`}
-                onClick={() => handleClick(sectionIdx, itemIdx, item.type)}
+                onClick={() => {
+                  if (item.type === "loihay") {
+                    handleClick(sectionIdx, itemIdx, item.type);
+                  } else if (item.url) {
+                    window.open(item.url, "_blank");
+                  }
+                }}
+                style={{ cursor: item.url || item.type === "loihay" ? "pointer" : "default" }}
               >
-                <img src={item.img} alt="" />
+                <img src={item.img} alt={item.type} />
                 <div className='content-relax'>
                   <p>{item.text}</p>
                   {item.author && <h4>{item.author}</h4>}
