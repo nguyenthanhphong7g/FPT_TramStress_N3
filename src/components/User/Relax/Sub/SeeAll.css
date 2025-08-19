@@ -1,0 +1,31 @@
+.see-all {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.see-all-text{
+    display:flex;
+    padding-left: 30px;
+    gap:10px;
+    align-items: center;
+}
+.see-all-text img{
+    width:22px;
+    height:22px;
+}
+.see-all-text h4{
+    color: #31793a;
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 0px;
+}
+.see-all .noidung-bottom {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 30px;
+    padding:0px 50px 50px;
+}
+.see-all .giaidieu,.see-all .baitap,.see-all .loihay{
+    width:360px;
+    height:270px;
+}

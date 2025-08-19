@@ -7,6 +7,8 @@ import './login.css';
 import { useNavigate } from 'react-router-dom';
 import ForgotPasswordModal from './ForgotPasswordModal';
 import { useState } from 'react';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const schema = Yup.object().shape({
     email: Yup.string()
         .required('Bạn chưa nhập email')
@@ -27,18 +29,21 @@ const Login = () => {
     });
 
     const onSubmit = (data) => {
-        const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
+    const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
 
-        const matchedUser = storedUsers.find(
-            (user) => user.email === data.email && user.password === data.password
-        );
+    const matchedUser = storedUsers.find(
+      (user) => user.email === data.email && user.password === data.password
+    );
 
-        if (matchedUser) {
-            navigate("/userlayout/home", { state: matchedUser });
-        } else {
-            alert("Email hoặc mật khẩu không đúng!");
-        }
-    };
+    if (matchedUser) {
+  localStorage.setItem("currentUser", JSON.stringify(matchedUser)); 
+  navigate("/userlayout/home");
+} else {
+//   alert("Email hoặc mật khẩu không đúng!");
+  toast.error("Email hoặc mật khẩu không đúng!");
+}
+  };
+
 
 
     const handleRegisterClick = () => {
@@ -85,6 +90,7 @@ const Login = () => {
                 <a href="#" className='right' onClick={handleRegisterClick}>Đăng ký hành trình ngay</a>
             </div>
             {showForgotPassword && <ForgotPasswordModal onClose={() => setShowForgotPassword(false)} />}
+            <ToastContainer position="top-right" autoClose={2000} />
         </div>
     );
 };

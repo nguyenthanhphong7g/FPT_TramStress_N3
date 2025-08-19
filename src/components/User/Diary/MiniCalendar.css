@@ -48,11 +48,30 @@
 /* .calendar-day-diary.past {
   cursor: pointer;
 }
+/* .calendar-day-diary {
+  padding: 8px;
+  border: 1px solid #ddd;
+  text-align: center;
+  border-radius: 6px;
+  cursor: default;
+  transition: all 0.2s ease-in-out;
+} */
+
+/* .calendar-day-diary.past {
+  cursor: pointer;
+}
 
 .calendar-day-diary.past:hover {
   background-color: #cce5ff; 
   transform: scale(1.1);    
 }
+ */
+
+.calendar-day-diary.past:hover {
+  background-color: #cce5ff; 
+  transform: scale(1.1);    
+}
+<<<<<<< Updated upstream
  */
 
 
@@ -65,14 +84,65 @@
   color: green;
 }
 
+=======
+.calendar-day-diary.sat {
+  color: red;
+}
+.calendar-day-diary.sun {
+  color: green;
+}
+>>>>>>> Stashed changes
 .calendar-day-diary.selected {
   background-color: #ff6b6b;
   color: white;
 }
 
+<<<<<<< Updated upstream
 
+=======
+/* Ngày hôm nay */
+.calendar-day-diary.today {
+  border: 2px solid #ff9800; /* viền cam cho hôm nay */
+}
+>>>>>>> Stashed changes
 .calendar-day-diary.empty {
   color: #999;
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-box {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.2);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-box h3 {
+  margin-top: 0;
+}
+
+.modal-box button {
+  margin-top: 15px;
+  padding: 8px 16px;
+  border: none;
+  background: #4caf50;
+  /* color: white; */
+  border-radius: 8px;
+  cursor: pointer;
 }
 .modal-overlay {
   position: fixed;
