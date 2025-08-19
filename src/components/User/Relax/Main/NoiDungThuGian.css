@@ -63,7 +63,7 @@
 .giaidieu,
 .loihay {
     border-radius: 20px;
-    border: solid 1px black;
+    border: solid 1px rgb(0, 0, 0);
     display: inline-block;
     position: relative;
     flex:0 0 auto;
@@ -86,7 +86,7 @@
     top: 0px;
     left: 0px;
     background-color: none;
-    
+    width:100%;
 }
 
 .noidung-bottom .baitap img {
@@ -98,7 +98,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    width:100%;
+    width:95%;
     padding-left:10px;
     padding-top: 2px;
 }
@@ -107,9 +107,9 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0); /* trong suốt ban đầu */
+  background: rgba(0, 0, 0, 0); 
   transition: background 0.3s ease;
-  z-index: 1; /* nằm trên ảnh nhưng dưới tam giác */
+  z-index: 1; 
   pointer-events: none;
 }
 .noidung-bottom .giaidieu div {
@@ -150,16 +150,13 @@
 .baitap:hover::after, .giaidieu:hover::after {
   opacity: 1;
 }
-/* Ẩn mặc định */
 .loihay .content-relax {
   display: none;
 }
-
-/* Khi hiển thị */
 .loihay.show .content-relax {
   display: flex;
   flex-direction: column;  
-  justify-content: space-between; /* Đẩy p lên giữa và h4 xuống cuối */
+  justify-content: space-between;
   position: absolute;
   top: 0;
   left: 0;
@@ -170,19 +167,15 @@
   background-color: rgba(0,0,0,0.5);
   color: white;
 }
-
-/* Câu nói */
 .loihay.show .content-relax p {
   font-size: 24px;
   font-weight: bolder;
   text-align: center;
-  margin: auto 0; /* Giúp p nằm giữa khung */
+  margin: auto 0; 
 }
-
-/* Tác giả ở góc phải dưới */
 .loihay.show .content-relax h4 {
   font-size: 20px;
   font-weight: 400;
-  align-self: flex-end; /* Đẩy sang phải */
+  align-self: flex-end; 
   margin: 0;
 }
