@@ -55,7 +55,7 @@ function MiniCalendar({ year, month, day, onSelectDate }) {
                 ${isPast ? "past" : ""} 
                 ${idx % 7 === 5 ? "sat" : ""} 
                 ${idx % 7 === 6 ? "sun" : ""}`}
-              onClick={() => isPast && onSelectDate(year, month, d)}
+              onClick={() => onSelectDate(year, month, d)}
             >
               {d}
             </div>

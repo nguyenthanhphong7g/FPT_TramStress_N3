@@ -71,40 +71,16 @@
   background-color: #cce5ff; 
   transform: scale(1.1);    
 }
-<<<<<<< Updated upstream
- */
-
-
-.calendar-day-diary.sat {
-  color: red;
-}
-
-
-.calendar-day-diary.sun {
-  color: green;
-}
-
-=======
 .calendar-day-diary.sat {
   color: red;
 }
 .calendar-day-diary.sun {
   color: green;
 }
->>>>>>> Stashed changes
 .calendar-day-diary.selected {
   background-color: #ff6b6b;
   color: white;
 }
-
-<<<<<<< Updated upstream
-
-=======
-/* Ngày hôm nay */
-.calendar-day-diary.today {
-  border: 2px solid #ff9800; /* viền cam cho hôm nay */
-}
->>>>>>> Stashed changes
 .calendar-day-diary.empty {
   color: #999;
 }
