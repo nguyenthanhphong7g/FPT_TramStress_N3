@@ -9,9 +9,7 @@
   align-items: flex-start;
   
 }
-.diary-box fixed-size{
-  /* margin-left: -100px; */
-}
+
 .diary-box {
   background: #d3f5d3;
   border-radius: 15px;
@@ -81,7 +79,7 @@
   cursor: pointer;
 }
 
-.diary-container .save-btn {
+.save-btn-diary {
   background: #4caf50;
   color: white;
   border: none;
