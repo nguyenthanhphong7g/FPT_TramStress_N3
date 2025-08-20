@@ -54,7 +54,7 @@ const NoiDung = ({ refs }) => {
                   }
                 }}
                 style={{ cursor: item.url || item.type === "loihay" ? "pointer" : "default" }}
-              >
+      >
                 <img src={item.img} alt={item.type} />
                 <div className='content-relax'>
                   <p>{item.text}</p>
