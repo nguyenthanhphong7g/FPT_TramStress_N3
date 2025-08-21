@@ -1,7 +1,7 @@
 import React from 'react'
 import './Pagination.css'
-import page_into_left from '../../../../assets/images/Relax/page_into_left.png'
-import page_into_right from '../../../../assets/images/Relax/page_into_right.png'
+import page_into_left from '../../../assets/images/Relax/page_into_left.png'
+import page_into_right from '../../../assets/images/Relax/page_into_right.png'
 
 const Pagination = ({ currentPage, totalPages, setCurrentPage }) => {
     return (

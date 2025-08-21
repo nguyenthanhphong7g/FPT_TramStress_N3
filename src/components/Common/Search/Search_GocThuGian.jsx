@@ -1,5 +1,5 @@
 import React from 'react'
-import search from '../../../../assets/images/Relax/search.png'
+import search from '../../../assets/images/Relax/search.png'
 import './Search_GocThuGian.css'
 
 const Search_GocThuGian = () => {

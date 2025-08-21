@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import BoLoc from '../../components/User/Relax/Main/BoLoc';
 import NoiDung from '../../components/User/Relax/Main/NoiDungThuGian';
-import Search_GocThuGian from '../../components/User/Relax/Main/Search_GocThuGian';
+import Search_GocThuGian from '../../components/Common/Search/Search_GocThuGian';
 
 const UserRelax = () => {
     const [isActive, setIsActive] = useState(0);
@@ -33,7 +33,7 @@ const UserRelax = () => {
     }, [isActive]);
 
     return (
-        <div className='GocThuGian'>
+        <div className='GocThuGian' style={{ background: '#fff' }}>
             <Search_GocThuGian/>
             <BoLoc onButtonClick={handleScrollToSection} isActive={isActive} />
             <NoiDung refs={refs} />
