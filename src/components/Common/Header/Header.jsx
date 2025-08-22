@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import {FiBell, FiUser } from "react-icons/fi";
-import NotificationPanel from "../NotificationPanel/NotificationPanel.";
+import { FiBell, FiUser } from "react-icons/fi";
+import NotificationPanel from "../NotificationPanel/NotificationPanel";
 import UserMenu from "../UserMenu/UserMenu";
 import "./Header.css";
 
@@ -8,7 +8,7 @@ const Header = ({
   title = "Hôm nay bạn thế nào?",
   onSettingClick,
   notifications = [],
-  onNotificationRead = () => {},
+  onNotificationRead = () => { },
 }) => {
   const [isNotiOpen, setIsNotiOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
@@ -90,9 +90,8 @@ const Header = ({
 
         <div ref={notiRef} style={{ display: "inline-block" }}>
           <button
-            className={`header-action-btn header-action-btn-bell ${
-              isNotiOpen ? "active" : ""
-            }`}
+            className={`header-action-btn header-action-btn-bell ${isNotiOpen ? "active" : ""
+              }`}
             title="Thông báo"
             onClick={toggleNoti}
           >
@@ -113,9 +112,8 @@ const Header = ({
 
         <div ref={userRef} style={{ display: "inline-block" }}>
           <button
-            className={`header-action-btn header-action-btn-user ${
-              isUserMenuOpen ? "active" : ""
-            }`}
+            className={`header-action-btn header-action-btn-user ${isUserMenuOpen ? "active" : ""
+              }`}
             title="Tài khoản"
             onClick={toggleUserMenu}
           >
@@ -130,11 +128,11 @@ const Header = ({
             )}
           </button>
           <UserMenu
-  isOpen={isUserMenuOpen}
-  currentUser={currentUser}
-  onClick={() => onSettingClick()
-  }
-/>
+            isOpen={isUserMenuOpen}
+            currentUser={currentUser}
+            onClick={() => onSettingClick()
+            }
+          />
 
         </div>
       </div>

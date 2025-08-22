@@ -1,5 +1,5 @@
 import React from 'react';
-import { FiLogOut, FiSettings } from 'react-icons/fi';
+import { FiLogOut, FiSettings, FiUser } from 'react-icons/fi';
 import './UserMenu.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -16,7 +16,7 @@ const UserMenu = ({ isOpen, currentUser, onClick }) => {
   return (
     <div className="user-menu-card">
       <div className="user-menu-profile">
-        <img src={currentUser?.avatar} alt="avatar" className="user-menu-avatar" />
+        {currentUser.avatar ? <img src={currentUser?.avatar} alt="avatar" className="user-menu-avatar" /> : <FiUser className="user-menu-avatar" />}
         <div className="user-menu-name">{currentUser?.name || "Người dùng"}</div>
       </div>
 

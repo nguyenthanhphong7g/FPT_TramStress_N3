@@ -197,26 +197,23 @@
 }
 
 .input-error {
-    border: 1px solid red;
+  border: 1px solid red;
 }
+
+.input-error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.input-wrapper-error .input-icon,
+.input-wrapper-error .eye-icon {
+  color: red;
+}
+
 
 .error-message {
     color: red;
     font-size: 0.8rem;
     margin-top: 4px;
-}
-
-.input-error {
-    border-color: red;
-}
-
-.input-error-message {
-    color: red;
-    font-size: 12px;
-    margin-top: 4px;
-}
-
-.input-wrapper-error .input-icon,
-.input-wrapper-error .eye-icon {
-    color: red;
 }

@@ -48,3 +48,19 @@ export const signinSchema = Yup.object().shape({
     .matches(/\d/, "Mật khẩu cần ít nhất 1 số")
     .matches(/[@$!%*?&^#]/, "Mật khẩu cần ít nhất 1 ký tự đặc biệt (@$!%*?&^#)"),
 });
+
+export const resetPasswordSchema = Yup.object().shape({
+  email: Yup.string()
+    .required("Bạn chưa nhập email")
+    .email("Email không hợp lệ"),
+  password: Yup.string()
+    .required("Bạn chưa nhập mật khẩu")
+    .min(8, "Mật khẩu cần ít nhất 8 ký tự")
+    .matches(/[a-z]/, "Mật khẩu cần ít nhất 1 chữ thường")
+    .matches(/[A-Z]/, "Mật khẩu cần ít nhất 1 chữ hoa")
+    .matches(/\d/, "Mật khẩu cần ít nhất 1 số")
+    .matches(/[@$!%*?&^#]/, "Mật khẩu cần ít nhất 1 ký tự đặc biệt (@$!%*?&^#)"),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref("password"), null], "Mật khẩu xác nhận không khớp")
+    .required("Bạn cần xác nhận lại mật khẩu"),
+});
