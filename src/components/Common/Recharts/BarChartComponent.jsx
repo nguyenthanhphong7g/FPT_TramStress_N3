@@ -8,26 +8,16 @@ import {
     ResponsiveContainer,
     Cell
 } from 'recharts';
-import happyImg from '../../../assets/images/Emoji/XanhLa.png';
-import smileImg from '../../../assets/images/Emoji/XanhNhat.png';
-import neutralImg from '../../../assets/images/Emoji/Vang.png';
-import sadImg from '../../../assets/images/Emoji/Cam.png';
-import angryImg from '../../../assets/images/Emoji/Do.png';
 import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
 import './BarChartEmoji.css';
+import MoodEmotion from '../../Common/MoodEmotion/MoodEmotion';
 
 dayjs.extend(isoWeek);
 dayjs.extend(weekOfYear);
 
-const moodMap = [
-    { value: 5, img: happyImg, color: '#4AAF57' },
-    { value: 4, img: smileImg, color: '#8CC255' },
-    { value: 3, img: neutralImg, color: '#FFC12D' },
-    { value: 2, img: sadImg, color: '#FF981E' },
-    { value: 1, img: angryImg, color: '#F54334' },
-];
+const moodMap = MoodEmotion;
 
 const BarChartEmoji = ({ weekData, isCustomWeek, setIsCustomWeek, dailyMoods, selectedMonth }) => {
     const [timeRange, setTimeRange] = useState('week');
@@ -62,28 +52,56 @@ const BarChartEmoji = ({ weekData, isCustomWeek, setIsCustomWeek, dailyMoods, se
         }
 
         if (range === 'month') {
-            const weeksInMonth = Math.ceil(now.daysInMonth() / 7);
-            const result = Array(weeksInMonth).fill(null).map((_, i) => ({
-                name: `Tuần ${i + 1}`,
-                sum: 0,
-                count: 0,
-                dateRange: `${now.date(i * 7 + 1).format('DD/MM/YYYY')} ~ ${now.date(Math.min((i + 1) * 7, now.daysInMonth())).format('DD/MM/YYYY')}`
-            }));
+            const startOfMonth = now.startOf('month');
+            const endOfMonth = now.endOf('month');
+
+            const weeks = [];
+            let current = startOfMonth;
+            while (current.isBefore(endOfMonth) || current.isSame(endOfMonth, 'day')) {
+                const weekNumber = current.isoWeek();
+                if (!weeks.includes(weekNumber)) {
+                    weeks.push(weekNumber);
+                }
+                current = current.add(1, 'day');
+            }
+
+            const result = weeks.map(week => {
+                const startOfWeek = dayjs().year(now.year()).week(week).startOf('isoWeek');
+                const endOfWeek = dayjs().year(now.year()).week(week).endOf('isoWeek');
+
+                const startDate = startOfWeek.isBefore(startOfMonth) ? startOfMonth : startOfWeek;
+
+                let endDate = endOfWeek.isAfter(endOfMonth) ? endOfMonth : endOfWeek;
+                if (endDate.isAfter(now)) {
+                    endDate = now;
+                }
+
+                return {
+                    name: `Tuần ${week}`,
+                    sum: 0,
+                    count: 0,
+                    dateRange: `${startDate.format('DD/MM/YYYY')} ~ ${endDate.format('DD/MM/YYYY')}`
+                };
+            });
+
             data.forEach(entry => {
                 const date = dayjs(entry.date);
                 if (date.isSame(now, 'month')) {
-                    const weekIndex = Math.floor((date.date() - 1) / 7);
-                    result[weekIndex].sum += entry.value;
-                    result[weekIndex].count += 1;
+                    const weekNumber = date.isoWeek();
+                    const index = weeks.indexOf(weekNumber);
+                    if (index !== -1) {
+                        result[index].sum += entry.value;
+                        result[index].count += 1;
+                    }
                 }
             });
+
             return result.map(r => ({
                 name: r.name,
                 value: r.count ? Math.round(r.sum / r.count) : null,
                 label: r.dateRange
             }));
         }
-
 
         if (range === 'year') {
             const result = Array(12).fill(null).map((_, i) => ({
@@ -128,9 +146,9 @@ const BarChartEmoji = ({ weekData, isCustomWeek, setIsCustomWeek, dailyMoods, se
     return (
         <div className="barchart-container">
             <div className="barchart-buttons">
-                <button onClick={() => { setTimeRange('week'); setIsCustomWeek(false); }}>Tuần</button>
-                <button onClick={() => { setTimeRange('month'); setIsCustomWeek(false); }}>Tháng</button>
-                <button onClick={() => { setTimeRange('year'); setIsCustomWeek(false); }}>Năm</button>
+                <button className={`${timeRange === 'week'? 'active' : ""}`} onClick={() => { setTimeRange('week'); setIsCustomWeek(false); }}>Tuần</button>
+                <button className={`${timeRange === 'month'? 'active' : ""}`} onClick={() => { setTimeRange('month'); setIsCustomWeek(false); }}>Tháng</button>
+                <button className={`${timeRange === 'year'? 'active' : ""}`} onClick={() => { setTimeRange('year'); setIsCustomWeek(false); }}>Năm</button>
             </div>
 
             <ResponsiveContainer className="my-barchart-container" width="100%" height="85%" >
@@ -156,7 +174,7 @@ const BarChartEmoji = ({ weekData, isCustomWeek, setIsCustomWeek, dailyMoods, se
                         }}
                     />
 
-                    <Bar dataKey="value" radius={[50, 50, 0, 0]} minPointSize={10} 
+                    <Bar dataKey="value" radius={[50, 50, 0, 0]} minPointSize={10}
                     >
                         {chartData.map((entry, index) => {
                             const mood = moodMap.find(m => m.value === entry.value);

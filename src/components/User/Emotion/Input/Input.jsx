@@ -83,13 +83,13 @@ function Input() {
             Ok rồi!!!
           </button>
           {showTooltip && (
-  <div className="character-tooltip">
-    <img src={Cat} alt="Mèo" className="character-img" />
-    <div className="speech-bubble">
-      Bạn quên chọn hashtag rồi!
-    </div>
-  </div>
-)}
+            <div className="character-tooltip">
+              <img src={Cat} alt="Mèo" className="character-img" />
+              <div className="speech-bubble">
+                Bạn quên chọn hashtag rồi!
+              </div>
+            </div>
+          )}
 
         </div>
       </div>

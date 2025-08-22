@@ -1,5 +1,5 @@
 import SidebarFormLayout from '../../components/Common/Sidebar/SidebarFormLayout';
-import { FaHome, FaHeart, FaBook, FaUserFriends, FaPaw, FaSmile } from 'react-icons/fa';
+import { FaHome, FaHeart, FaBook, FaSmile } from 'react-icons/fa';
 import Header from '../../components/Common/Header/Header';
 import { Outlet, useNavigate } from 'react-router-dom';
 import Footer from '../../components/Common/Footer/Footer';
@@ -10,7 +10,6 @@ function UserLayout() {
   const navigate = useNavigate();
   const [notifications, setNotifications] = useState([]);
 
-  // Lấy dữ liệu từ localStorage khi load app
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem("notifications")) || [];
     setNotifications(stored);
@@ -31,12 +30,10 @@ function UserLayout() {
   ];
 
   const menuItems = [
-    { label: 'Home', href: '/userlayout/home' },
-    { label: 'Góc thư giãn', path: '/userlayout/relax' },
-    { label: 'Góc nhật ký', path: '/#' },
-    { label: 'Góc tư vấn', path: '/#' },
-    { label: 'Góc thú cưng', path: '/userlayout/login' },
-    { label: 'Góc cảm xúc', path: '/userlayout/emotion' },
+    {label: "Home", path: "/userlayout/home" },
+    {label: "Góc thư giãn", path: "/userlayout/relax" },
+    {label: "Góc nhật ký", path: "/userlayout/diary" },
+    {label: "Góc cảm xúc", path: "/userlayout/emotion" },
   ];
 
   return (
