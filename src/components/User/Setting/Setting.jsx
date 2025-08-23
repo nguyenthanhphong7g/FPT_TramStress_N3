@@ -5,6 +5,7 @@ import InputFeild from "../../../components/Common/FormLogin/InputFeild";
 import { profileSchema, passwordSchema } from "../../Common/Schema/Schema";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { updateUserStorages, getCurrentUser , compareCurrentPassword} from "../../../services/services";
 
 
 const Setting = () => {
@@ -16,13 +17,13 @@ const Setting = () => {
     const [newPassword, setNewPassword] = useState({ current: "", new: "", confirm: "" });
 
     useEffect(() => {
-        const savedUser = JSON.parse(localStorage.getItem("currentUser"));
+        const savedUser = getCurrentUser();
         if (savedUser) setUser(savedUser);
     }, []);
 
     const validateField = async (field, value) => {
         try {
-            await profileSchema.validate(user, { abortEarly: false });
+            await profileSchema.fields[field].validate(value);
             setErrorsProfile((prev) => ({ ...prev, [field]: "" }));
         } catch (err) {
             setErrorsProfile((prev) => ({ ...prev, [field]: err.message }));
@@ -76,16 +77,7 @@ const Setting = () => {
     };
 
     const updateUserStorage = (updatedUser) => {
-        setUser(updatedUser);
-        localStorage.setItem("currentUser", JSON.stringify(updatedUser));
-
-        const users = JSON.parse(localStorage.getItem("users")) || [];
-        const updatedUsers = users.map((u) => {
-            const matchById = updatedUser.id != null && u.id != null && u.id === updatedUser.id;
-            const matchByEmail = updatedUser.email && u.email && u.email === updatedUser.email;
-            return matchById || matchByEmail ? updatedUser : u;
-        });
-        localStorage.setItem("users", JSON.stringify(updatedUsers));
+        updateUserStorages(updatedUser);
     };
 
     const handleUpdateProfile = async () => {
@@ -117,13 +109,12 @@ const Setting = () => {
         try {
             setErrorsPassword({});
             await passwordSchema.validate({ password: newPassword.new }, { abortEarly: false });
-
             if (!newPassword.current) {
                 setErrorsPassword({ current: "Bạn chưa nhập mật khẩu hiện tại" });
                 toast.error("Bạn chưa nhập mật khẩu hiện tại");
                 return;
             }
-            if (newPassword.current !== (user?.password || "")) {
+            if (!compareCurrentPassword(newPassword.current)) {
                 setErrorsPassword({ current: "Mật khẩu hiện tại không đúng!" });
                 toast.error("Mật khẩu hiện tại không đúng!");
                 return;
@@ -249,7 +240,7 @@ const Setting = () => {
                                             header="Họ và tên"
                                             type="text"
                                             placeholder="Nhập họ tên"
-                                            value={user.name}
+                                            value={user.name || ""}
                                             onChange={(e) => handleFieldChange("name", e.target.value)}
                                             icon="person"
                                             error={errorsProfile.name}
@@ -259,7 +250,7 @@ const Setting = () => {
                                             header="Email"
                                             type="email"
                                             placeholder="Nhập email"
-                                            value={user.email}
+                                            value={user.email || ""}
                                             onChange={(e) => handleFieldChange("email", e.target.value)}
                                             icon="mail"
                                             error={errorsProfile.email}
@@ -269,7 +260,7 @@ const Setting = () => {
                                             header="Số điện thoại"
                                             type="text"
                                             placeholder="Nhập số điện thoại"
-                                            value={user.phone}
+                                            value={user.phone || ""}
                                             onChange={(e) => handleFieldChange("phone", e.target.value)}
                                             icon="call"
                                             error={errorsProfile.phone}
@@ -279,7 +270,7 @@ const Setting = () => {
                                             header="Tuổi"
                                             type="number"
                                             placeholder="Nhập tuổi"
-                                            value={user.age}
+                                            value={user.age || ""}
                                             onChange={(e) => handleFieldChange("age", e.target.value)}
                                             icon="calendar_month"
                                             error={errorsProfile.age}
@@ -288,7 +279,7 @@ const Setting = () => {
                                         <InputFeild
                                             header="Giới tính"
                                             type="select"
-                                            value={user.gender}
+                                            value={user.gender || ""}
                                             onChange={(e) => handleFieldChange("gender", e.target.value)}
                                             icon="wc"
                                             options={[
@@ -311,7 +302,7 @@ const Setting = () => {
                                         header="Mật khẩu hiện tại"
                                         type="password"
                                         placeholder="Nhập mật khẩu hiện tại"
-                                        value={newPassword.current}
+                                        value={newPassword.current || ""}
                                         onChange={(e) => handlePasswordFieldChange("current", e.target.value)}
                                         icon="lock"
                                         error={errorsPassword.current}
@@ -321,7 +312,7 @@ const Setting = () => {
                                         header="Mật khẩu mới"
                                         type="password"
                                         placeholder="Nhập mật khẩu mới"
-                                        value={newPassword.new}
+                                        value={newPassword.new || ""}
                                         onChange={(e) => handlePasswordFieldChange("new", e.target.value)}
                                         icon="lock"
                                         error={errorsPassword.new}
@@ -331,7 +322,7 @@ const Setting = () => {
                                         header="Nhập lại mật khẩu mới"
                                         type="password"
                                         placeholder="Xác nhận mật khẩu mới"
-                                        value={newPassword.confirm}
+                                        value={newPassword.confirm || ""}
                                         onChange={(e) => handlePasswordFieldChange("confirm", e.target.value)}
                                         icon="lock"
                                         error={errorsPassword.confirm}

@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { signinSchema } from '../Schema/Schema';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { registerUser } from '../../../services/services';
 
 
 const Signin = () => {
@@ -23,22 +24,14 @@ const {
 
 
     const onSubmit = (data) => {
-        const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
-        const emailExists = storedUsers.some((user) => user.email === data.email);
-
-        if (emailExists) {
-            // alert("Email đã được đăng ký trước đó. Vui lòng dùng email khác!");
-            toast.error("Email đã được đăng ký trước đó. Vui lòng dùng email khác!");
-            return;
-        }
-        storedUsers.push(data);
-        localStorage.setItem("users", JSON.stringify(storedUsers));
-
-        // alert("Đăng ký thành công!");
-        toast.success("Đăng ký thành công!");
-        navigate("/", { state: data });
+        const result = registerUser(data);
+        if (!result.success) {
+        toast.error(result.message); 
+        } else {
+        toast.success(result.message); 
+        handleLoginClick();
+        };
     };
-
     const handleLoginClick = () => {
         navigate('/');
     }

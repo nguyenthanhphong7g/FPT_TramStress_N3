@@ -11,6 +11,7 @@ import Test from "../components/User/Emotion/Test/Test";
 import Diary from "../components/User/Diary/Diary"
 import UserRelax from "../pages/User/UserRelax";
 import UserRelaxSeeAll from "../pages/User/UserRelaxSeeAll";
+import NotFound from "../pages/User/NotFound";
 
 // Giả lập role, sau này sẽ lấy từ API hoặc state management
 const userRole = "user"; // "admin" | "user" | "guest"
@@ -25,7 +26,7 @@ const ProtectedRoute = ({ allowedRoles }) => {
 function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<FormLogin />} />
+      <Route path="/" element={<FormLogin />} exact/>
       <Route path="/signin" element={<FormSign />} />
 
       <Route element={<ProtectedRoute allowedRoles={["user", "admin"]} />}>
@@ -40,6 +41,7 @@ function AppRoutes() {
           <Route path="/userlayout/relax/:slug" element={<UserRelaxSeeAll />} />
         </Route>
       </Route>
+      <Route path="*" element={<NotFound/>}/>
     </Routes>
   );
 }

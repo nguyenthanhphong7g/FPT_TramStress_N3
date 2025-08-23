@@ -3,7 +3,7 @@ import { FiBell, FiUser } from "react-icons/fi";
 import NotificationPanel from "../NotificationPanel/NotificationPanel";
 import UserMenu from "../UserMenu/UserMenu";
 import "./Header.css";
-
+import { getCurrentUser } from "../../../services/services";
 const Header = ({
   title = "Hôm nay bạn thế nào?",
   onSettingClick,
@@ -38,11 +38,11 @@ const Header = ({
   };
 
   useEffect(() => {
-    const savedUser = JSON.parse(localStorage.getItem("currentUser"));
+    const savedUser = getCurrentUser();
     if (savedUser) setCurrentUser(savedUser);
 
     const handleStorageChange = () => {
-      const updatedUser = JSON.parse(localStorage.getItem("currentUser"));
+      const updatedUser = getCurrentUser();
       setCurrentUser(updatedUser);
     };
     window.addEventListener("storage", handleStorageChange);

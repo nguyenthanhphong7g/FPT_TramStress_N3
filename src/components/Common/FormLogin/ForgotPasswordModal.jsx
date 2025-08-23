@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { resetPasswordSchema, } from '../Schema/Schema';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { updateUserStorages, getUser } from '../../../services/services';
 
 
 const ForgotPasswordModal = ({ onClose }) => {
@@ -34,12 +35,8 @@ const ForgotPasswordModal = ({ onClose }) => {
         return;
     }
 
-    const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
-    const updatedUsers = storedUsers.map(u =>
-        u.email === email ? { ...u, password: data.password } : u
-    );
-
-    localStorage.setItem("users", JSON.stringify(updatedUsers));
+    const user = getUser(email);
+    updateUserStorages({ ...user, password: data.password });
 
     toast.success('Mật khẩu đã được cập nhật thành công!');
     onClose();
