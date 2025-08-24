@@ -22,9 +22,14 @@
     background-color: #fff;
     border: 1px solid #000;
 }
-
 .barchart-buttons button:active {
     background-color: #c0c0c0;
+}
+
+.barchart-buttons button.active {
+    transform: scale(1.1);
+    background-color: #fff;
+    border: 1px solid #000;
 }
 
 .date {

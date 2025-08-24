@@ -1,5 +1,5 @@
 import SidebarFormLayout from '../../components/Common/Sidebar/SidebarFormLayout';
-import { FaHome, FaHeart, FaBook, FaUserFriends, FaPaw, FaSmile } from 'react-icons/fa';
+import { FaHome, FaHeart, FaBook, FaSmile } from 'react-icons/fa';
 import Header from '../../components/Common/Header/Header';
 import { Outlet, useNavigate } from 'react-router-dom';
 import Footer from '../../components/Common/Footer/Footer';
@@ -10,7 +10,6 @@ function UserLayout() {
   const navigate = useNavigate();
   const [notifications, setNotifications] = useState([]);
 
-  // Lấy dữ liệu từ localStorage khi load app
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem("notifications")) || [];
     setNotifications(stored);

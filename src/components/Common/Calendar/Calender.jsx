@@ -1,22 +1,18 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect, useMemo } from "react";
 import dayjs from "dayjs";
 import weekday from "dayjs/plugin/weekday";
 import weekOfYear from "dayjs/plugin/weekOfYear";
+import isoWeek from "dayjs/plugin/isoWeek";
 import "./Calendar.css";
 import "dayjs/locale/vi";
 import DayData from "../../User/Emotion/DayData/DayData";
+import MoodEmotion from "../../Common/MoodEmotion/MoodEmotion";
 
-dayjs.locale("vi");
 dayjs.extend(weekday);
 dayjs.extend(weekOfYear);
+dayjs.extend(isoWeek);
 
-const moodMap = [
-  { value: 5, color: "#4CAF50" },
-  { value: 4, color: "#8BC34A" },
-  { value: 3, color: "#FFC107" },
-  { value: 2, color: "#FF9800" },
-  { value: 1, color: "#F44336" },
-];
+const moodMap = MoodEmotion;
 
 function Calendar({ dailyMoods = [], onSelectWeek = () => { }, setIsCustomWeek, onMonthChange }) {
   const [currentMonth, setCurrentMonth] = useState(dayjs());
@@ -26,17 +22,19 @@ function Calendar({ dailyMoods = [], onSelectWeek = () => { }, setIsCustomWeek, 
     if (onMonthChange) onMonthChange(currentMonth);
   }, [currentMonth, onMonthChange]);
 
-  const startOfMonth = currentMonth.startOf("month").weekday(0);
-  let days = [];
-  for (let i = 0; i < 42; i++) {
-    days.push(startOfMonth.add(i, "day"));
-  }
+  const day = useMemo(() => {
+    const startOfMonth = currentMonth.startOf("month").startOf("isoWeek");
+    let days = [];
+    for (let i = 0; i < 42; i++) {
+      days.push(startOfMonth.add(i, "day"));
+    }
 
-  if (days.slice(-7).every(d => !d.isSame(currentMonth, "month"))) {
-    days = days.slice(0, -7);
-  }
-
-
+    if (days.slice(-7).every(d => !d.isSame(currentMonth, "month"))) {
+      days = days.slice(0, -7);
+    }
+    return days;
+  }, [currentMonth])
+  
   const getMoodColor = (date) => {
     const moodEntry = dailyMoods.find((m) => dayjs(m.date).isSame(date, "day"));
     if (!moodEntry) return "#000";
@@ -46,7 +44,7 @@ function Calendar({ dailyMoods = [], onSelectWeek = () => { }, setIsCustomWeek, 
 
   const handleDayClick = (date) => {
     const startOfWeek = date.startOf('isoWeek');
-    const weekDays = Array(7).fill(null).map((_, i) => {
+    const weekDays = Array.from({ length: 7 }).map((_, i) => {
       const day = startOfWeek.add(i, 'day');
       const moodEntry = dailyMoods.find((m) => dayjs(m.date).isSame(day, "day"));
       return {
@@ -81,7 +79,7 @@ function Calendar({ dailyMoods = [], onSelectWeek = () => { }, setIsCustomWeek, 
         ))}
         {Array.from({ length: 6 }).map((_, weekIndex) => (
           <Fragment key={weekIndex}>
-            {days
+            {day
               .slice(weekIndex * 7, weekIndex * 7 + 7)
               .map((date, dayIndex) => (
                 <div

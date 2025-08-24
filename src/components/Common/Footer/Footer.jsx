@@ -2,6 +2,7 @@ import React from 'react';
 import './Footer.css';
 import { HiOutlineMail } from 'react-icons/hi';
 import { FaFacebookF } from 'react-icons/fa';
+import { NavLink } from 'react-router-dom';
 
 const Footer = ({ menuItems}) => {
   return (
@@ -14,7 +15,10 @@ const Footer = ({ menuItems}) => {
         <ul className="footer-menu">
           {menuItems?.map((item, index) => (
             <li key={index}>
-              <a href={item.href}>{item.label}</a>
+              <NavLink
+                  to={item.path}>
+                  <span>{item.label}</span>
+              </NavLink>
             </li>
           ))}
         </ul>
