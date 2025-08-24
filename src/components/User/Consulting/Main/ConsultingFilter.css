@@ -10,6 +10,7 @@
     align-items: center;
     padding-left: 20px;
     margin: 0 10px;
+    gap:15px;
 }
 .consulting-filter h4{
     font-weight: 800;

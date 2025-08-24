@@ -188,3 +188,18 @@
   from { opacity: 0; transform: translateY(-5px); }
   to { opacity: 1; transform: translateY(0); }
 }
+@media (max-width: 768px) {
+
+  .settings-layout {
+    flex-direction: column;
+  }
+  .settings-sidebar {
+    flex-direction: row;
+  }
+  .settings-content {
+    padding: 16px;
+  }
+  
+
+  
+}

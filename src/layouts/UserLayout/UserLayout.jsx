@@ -28,7 +28,6 @@ function UserLayout() {
     { icon: <FaHeart />, label: "Góc thư giãn", path: "/userlayout/relax" },
     { icon: <FaBook />, label: "Góc nhật ký", path: "/userlayout/diary" },
     { icon: <FaUserFriends />, label: "Góc tư vấn", path: "/userlayout/consulting" },
-    { icon: <FaPaw />, label: "Góc thú cưng", path: "/userlayout/login" },
     { icon: <FaSmile />, label: "Góc cảm xúc", path: "/userlayout/emotion" },
   ];
 

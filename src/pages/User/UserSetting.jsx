@@ -3,13 +3,16 @@ import "./UserSetting.css";
 import Cat from "../../assets/images/Cat_Emontion.png";
 import InputFeild from "../../components/Common/FormLogin/InputFeild";
 import { profileSchema, passwordSchema } from "../../components/Common/Schema/Schema";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const UserSetting = () => {
   const [user, setUser] = useState(null);
   const [errorsProfile, setErrorsProfile] = useState({});
   const [errorsPassword, setErrorsPassword] = useState({});
-  const [successProfile, setSuccessProfile] = useState("");
-  const [successPassword, setSuccessPassword] = useState("");
+  // const [successProfile, setSuccessProfile] = useState("");
+  // const [successPassword, setSuccessPassword] = useState("");
   const [activeSection, setActiveSection] = useState("profile");
   const [activeTab, setActiveTab] = useState("info");
   const [newPassword, setNewPassword] = useState({ current: "", new: "", confirm: "" });
@@ -31,39 +34,73 @@ const UserSetting = () => {
   const handleFieldChange = (field, value) => {
     setUser((prev) => ({ ...prev, [field]: value }));
     validateField(field, value);
-    setSuccessProfile("");
+    // setSuccessProfile("");
   };
 
-  const validatePasswordRealtime = async (next) => {
-    try {
-      await passwordSchema.validate({ password: next.new }, { abortEarly: false });
-      setErrorsPassword((prev) => ({ ...prev, new: "" }));
-    } catch {
-      setErrorsPassword((prev) => ({ ...prev, new: "" }));
-    }
+  // const validatePasswordRealtime = async (next) => {
+  //   try {
+  //     await passwordSchema.validate({ password: next.new }, { abortEarly: false });
+  //     setErrorsPassword((prev) => ({ ...prev, new: "" }));
+  //   } catch {
+  //     setErrorsPassword((prev) => ({ ...prev, new: "" }));
+  //   }
 
-    if (next.current) {
-      if (user && next.current !== user.password) {
-        setErrorsPassword((prev) => ({ ...prev, current: "Mật khẩu hiện tại không đúng!" }));
-      } else {
-        setErrorsPassword((prev) => ({ ...prev, current: "" }));
-      }
-    }
+  //   if (next.current) {
+  //     if (user && next.current !== user.password) {
+  //       setErrorsPassword((prev) => ({ ...prev, current: "Mật khẩu hiện tại không đúng!" }));
+  //     } else {
+  //       setErrorsPassword((prev) => ({ ...prev, current: "" }));
+  //     }
+  //   }
 
-    if (next.confirm) {
-      if (next.confirm !== next.new) {
-        setErrorsPassword((prev) => ({ ...prev, confirm: "Xác nhận mật khẩu không khớp!" }));
-      } else {
-        setErrorsPassword((prev) => ({ ...prev, confirm: "" }));
-      }
+  //   if (next.confirm) {
+  //     if (next.confirm !== next.new) {
+  //       setErrorsPassword((prev) => ({ ...prev, confirm: "Xác nhận mật khẩu không khớp!" }));
+  //     } else {
+  //       setErrorsPassword((prev) => ({ ...prev, confirm: "" }));
+  //     }
+  //   }
+  // };
+const validatePasswordRealtime = async (next) => {
+  try {
+    await passwordSchema.validate({ password: next.new }, { abortEarly: false });
+    setErrorsPassword((prev) => ({ ...prev, new: "" }));
+  } catch (err) {
+    if (err.inner) {
+      const newErrors = {};
+      err.inner.forEach((e) => {
+        if (e.path === "password") {
+          newErrors.new = e.message;
+        }
+      });
+      setErrorsPassword((prev) => ({ ...prev, ...newErrors }));
+    } else {
+      setErrorsPassword((prev) => ({ ...prev, new: err.message }));
     }
-  };
+  }
+
+  if (next.current) {
+    if (user && next.current !== user.password) {
+      setErrorsPassword((prev) => ({ ...prev, current: "Mật khẩu hiện tại không đúng!" }));
+    } else {
+      setErrorsPassword((prev) => ({ ...prev, current: "" }));
+    }
+  }
+
+  if (next.confirm) {
+    if (next.confirm !== next.new) {
+      setErrorsPassword((prev) => ({ ...prev, confirm: "Xác nhận mật khẩu không khớp!" }));
+    } else {
+      setErrorsPassword((prev) => ({ ...prev, confirm: "" }));
+    }
+  }
+};
 
   const handlePasswordFieldChange = (field, value) => {
     const next = { ...newPassword, [field]: value };
     setNewPassword(next);
     validatePasswordRealtime(next);
-    setSuccessPassword("");
+    // setSuccessPassword("");
   };
 
   const updateUserStorage = (updatedUser) => {
@@ -84,15 +121,23 @@ const UserSetting = () => {
       await profileSchema.validate(user, { abortEarly: false });
       setErrorsProfile({});
       updateUserStorage(user);
-      setSuccessProfile("Cập nhật thông tin thành công!");
+      toast.success("Cập nhật thông tin thành công!");
     } catch (err) {
       if (err.inner) {
         const newErrors = {};
         err.inner.forEach((e) => {
           newErrors[e.path] = e.message;
         });
-        setErrorsProfile(newErrors);
-        setSuccessProfile("");
+        if (err.inner) {
+  const newErrors = {};
+  err.inner.forEach((e) => {
+    newErrors[e.path] = e.message;
+    toast.error(e.message); // hiển thị từng lỗi
+  });
+  setErrorsProfile(newErrors);
+}
+
+        // toast.success("");
       }
     }
   };
@@ -101,33 +146,40 @@ const UserSetting = () => {
     e.preventDefault();
     try {
       setErrorsPassword({});
-      setSuccessPassword("");
+      // toast.success("");
       await passwordSchema.validate({ password: newPassword.new }, { abortEarly: false });
 
       if (!newPassword.current) {
         setErrorsPassword({ current: "Bạn chưa nhập mật khẩu hiện tại" });
+        toast.error("Bạn chưa nhập mật khẩu hiện tại");
         return;
       }
       if (newPassword.current !== (user?.password || "")) {
         setErrorsPassword({ current: "Mật khẩu hiện tại không đúng!" });
+        toast.error("Mật khẩu hiện tại không đúng!");
         return;
       }
       if (newPassword.new === newPassword.current) {
         setErrorsPassword({ new: "Mật khẩu mới không được trùng mật khẩu hiện tại!" });
+        toast.error("Mật khẩu mới không được trùng với mật khẩu cũ");
         return;
       }
       if (!newPassword.confirm) {
         setErrorsPassword({ confirm: "Bạn chưa nhập xác nhận mật khẩu" });
+        toast.error("Bạn chưa nhập xác nhận mật khẩu");
         return;
       }
       if (newPassword.new !== newPassword.confirm) {
         setErrorsPassword({ confirm: "Xác nhận mật khẩu không khớp!" });
+        
+        toast.error("Xác nhận mật khẩu không khớp!");
         return;
       }
 
       const updatedUser = { ...user, password: newPassword.new };
       updateUserStorage(updatedUser);
-      setSuccessPassword("🔒 Đổi mật khẩu thành công!");
+      // setSuccessPassword("Đổi mật khẩu thành công!");
+      toast.success("Đổi mật khẩu thành công!");
       setNewPassword({ current: "", new: "", confirm: "" });
     } catch (err) {
       if (err.inner) {
@@ -136,7 +188,8 @@ const UserSetting = () => {
           if (e.path === "password") newErrors.new = e.message;
           else newErrors[e.path] = e.message;
         });
-        setErrorsPassword(newErrors);
+        // setErrorsPassword(newErrors);
+        toast.error("Có lỗi khi đổi mật khẩu!");
       }
     }
   };
@@ -153,8 +206,8 @@ const UserSetting = () => {
             onClick={() => {
               setActiveSection("profile");
               setActiveTab("info");
-              setSuccessProfile("");
-              setSuccessPassword("");
+              // setSuccessProfile("");
+              // setSuccessPassword("");
             }}
           >
             Profile
@@ -163,8 +216,8 @@ const UserSetting = () => {
             className={`sidebar-item ${activeSection === "terms" ? "active" : ""}`}
             onClick={() => {
               setActiveSection("terms");
-              setSuccessProfile("");
-              setSuccessPassword("");
+              // setSuccessProfile("");
+              // setSuccessPassword("");
             }}
           >
             Điều khoản và bảo mật
@@ -179,7 +232,7 @@ const UserSetting = () => {
                   className={activeTab === "info" ? "tab active" : "tab"}
                   onClick={() => {
                     setActiveTab("info");
-                    setSuccessProfile("");
+                    // setSuccessProfile("");
                   }}
                 >
                   Thông tin cá nhân
@@ -188,7 +241,7 @@ const UserSetting = () => {
                   className={activeTab === "password" ? "tab active" : "tab"}
                   onClick={() => {
                     setActiveTab("password");
-                    setSuccessPassword("");
+                    // setSuccessPassword("");
                   }}
                 >
                   Mật khẩu
@@ -198,9 +251,42 @@ const UserSetting = () => {
               {activeTab === "info" && (
                 <div className="tab-content">
                   <div className="avatar-section">
-                    <img src={Cat} alt="avatar" className="avatar" />
-                    <button className="btn-primary">Thay đổi</button>
-                  </div>
+  {/* Hiển thị ảnh: lấy từ user.avatar nếu có, nếu không thì dùng Cat mặc định */}
+  <img src={user.avatar || Cat} alt="avatar" className="avatar" />
+
+  {/* input file ẩn đi */}
+  <input
+    type="file"
+    id="avatarUpload"
+    accept="image/*"
+    style={{ display: "none" }}
+    onChange={(e) => {
+      if (e.target.files && e.target.files[0]) {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+
+        reader.onloadend = () => {
+          const base64Image = reader.result; // ảnh base64
+          const updatedUser = { ...user, avatar: base64Image };
+          updateUserStorage(updatedUser); // lưu vào localStorage
+        };
+
+        reader.readAsDataURL(file); // convert file -> base64
+      }
+    }}
+  />
+
+  {/* nút bấm để mở input file */}
+  <button
+    type="button"
+    className="btn-primary"
+    onClick={() => document.getElementById("avatarUpload").click()}
+  >
+    Thay đổi
+  </button>
+</div>
+
+
 
                   <div className="group">
                     <InputFeild
@@ -257,9 +343,9 @@ const UserSetting = () => {
                       error={errorsProfile.gender}
                     />
 
-                    {successProfile && (
+                    {/* {successProfile && (
                       <div className="success-box">{successProfile}</div>
-                    )}
+                    )} */}
 
                     <button className="btn-primary" onClick={handleUpdateProfile}>
                       Cập nhật
@@ -300,9 +386,9 @@ const UserSetting = () => {
                     error={errorsPassword.confirm}
                   />
 
-                  {successPassword && (
+                  {/* {successPassword && (
                     <div className="success-box">{successPassword}</div>
-                  )}
+                  )} */}
 
                   <button type="submit" className="btn-primary">
                     Cập nhật
@@ -320,6 +406,7 @@ const UserSetting = () => {
           )}
         </div>
       </div>
+    <ToastContainer position="top-right" autoClose={2000} />
     </div>
   );
 };

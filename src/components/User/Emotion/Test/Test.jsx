@@ -1,75 +1,74 @@
 import React, { useState } from "react";
-import "./../Test/Test.css"
-import imgCat01 from "../../../../assets/images/Emotion_Cat.png"; 
-
+import "./../Test/Test.css";
+import imgCat01 from "../../../../assets/images/Emotion_Cat.png";
 
 const Test = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selected, setSelected] = useState("");
   const [answersRecord, setAnswersRecord] = useState({});
   const [saved, setSaved] = useState(false);
-  
-const questions = [
-  {
-    id: 1,
-    text: "Cảm xúc hiện tại của bạn là gì?",
-    answers: [
-      { icon: "😊", text: "Vui vẻ" },
-      { icon: "😢", text: "Buồn" },
-      { icon: "😡", text: "Tức giận" },
-      { icon: "😴", text: "Mệt mỏi" },
-    ],
-    quote: "Cảm xúc là ngôn ngữ của tâm hồn.",
-  },
-  {
-    id: 2,
-    text: "Điều gì khiến bạn có cảm xúc này?",
-    answers: [
-      { icon: "👨‍👩‍👧", text: "Gia đình" },
-      { icon: "💼", text: "Công việc" },
-      { icon: "❤️", text: "Tình cảm" },
-      { icon: "📚", text: "Học tập" },
-    ],
-    quote: "Mọi cảm xúc đều có nguyên nhân.",
-  },
-  {
-    id: 3,
-    text: "Bạn muốn cải thiện tâm trạng như thế nào?",
-    answers: [
-      { icon: "🎵", text: "Nghe nhạc" },
-      { icon: "🚶", text: "Đi dạo" },
-      { icon: "💬", text: "Tâm sự" },
-      { icon: "🛌", text: "Nghỉ ngơi" },
-    ],
-    quote: "Chăm sóc bản thân là điều quan trọng.",
-  },
-  {
-    id: 4,
-    text: "Bạn muốn chia sẻ cảm xúc này với ai?",
-    answers: [
-      { icon: "👫", text: "Bạn bè" },
-      { icon: "👨‍👩‍👧", text: "Gia đình" },
-      { icon: "🧑", text: "Chuyên gia" },
-      { icon: "🙅", text: "Không chia sẻ" },
-    ],
-    quote: "Chia sẻ là cách giảm tải cảm xúc.",
-  },
-  {
-    id: 5,
-    text: "Bạn đã sẵn sàng xem kết quả chưa?",
-    answers: [
-      { icon: "✅", text: "Sẵn sàng" },
-      { icon: "⏳", text: "Chưa chắc" },
-    ],
-    quote: "Một hành trình cảm xúc sắp khép lại.",
-  },
-  {
-    id: 6,
-    text: "Tóm tắt lại lựa chọn của bạn",
-    answers: [],
-    quote: "Bạn đã hoàn thành kiểm tra cảm xúc!",
-  },
-];
+
+  const questions = [
+    {
+      id: 1,
+      text: "Cảm xúc hiện tại của bạn là gì?",
+      answers: [
+        { icon: "😊", text: "Vui vẻ" },
+        { icon: "😢", text: "Buồn" },
+        { icon: "😡", text: "Tức giận" },
+        { icon: "😴", text: "Mệt mỏi" },
+      ],
+      quote: "Cảm xúc là ngôn ngữ của tâm hồn.",
+    },
+    {
+      id: 2,
+      text: "Điều gì khiến bạn có cảm xúc này?",
+      answers: [
+        { icon: "👨‍👩‍👧", text: "Gia đình" },
+        { icon: "💼", text: "Công việc" },
+        { icon: "❤️", text: "Tình cảm" },
+        { icon: "📚", text: "Học tập" },
+      ],
+      quote: "Mọi cảm xúc đều có nguyên nhân.",
+    },
+    {
+      id: 3,
+      text: "Bạn muốn cải thiện tâm trạng như thế nào?",
+      answers: [
+        { icon: "🎵", text: "Nghe nhạc" },
+        { icon: "🚶", text: "Đi dạo" },
+        { icon: "💬", text: "Tâm sự" },
+        { icon: "🛌", text: "Nghỉ ngơi" },
+      ],
+      quote: "Chăm sóc bản thân là điều quan trọng.",
+    },
+    {
+      id: 4,
+      text: "Bạn muốn chia sẻ cảm xúc này với ai?",
+      answers: [
+        { icon: "👫", text: "Bạn bè" },
+        { icon: "👨‍👩‍👧", text: "Gia đình" },
+        { icon: "🧑", text: "Chuyên gia" },
+        { icon: "🙅", text: "Không chia sẻ" },
+      ],
+      quote: "Chia sẻ là cách giảm tải cảm xúc.",
+    },
+    {
+      id: 5,
+      text: "Bạn đã sẵn sàng xem kết quả chưa?",
+      answers: [
+        { icon: "✅", text: "Sẵn sàng" },
+        { icon: "⏳", text: "Chưa chắc" },
+      ],
+      quote: "Một hành trình cảm xúc sắp khép lại.",
+    },
+    {
+      id: 6,
+      text: "Tóm tắt lại lựa chọn của bạn",
+      answers: [],
+      quote: "Bạn đã hoàn thành kiểm tra cảm xúc!",
+    },
+  ];
 
   const currentQuestion = questions.find((q) => q.id === currentPage);
 
@@ -120,7 +119,32 @@ const questions = [
         advice: "Hãy nghỉ ngơi và chăm sóc bản thân nhiều hơn.",
       };
     }
-    return { mood: "Chưa rõ tâm trạng", advice: "Hãy chia sẻ thêm để chúng tôi hiểu bạn hơn." };
+    return {
+      mood: "Chưa rõ tâm trạng",
+      advice: "Hãy chia sẻ thêm để chúng tôi hiểu bạn hơn.",
+    };
+  };
+
+  // Hàm lưu kết quả vào localStorage
+  const saveResultToLocalStorage = () => {
+    const resultData = {
+      date: new Date().toLocaleString("vi-VN"), // ngày giờ lưu
+      answers: answersRecord,
+      conclusion: conclusion,
+    };
+
+    // Lấy dữ liệu cũ
+    const savedResults = JSON.parse(
+      localStorage.getItem("emotionTestResults") || "[]"
+    );
+
+    // Thêm kết quả mới
+    savedResults.push(resultData);
+
+    // Lưu lại vào localStorage
+    localStorage.setItem("emotionTestResults", JSON.stringify(savedResults));
+
+    setSaved(true);
   };
 
   const conclusion = getConclusion();
@@ -184,15 +208,18 @@ const questions = [
             {/* Kết luận */}
             <div className="conclusion-box">
               <h4>👉 Kết luận tâm trạng:</h4>
-              <p><strong>{conclusion.mood}</strong></p>
+              <p>
+                <strong>{conclusion.mood}</strong>
+              </p>
               <p>{conclusion.advice}</p>
             </div>
 
             {/* Nút hành động */}
             <div className="result-actions">
-              <button className="btn-save" onClick={() => setSaved(true)}>
+              <button className="btn-save" onClick={saveResultToLocalStorage}>
                 💾 Lưu lại
               </button>
+
               <button
                 className="btn-restart"
                 onClick={() => {
@@ -205,7 +232,9 @@ const questions = [
               </button>
             </div>
 
-            {saved && <p className="saved-msg">✅ Kết quả đã được lưu thành công!</p>}
+            {saved && (
+              <p className="saved-msg">✅ Kết quả đã được lưu thành công!</p>
+            )}
           </div>
         )}
 
