@@ -26,14 +26,17 @@ function UserLayout() {
     { icon: <FaHome />, label: "Home", path: "/userlayout/home" },
     { icon: <FaHeart />, label: "Góc thư giãn", path: "/userlayout/relax" },
     { icon: <FaBook />, label: "Góc nhật ký", path: "/userlayout/diary" },
+    { icon: <FaUserFriends />, label: "Góc tư vấn", path: "/userlayout/consulting" },
     { icon: <FaSmile />, label: "Góc cảm xúc", path: "/userlayout/emotion" },
   ];
 
   const menuItems = [
-    {label: "Home", path: "/userlayout/home" },
-    {label: "Góc thư giãn", path: "/userlayout/relax" },
-    {label: "Góc nhật ký", path: "/userlayout/diary" },
-    {label: "Góc cảm xúc", path: "/userlayout/emotion" },
+    { label: 'Home', href: '/userlayout/home' },
+    { label: 'Góc thư giãn', path: '/userlayout/relax' },
+    { label: 'Góc nhật ký', path: '/#' },
+    { label: 'Góc tư vấn', path: '/userlayout/consulting' },
+    { label: 'Góc thú cưng', path: '/userlayout/login' },
+    { label: 'Góc cảm xúc', path: '/userlayout/emotion' },
   ];
 
   return (

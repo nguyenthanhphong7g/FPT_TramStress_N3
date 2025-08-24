@@ -3,6 +3,7 @@ import './NoiDungThuGian.css'
 import icon_search from '../../../../assets/images/Relax/icon_search.png'
 import GocThuGian from './GocThuGian'
 import { Link } from 'react-router-dom';
+import Section from './Section';
 
 const NoiDung = ({ refs }) => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -35,34 +36,7 @@ const NoiDung = ({ refs }) => {
               <img src={icon_search} alt="" />
             </Link>
           </div>
-
-          <div className='noidung-bottom'>
-            {section.items.slice(0, 4).map((item, itemIdx) => (
-              <div
-                key={itemIdx}
-                className={`${item.type} ${item.type === 'loihay' &&
-                  activeIndex === itemIdx &&
-                  activeSection === sectionIdx
-                  ? 'show'
-                  : ''
-                  }`}
-                onClick={() => {
-                  if (item.type === "loihay") {
-                    handleClick(sectionIdx, itemIdx, item.type);
-                  } else if (item.url) {
-                    window.open(item.url, "_blank");
-                  }
-                }}
-                style={{ cursor: item.url || item.type === "loihay" ? "pointer" : "default" }}
-              >
-                <img src={item.img} alt={item.type} />
-                <div className='content-relax'>
-                  <p>{item.text}</p>
-                  {item.author && <h4>{item.author}</h4>}
-                </div>
-              </div>
-            ))}
-          </div>
+          <Section slug={section.slug} />
         </div>
       ))}
     </div>

@@ -7,7 +7,7 @@ import return_relax from '../../../../assets/images/Relax/return_relax.png'
 
 import { Link, useLocation, useParams } from 'react-router-dom'
 import GocThuGian from '../Main/GocThuGian'
-import Pagination from './Pagination'
+import Pagination from '../../../Common/Pagination/Pagination'
 
 const XemTatCa = () => {
     const { slug } = useParams();
