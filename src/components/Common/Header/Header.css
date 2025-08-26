@@ -102,6 +102,25 @@
   border-radius: 50%;
 }
 
+.io-class {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+}
+.io-btn {
+  padding: 5px 10px;
+  border: 1px solid #b3dbff;
+  background-color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.io-btn:hover {
+  background-color: #b3dbff;
+  color: #fff;
+}
+
 
 @media (max-width: 1024px) and (min-width: 768px) {
   .header-center h2 {
@@ -129,6 +148,15 @@
 
   .header-right {
     margin-right: 20px;
+  }
+  .io-class {
+    display: flex;
+    gap: 10px;
+    padding: 8px;
+  }
+  .io-btn {
+    font-size: 14px;
+    padding: 4px 8px;
   }
 
 }
@@ -175,6 +203,15 @@
   font-size: 8px;
   padding: 2px 5px;
 }
+.io-class {
+    display: flex;
+    gap: 10px;
+    padding: 6px;
+  }
+  .io-btn {
+    font-size: 14px;
+    padding: 3px 8px;
+  }
 
 
 }

@@ -1,25 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import "./Input.css";
 import Cat from '../../../../assets/images/Emotion_Cat.png';
+import { useAuth } from "../../../../contexts/AuthContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const hashtags = [
-  { text: "#MệtMỏi", value: 1, color: "#002241" },
-  { text: "#LoLắng", value: 2, color: "#38aadc" },
-  { text: "#CăngThẳng", value: 3, color: "#a14747" },
-  { text: "#Buồn", value: 4, color: "#5c6bc0" },
-  { text: "#HàoHứng", value: 5, color: "#cc4f35" },
-  { text: "#ThưGiãn", value: 6, color: "#81c784" },
-  { text: "#VuiVẻ", value: 7, color: "#dbc255" },
-  { text: "#BìnhYên", value: 8, color: "#f48fb1" },
-];
-const firstRow = hashtags.slice(0, 4);
-const secondRow = hashtags.slice(4, 8);
 
 function Input() {
   const [selectedTags, setSelectedTags] = useState([]);
   const [note, setNote] = useState("");
   const [showTooltip, setShowTooltip] = useState(false);
+  const { user } = useAuth();
+  const [hashtag, setHashtag] = useState([])
+      useEffect(() => {
+          fetch("http://localhost:3001/hashtag")
+          .then((res) => res.json())
+          .then((data) => setHashtag(data))
+          .catch((err) => console.error(err));
+        }, []);
+  const firstRow = hashtag.slice(0, 4);
+const secondRow = hashtag.slice(4, 8);
 
   const toggleTag = (tag) => {
     setSelectedTags((prev) =>
@@ -30,9 +31,13 @@ function Input() {
   };
 
   const saveMood = () => {
+    if (!user) {
+      toast.error("Bạn cần đăng nhập để tiếp tục!!!")
+      return;
+    }
     if (!selectedTags.length) {
       setShowTooltip(true);
-      setTimeout(() => setShowTooltip(false), 2000); // ẩn tooltip sau 2s
+      setTimeout(() => setShowTooltip(false), 2000);
       return;
     }
 
@@ -40,7 +45,7 @@ function Input() {
       if (!selectedTags.length) return 1;
 
       const avgOriginal =
-        selectedTags.reduce((sum, tag) => sum + tag.value, 0) /
+        selectedTags.reduce((sum, tag) => sum + tag.hashtag_id, 0) /
         selectedTags.length;
 
       const scaled = 1 + (avgOriginal - 1) * (4 / 7);
@@ -52,7 +57,7 @@ function Input() {
       date: dayjs().format("YYYY-MM-DD"),
       value: avgValue,
       note: note.trim(),
-      hashtags: selectedTags.map((tag) => tag.text),
+      hashtags: selectedTags.map((tag) => tag.name),
     };
 
     const existing = JSON.parse(localStorage.getItem("dailyMoods") || "[]");
@@ -98,28 +103,29 @@ function Input() {
         <div className="tag-row">
           {firstRow.map((tag) => (
             <button
-              key={tag.text}
+              key={tag.hashtag_id}
               className={`tag-btn ${selectedTags.includes(tag) ? "active" : ""}`}
               onClick={() => toggleTag(tag)}
               style={{ backgroundColor: tag.color }}
             >
-              {tag.text}
+              {tag.name}
             </button>
           ))}
         </div>
         <div className="tag-row">
           {secondRow.map((tag) => (
             <button
-              key={tag.text}
+              key={tag.hashtag_id}
               className={`tag-btn ${selectedTags.includes(tag) ? "active" : ""}`}
               onClick={() => toggleTag(tag)}
               style={{ backgroundColor: tag.color }}
             >
-              {tag.text}
+              {tag.name}
             </button>
           ))}
         </div>
       </div>
+      <ToastContainer position="top-right" autoClose={2000} />
     </div>
   );
 }

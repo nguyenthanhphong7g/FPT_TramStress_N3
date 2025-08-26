@@ -6,17 +6,22 @@ import isoWeek from "dayjs/plugin/isoWeek";
 import "./Calendar.css";
 import "dayjs/locale/vi";
 import DayData from "../../User/Emotion/DayData/DayData";
-import MoodEmotion from "../../Common/MoodEmotion/MoodEmotion";
 
 dayjs.extend(weekday);
 dayjs.extend(weekOfYear);
 dayjs.extend(isoWeek);
 
-const moodMap = MoodEmotion;
-
 function Calendar({ dailyMoods = [], onSelectWeek = () => { }, setIsCustomWeek, onMonthChange }) {
   const [currentMonth, setCurrentMonth] = useState(dayjs());
   const [selectedDate, setSelectedDate] = useState(null);
+  const [moodMap, setMoodMap] = useState([])
+
+  useEffect(() => {
+    fetch("http://localhost:3001/mood")
+    .then((res) => res.json())
+    .then((data) => setMoodMap(data))
+    .catch((err) => console.error(err));
+  }, []);
 
   useEffect(() => {
     if (onMonthChange) onMonthChange(currentMonth);
@@ -38,7 +43,7 @@ function Calendar({ dailyMoods = [], onSelectWeek = () => { }, setIsCustomWeek, 
   const getMoodColor = (date) => {
     const moodEntry = dailyMoods.find((m) => dayjs(m.date).isSame(date, "day"));
     if (!moodEntry) return "#000";
-    const mood = moodMap.find((m) => m.value === moodEntry.value);
+    const mood = moodMap.find((m) => m.mood_id === moodEntry.value);
     return mood ? mood.color : "#000";
   };
 

@@ -9,29 +9,33 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { registerUser } from '../../../services/services';
 
-
 const Signin = () => {
     const navigate = useNavigate();
 
 
-const {
-  register,
-  handleSubmit,
-  formState: { errors }
-} = useForm({
-  resolver: yupResolver(signinSchema)
-});
+    const {
+        register,
+        handleSubmit,
+        formState: { errors }
+    } = useForm({
+        resolver: yupResolver(signinSchema)
+    });
 
 
-    const onSubmit = (data) => {
-        const result = registerUser(data);
+    const onSubmit = async (data) => {
+        const result = await registerUser({ ...data, role: 'user' });
         if (!result.success) {
-        toast.error(result.message); 
+            console.log(result.message)
+            toast.error(result.message);
         } else {
-        toast.success(result.message); 
-        handleLoginClick();
+            toast.success(result.message);
+            handleLoginClick();
         };
     };
+
+    const handleGuest =() => {
+        navigate('userlayout/home')
+    }
     const handleLoginClick = () => {
         navigate('/');
     }
@@ -66,7 +70,7 @@ const {
             <p className="separator"></p>
             <p className="signup-text">Bạn đã có tài khoản ư?</p>
             <div className='footer'>
-                <a href="#" className='left'>Tiếp tục với vai trò khách</a>
+                <a href="#" className='left' onClick={handleGuest}>Tiếp tục với vai trò khách</a>
                 <a href="#" className='right' onClick={handleLoginClick}>Vậy thì bắt đầu thôi </a>
             </div>
             <ToastContainer position="top-right" autoClose={2000} />

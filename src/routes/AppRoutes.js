@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Navigate, Outlet } from "react-router-dom";
+import { Routes, Route, Navigate} from "react-router-dom";
 
 import UserLayout from "../layouts/UserLayout/UserLayout";
 import FormSign from "../pages/Login/FormSign";
@@ -11,17 +11,18 @@ import Test from "../components/User/Emotion/Test/Test";
 import Diary from "../components/User/Diary/Diary"
 import UserRelax from "../pages/User/UserRelax";
 import UserRelaxSeeAll from "../pages/User/UserRelaxSeeAll";
-import NotFound from "../pages/User/NotFound";
+import NotFound from "../pages/NotFound/NotFound";
+import ProtectedRoute from "./ProtectedRoute";
 
-// Giả lập role, sau này sẽ lấy từ API hoặc state management
-const userRole = "user"; // "admin" | "user" | "guest"
+// // Giả lập role, sau này sẽ lấy từ API hoặc state management
+// const userRole = "user"; // "admin" | "user" | "guest"
 
-const ProtectedRoute = ({ allowedRoles }) => {
-  if (!allowedRoles.includes(userRole)) {
-    return <Navigate to="/" replace />;
-  }
-  return <Outlet />;
-};
+// const ProtectedRoute = ({ allowedRoles }) => {
+//   if (!allowedRoles.includes(userRole)) {
+//     return <Navigate to="/" replace />;
+//   }
+//   return <Outlet />;
+// };
 
 function AppRoutes() {
   return (
@@ -29,8 +30,9 @@ function AppRoutes() {
       <Route path="/" element={<FormLogin />} exact/>
       <Route path="/signin" element={<FormSign />} />
 
-      <Route element={<ProtectedRoute allowedRoles={["user", "admin"]} />}>
+       <Route>
         <Route path="/userlayout" element={<UserLayout />}>
+          <Route index element={<Navigate to="home" replace />} />
           <Route path="home" element={<UserHome />} />
           <Route path="home/test" element={<Test />} />
           <Route path="emotion" element={<UserEmotion />} />
@@ -39,9 +41,10 @@ function AppRoutes() {
           <Route path="diary" element={<Diary />} />
           <Route path="relax" element={<UserRelax />} />
           <Route path="/userlayout/relax/:slug" element={<UserRelaxSeeAll />} />
+          <Route path="*" element={<NotFound/>}/>
         </Route>
       </Route>
-      <Route path="*" element={<NotFound/>}/>
+      
     </Routes>
   );
 }

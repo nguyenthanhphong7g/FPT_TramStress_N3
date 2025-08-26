@@ -3,10 +3,14 @@ import './NoiDungThuGian.css'
 import icon_search from '../../../../assets/images/Relax/icon_search.png'
 import GocThuGian from './GocThuGian'
 import { Link } from 'react-router-dom';
+import { useAuth } from "../../../../contexts/AuthContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const NoiDung = ({ refs }) => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [activeSection, setActiveSection] = useState(null);
+  const { user } = useAuth();
 
   const handleClick = (sectionIdx, itemIdx, itemType) => {
     if (itemType !== 'loihay') return;
@@ -47,6 +51,10 @@ const NoiDung = ({ refs }) => {
                   : ''
                   }`}
                 onClick={() => {
+                  if (itemIdx !== 0 && !user) {
+                        toast.error("Bạn cần đăng nhập để tiếp tục!!!")
+                        return;
+                      }
                   if (item.type === "loihay") {
                     handleClick(sectionIdx, itemIdx, item.type);
                   } else if (item.url) {
@@ -65,6 +73,7 @@ const NoiDung = ({ refs }) => {
           </div>
         </div>
       ))}
+      <ToastContainer position="top-right" autoClose={2000} />
     </div>
   );
 };

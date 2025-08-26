@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Setting.css";
 import Cat from "../../../assets/images/Cat_Emontion.png";
 import InputFeild from "../../../components/Common/FormLogin/InputFeild";
 import { profileSchema, passwordSchema } from "../../Common/Schema/Schema";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { updateUserStorages, getCurrentUser , compareCurrentPassword} from "../../../services/services";
+import { updateUserStorages, getCurrentUser, compareCurrentPassword } from "../../../services/services";
 
 
 const Setting = () => {
@@ -21,9 +21,9 @@ const Setting = () => {
         if (savedUser) setUser(savedUser);
     }, []);
 
-    const validateField = async (field, value) => {
+    const validateField = async (field, nextUser) => {
         try {
-            await profileSchema.fields[field].validate(value);
+            await profileSchema.validateAt(field, nextUser);
             setErrorsProfile((prev) => ({ ...prev, [field]: "" }));
         } catch (err) {
             setErrorsProfile((prev) => ({ ...prev, [field]: err.message }));
@@ -31,8 +31,12 @@ const Setting = () => {
     };
 
     const handleFieldChange = (field, value) => {
-        setUser((prev) => ({ ...prev, [field]: value }));
-        validateField(field, value);
+        setUser((prev) => {
+            const casted = field === "age" ? (value === "" ? "" : Number(value)) : value;
+            const next = { ...prev, [field]: casted };
+            validateField(field, next);
+            return next;
+        });
     };
 
     const validatePasswordRealtime = async (next) => {
@@ -40,29 +44,26 @@ const Setting = () => {
             await passwordSchema.validate({ password: next.new }, { abortEarly: false });
             setErrorsPassword((prev) => ({ ...prev, new: "" }));
         } catch (err) {
-            if (err.inner) {
-                const newErrors = {};
-                err.inner.forEach((e) => {
-                    if (e.path === "password") {
-                        newErrors.new = e.message;
-                    }
-                });
-                setErrorsPassword((prev) => ({ ...prev, ...newErrors }));
-            } else {
-                setErrorsPassword((prev) => ({ ...prev, new: err.message }));
+            let newErrors = {};
+            if (err.inner && err.inner.length) {
+                const first = err.inner.find((e) => e.path === "password");
+                if (first) newErrors.new = first.message;
+            } else if (err.path === "password") {
+                newErrors.new = err.message;
             }
+            setErrorsPassword((prev) => ({ ...prev, ...newErrors }));
         }
 
-        if (next.current) {
-            if (user && next.current !== user.password) {
+        if (typeof next.current === "string") {
+            if (user && next.current && !compareCurrentPassword(next.current)) {
                 setErrorsPassword((prev) => ({ ...prev, current: "Mật khẩu hiện tại không đúng!" }));
             } else {
                 setErrorsPassword((prev) => ({ ...prev, current: "" }));
             }
         }
 
-        if (next.confirm) {
-            if (next.confirm !== next.new) {
+        if (typeof next.confirm === "string") {
+            if (next.confirm && next.confirm !== next.new) {
                 setErrorsPassword((prev) => ({ ...prev, confirm: "Xác nhận mật khẩu không khớp!" }));
             } else {
                 setErrorsPassword((prev) => ({ ...prev, confirm: "" }));
@@ -87,20 +88,16 @@ const Setting = () => {
             updateUserStorage(user);
             toast.success("Cập nhật thông tin thành công!");
         } catch (err) {
-            if (err.inner) {
-                const newErrors = {};
+            const newErrors = {};
+            if (err.inner && err.inner.length) {
                 err.inner.forEach((e) => {
                     newErrors[e.path] = e.message;
                 });
-                if (err.inner) {
-                    const newErrors = {};
-                    err.inner.forEach((e) => {
-                        newErrors[e.path] = e.message;
-                        toast.error(e.message);
-                    });
-                    setErrorsProfile(newErrors);
-                }
+            } else if (err.path) {
+                newErrors[err.path] = err.message;
             }
+            setErrorsProfile(newErrors);
+            Object.values(newErrors).forEach((m) => toast.error(m));
         }
     };
 
@@ -131,26 +128,31 @@ const Setting = () => {
             }
             if (newPassword.new !== newPassword.confirm) {
                 setErrorsPassword({ confirm: "Xác nhận mật khẩu không khớp!" });
-
                 toast.error("Xác nhận mật khẩu không khớp!");
                 return;
             }
-
             const updatedUser = { ...user, password: newPassword.new };
             updateUserStorage(updatedUser);
             toast.success("Đổi mật khẩu thành công!");
             setNewPassword({ current: "", new: "", confirm: "" });
         } catch (err) {
-            if (err.inner) {
-                const newErrors = {};
+            const newErrors = {};
+            if (err.inner && err.inner.length) {
                 err.inner.forEach((e) => {
                     if (e.path === "password") newErrors.new = e.message;
-                    else newErrors[e.path] = e.message;
                 });
-                toast.error("Có lỗi khi đổi mật khẩu!");
+            } else if (err.path === "password") {
+                newErrors.new = err.message;
             }
+            setErrorsPassword((prev) => ({ ...prev, ...newErrors }));
+            toast.error(newErrors.new || "Có lỗi khi đổi mật khẩu!");
         }
     };
+
+    useEffect(() => {
+        setErrorsProfile({});
+        setErrorsPassword({});
+    }, [activeTab, activeSection]);
 
     if (!user) return <p>Đang tải...</p>;
 
@@ -213,13 +215,11 @@ const Setting = () => {
                                                 if (e.target.files && e.target.files[0]) {
                                                     const file = e.target.files[0];
                                                     const reader = new FileReader();
-
                                                     reader.onloadend = () => {
                                                         const base64Image = reader.result;
                                                         const updatedUser = { ...user, avatar: base64Image };
                                                         updateUserStorage(updatedUser);
                                                     };
-
                                                     reader.readAsDataURL(file);
                                                 }
                                             }}
@@ -232,8 +232,6 @@ const Setting = () => {
                                             Thay đổi
                                         </button>
                                     </div>
-
-
 
                                     <div className="group">
                                         <InputFeild
@@ -270,7 +268,7 @@ const Setting = () => {
                                             header="Tuổi"
                                             type="number"
                                             placeholder="Nhập tuổi"
-                                            value={user.age || ""}
+                                            value={user.age === undefined || user.age === null ? "" : user.age}
                                             onChange={(e) => handleFieldChange("age", e.target.value)}
                                             icon="calendar_month"
                                             error={errorsProfile.age}
@@ -302,7 +300,7 @@ const Setting = () => {
                                         header="Mật khẩu hiện tại"
                                         type="password"
                                         placeholder="Nhập mật khẩu hiện tại"
-                                        value={newPassword.current || ""}
+                                        value={newPassword.current}
                                         onChange={(e) => handlePasswordFieldChange("current", e.target.value)}
                                         icon="lock"
                                         error={errorsPassword.current}
@@ -312,7 +310,7 @@ const Setting = () => {
                                         header="Mật khẩu mới"
                                         type="password"
                                         placeholder="Nhập mật khẩu mới"
-                                        value={newPassword.new || ""}
+                                        value={newPassword.new}
                                         onChange={(e) => handlePasswordFieldChange("new", e.target.value)}
                                         icon="lock"
                                         error={errorsPassword.new}
@@ -322,7 +320,7 @@ const Setting = () => {
                                         header="Nhập lại mật khẩu mới"
                                         type="password"
                                         placeholder="Xác nhận mật khẩu mới"
-                                        value={newPassword.confirm || ""}
+                                        value={newPassword.confirm}
                                         onChange={(e) => handlePasswordFieldChange("confirm", e.target.value)}
                                         icon="lock"
                                         error={errorsPassword.confirm}

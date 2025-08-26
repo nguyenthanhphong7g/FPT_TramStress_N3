@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import "./../Test/Test.css";
 import imgCat01 from "../../../../assets/images/Emotion_Cat.png";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useAuth } from "../../../../contexts/AuthContext";
 
 const Test = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [selected, setSelected] = useState("");
   const [answersRecord, setAnswersRecord] = useState({});
   const [saved, setSaved] = useState(false);
+  const { user } = useAuth();
 
   const questions = [
     {
@@ -127,6 +131,10 @@ const Test = () => {
 
   // Hàm lưu kết quả vào localStorage
   const saveResultToLocalStorage = () => {
+    if (!user) {
+      toast.error("Bạn cần đăng nhập để tiếp tục!!!")
+      return;
+    }
     const resultData = {
       date: new Date().toLocaleString("vi-VN"), // ngày giờ lưu
       answers: answersRecord,
@@ -266,6 +274,7 @@ const Test = () => {
       <div className="cat-footer">
         <img src={imgCat01} alt="Mèo" className="cat-img" />
       </div>
+      <ToastContainer position="top-right" autoClose={2000} />
     </div>
   );
 };
