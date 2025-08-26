@@ -3,15 +3,13 @@
     padding: 0;
     box-sizing: border-box;
 }
-.all{
+.relax-content{
     display: flex;
     flex-direction: column;
     gap: 40px;
     margin-bottom: 50px;
     background-color: white;
 }
-
-
 .noidung-top {
     display: flex;
     width:100%;
@@ -60,9 +58,9 @@
 .noidung-bottom::-webkit-scrollbar {
   display: none;
 }
-.baitap,
-.giaidieu,
-.loihay {
+.exercise,
+.music,
+.quote {
     border-radius: 20px;
     border: solid 1px rgb(0, 0, 0);
     display: inline-block;
@@ -73,6 +71,7 @@
     height: 270px;
     overflow: hidden;
     cursor: pointer;
+    margin:0;
 }
 
 .noidung-bottom img {
@@ -90,11 +89,11 @@
     width:100%;
 }
 
-.noidung-bottom .baitap img {
+.noidung-bottom .exercise img {
     object-fit: contain;
 }
 
-.noidung-bottom .baitap p {
+.noidung-bottom .exercise p {
     font-size: 16px;
     white-space: nowrap;
     overflow: hidden;
@@ -104,7 +103,7 @@
     padding-top: 2px;
 }
 
-.baitap::before, .giaidieu::before {
+.exercise::before, .music::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -113,7 +112,7 @@
   z-index: 1; 
   pointer-events: none;
 }
-.noidung-bottom .giaidieu div {
+.noidung-bottom .music div {
     border-bottom:solid 1px #b7b7b7;
     width:100%;
     display: flex;
@@ -121,12 +120,12 @@
     background-color: rgba(0, 0, 0, 0.25);
     
 }
-.noidung-bottom .giaidieu div p{
+.noidung-bottom .music div p{
     font-size: 20px;
     padding-left: 20px;
 }
 
-.baitap::after, .giaidieu::after {
+.exercise::after, .music::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -144,17 +143,17 @@
 }
 
 
-.baitap:hover::before, .giaidieu:hover::before {
+.exercise:hover::before, .music:hover::before {
   background: rgba(0, 0, 0, 0.4);
 }
 
-.baitap:hover::after, .giaidieu:hover::after {
+.exercise:hover::after, .music:hover::after {
   opacity: 1;
 }
-.loihay .content-relax {
+.quote .content-relax {
   display: none;
 }
-.loihay.show .content-relax {
+.quote.show .content-relax {
   display: flex;
   flex-direction: column;  
   justify-content: space-between;
@@ -168,13 +167,13 @@
   background-color: rgba(0,0,0,0.5);
   color: white;
 }
-.loihay.show .content-relax p {
+.quote.show .content-relax p {
   font-size: 24px;
   font-weight: bolder;
   text-align: center;
   margin: auto 0; 
 }
-.loihay.show .content-relax h4 {
+.quote.show .content-relax h4 {
   font-size: 20px;
   font-weight: 400;
   align-self: flex-end; 

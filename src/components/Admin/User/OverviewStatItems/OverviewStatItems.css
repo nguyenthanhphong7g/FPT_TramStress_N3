@@ -17,7 +17,7 @@
 
 }
 
-.overview-stat-item .stat-img-1 {
+.overview-stat-item .stat-img-consult {
     width: 40px;
     height: 40px;
     background-color: #cfe7dc;
@@ -27,8 +27,17 @@
     align-items: center;
     justify-content: center;
 }
-
-.overview-stat-item .stat-img-2 {
+.overview-stat-item .stat-img-rating {
+    width: 40px;
+    height: 40px;
+    background-color: #D4E3F2;
+    border-radius: 50%;
+    border: solid 4px #E3EBFB;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.overview-stat-item .stat-img-frequency {
     width: 40px;
     height: 40px;
     background-color: #FAE1CF;
@@ -39,7 +48,7 @@
     justify-content: center;
 }
 
-.overview-stat-item .stat-img-3 {
+.overview-stat-item .stat-img-interaction {
     width: 40px;
     height: 40px;
     background-color: #DEDEFA;
@@ -71,4 +80,13 @@
     display: flex;
     flex-direction: column;
     gap: 8px;
+}
+.stat-info-content{
+    display: flex;
+    gap:8px;
+    align-items: center;
+}
+.stat-info-content img{
+    width:24px;
+    height:24px;
 }

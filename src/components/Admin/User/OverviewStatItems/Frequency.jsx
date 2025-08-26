@@ -5,7 +5,7 @@ import frequencyimg from '../../../../assets/images/admin/frequency.png'
 const Frequency = ({frequency}) => {
     return (
         <div className="overview-stat-item">
-            <div className="stat-img-2">
+            <div className="stat-img-frequency">
                 <img src={frequencyimg} alt="" />
             </div>
             <div className="stat-info">

@@ -5,7 +5,7 @@ import totalConsults from '../../../../assets/images/admin/totalConsults.png'
 const TotalConsults = ({totalConsult}) => {
     return (
         <div className="overview-stat-item">
-            <div className="stat-img-1">
+            <div className="stat-img-consult">
                 <img src={totalConsults} alt="" />
             </div>
             <div className="stat-info">

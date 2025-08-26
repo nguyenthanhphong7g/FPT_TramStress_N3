@@ -1,0 +1,145 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.work-area {
+    width: 266px;
+    box-shadow:
+        0px 0px 4px rgba(0, 0, 0, 0.04),
+        0px 4px 8px rgba(0, 0, 0, 0.06);
+    border-radius: 16px;
+    margin: 0 auto;
+    padding:14px 16px 0px;
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+}
+
+
+.work-area-header {
+    display: flex;
+    justify-content: center;
+}
+
+.date-box {
+    display: flex;
+    border: 1px solid #e0e2e7;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 14px;
+    gap:8px;
+}
+.date-box .icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.date-box img{
+    width:15px;
+    height:16.67px;
+}
+.date-box-day{
+    color:#667085;
+    margin: 0;
+}
+.work-area-nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: #ebf1fc;
+    padding:8px 10px;
+    border-radius: 8px;
+}
+
+.nav-btn {
+    background-color: #ebf1fc;
+    border: none;
+    cursor: pointer;
+}
+.nav-btn img{
+    width:16.21px;
+    height:14px;
+}
+
+.today-btn {
+    padding: 0px 14px;
+    border-radius: 8px;
+    background: #2a567a;
+    /* xanh dương */
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    height: 24px;
+}
+.timeline-flex-end{
+    border-left: solid 1px #ebebeb;
+    border-right: solid 1px #ebebeb;
+    height:1450px;
+    position: absolute;
+    right:0px;
+    top:0px;
+    width:145px;
+    overflow: hidden;
+}
+.timeline {
+    position: relative;
+    padding-left: 16px;
+    overflow-y: auto;
+    height: 390px;
+    padding-top: 10px;
+}
+.hour {
+    position: relative;
+    height: 60px;
+    justify-content: flex-end;
+}
+.hour::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 155px; 
+  border-bottom: 1px solid #f2f4f8;
+}
+.hour:first-child::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 155px; 
+  border-top: 1px solid #f2f4f8;
+}
+
+.hour-label {
+    position: absolute;
+    right:160px;
+    top:-9px;
+    font-size: 12px;
+    color: #86888a;
+}
+
+.event {
+    position: absolute;
+    left: 2px;
+
+    background: #4ea67d;
+    color: white;
+    font-size: 12px;
+    width:172px;
+    padding: 4px 8px;
+    border-radius: 8px;
+    height:22px;
+    display: flex;
+    align-items: center;
+    
+}
+
+.current-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-top: 2px solid red;
+}

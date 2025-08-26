@@ -5,7 +5,7 @@ import Search_Admin from '../../Common/Search/Search_Admin'
 import ChonNgay from '../../Common/Button/Admin/ChonNgay'
 import Loc from '../../Common/Button/Admin/Loc'
 import './User.css'
-import TableUser from './table/TableUser'
+import TableUser from '../table/TableUser'
 
 const User = () => {
     const itemsPerPage = 10;
@@ -22,7 +22,7 @@ const User = () => {
                     <Loc />
                 </div>
             </div>
-            <TableUser arr_user={users} pagesize={itemsPerPage}/>
+            <TableUser arr_user={users} pagesize={itemsPerPage} />
         </div>
     )
 }

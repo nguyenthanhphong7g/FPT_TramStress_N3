@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Pagination from '../../../Common/Pagination/Admin/Pagination'
+import Pagination from '../../Common/Pagination/Admin/Pagination'
 import './AdminTable.css'
 
 const HistoryConsulting = ({ arr_user, pagesize }) => {
@@ -14,7 +14,7 @@ const HistoryConsulting = ({ arr_user, pagesize }) => {
         setCurrentPage(page);
     }
     return (
-        <div className="admin-user-table" style={{ minHeight: `${pagesize * 60 +125}px`}}>
+        <div className="admin-user-table" style={{ minHeight: `${pagesize * 60 + 125}px` }}>
             <div className="table-wrapper" >
                 <table>
                     <colgroup>

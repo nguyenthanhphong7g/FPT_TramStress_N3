@@ -5,7 +5,7 @@ import totalInteractions from '../../../../assets/images/admin/totalInteractions
 const TotalInteractions = ({totalInteraction}) => {
     return (
         <div className="overview-stat-item">
-            <div className="stat-img-3">
+            <div className="stat-img-interaction">
                 <img src={totalInteractions} alt="" />
             </div>
             <div className="stat-info">
