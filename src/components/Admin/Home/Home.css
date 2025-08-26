@@ -1,0 +1,73 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.admin-home {
+    padding: 32px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 1192px;
+    margin: 0 auto;
+}
+
+.admin-home-title h5 {
+    color: #333843;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.stat-row {
+    display: flex;
+    gap: 10px;
+}
+
+.admin-section-row {
+    display: flex;
+    gap: 24px;
+}
+
+.trending-content-table {
+    width: 808px;
+    border: solid 1px #e0e2e7;
+    border-radius: 8px;
+    box-shadow: 0 1.5px 2px rgba(16, 24, 40, 0.1);
+}
+
+.trending-content-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 18px 24px;
+    align-items: center;
+}
+
+.trending-content-header h5 {
+    margin: 0;
+}
+
+.trending-content-header .filter-bar {
+    display: flex;
+    gap: 12px;
+}
+
+.admin-section-row .appointment-table {
+    border: solid 1px #e0e2e7;
+    border-radius: 8px;
+    box-shadow: 0 1.5px 2px rgba(16, 24, 40, 0.1);
+}
+.featured-experts-table{
+    border: solid 1px #e0e2e7;
+    border-radius: 8px;
+    box-shadow: 0 1.5px 2px rgba(16, 24, 40, 0.1);
+}
+.featured-experts-table .title{
+    padding:18px 24px;
+}
+.featured-experts-table h5{
+    margin:0;
+    color:#333843;
+    font-size: 18px;
+    font-weight: 600;
+}

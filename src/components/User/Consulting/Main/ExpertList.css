@@ -1,0 +1,89 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.expert-list {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 20px;
+    padding: 40px;
+}
+
+.expert-mini-profile {
+    width: 360px;
+    border: solid 1px #d9d9d9;
+    border-radius: 10px;
+}
+
+.expert-list .expert-mini-profile .header-profile {
+    display: flex;
+    height: 80px;
+    background-color: #ecefe2;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    align-items: center;
+    padding: 10px;
+    gap: 5px;
+}
+
+.expert-list .expert-mini-profile .header-profile .header-avatar {
+    background-color: #f2f4f8;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-info h4 {
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.expert-mini-profile .information {
+    border-top: solid 1px #d9d9d9;
+    border-bottom: solid 1px #d9d9d9;
+    height: 173px;
+    overflow-y: auto;
+}
+
+.expert-mini-profile .information table td:first-child {
+    font-weight: bold;
+    text-align: left;
+    padding-left: 10px;
+    white-space: nowrap;
+    vertical-align: top;
+
+}
+
+.expert-mini-profile .information table td:not(:first-child) {
+    padding-left: 20px;
+    padding-right: 10px;
+}
+
+.expert-mini-profile .information table td {
+    padding-top: 5px;
+    text-align: justify;
+}
+
+.expert-mini-profile .button {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.expert-mini-profile .button button {
+    border: none;
+    border-radius: 5px;
+    background-color: #b3dbff;
+    font-size: 14px;
+    width: 84px;
+    height: 25px;
+}

@@ -1,8 +1,10 @@
 .container .underline-text {
     color: rgba(42, 86, 122, 0.75);
-    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 3px solid rgba(0, 0, 0, 0.2);
     font-size: 30px;
     font-weight: 600;
+    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.2);
+    text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.25);
 }
 
 .history-container {
@@ -24,6 +26,7 @@
     display: flex;
     flex-direction: column; /* Nội dung xếp theo cột */
     min-width: 320px; /* Đảm bảo khối không quá nhỏ */
+    background-color: white;
 }
 
 .history-chart:hover,

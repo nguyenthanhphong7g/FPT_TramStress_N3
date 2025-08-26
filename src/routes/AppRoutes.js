@@ -13,6 +13,10 @@ import UserRelax from "../pages/User/UserRelax";
 import UserRelaxSeeAll from "../pages/User/UserRelaxSeeAll";
 import NotFound from "../pages/NotFound/NotFound";
 import ProtectedRoute from "./ProtectedRoute";
+import UserConsulting from "../pages/User/UserConsulting";
+import AdminUser from "../pages/Admin/AdminUser";
+import AdminUserProfile from "../pages/Admin/AdminUserProfile";
+import AdminHome from "../pages/Admin/AdminHome";
 
 // // Giả lập role, sau này sẽ lấy từ API hoặc state management
 // const userRole = "user"; // "admin" | "user" | "guest"
@@ -42,7 +46,12 @@ function AppRoutes() {
           <Route path="relax" element={<UserRelax />} />
           <Route path="/userlayout/relax/:slug" element={<UserRelaxSeeAll />} />
           <Route path="*" element={<NotFound/>}/>
+          {/* <Route path="consulting" element={<UserConsulting />} /> */}
+          <Route path='consulting' element={<AdminHome />} />
+          <Route path="consulting/:id" element={<AdminUserProfile />} />
         </Route>
+        {/* <Route path='/adminlayout/user' element={<AdminUser />} />
+        <Route path="/adminlayout/user/:id" element={<AdminUserProfile />} /> */}
       </Route>
       
     </Routes>

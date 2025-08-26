@@ -1,0 +1,43 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.pagination-admin{
+    display: flex;
+    justify-content: space-between;
+    padding:14px 24px 16px 24px;
+}
+.pagination-admin-left h6{
+    font-size: 14px;
+    color:#667085;
+    margin:0;
+    display: flex;
+    align-items: center;
+    height:100%;
+}
+.pagination-admin-right{
+    display: flex;
+    gap:8px;
+}
+.pagination-admin-right button div, .pagination-dot {
+    border: solid 1px #2A567A;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #2A567a;
+}
+
+.pagination-admin-right button.active div {
+    background-color: #2A567a;
+    color: white;
+    border-radius: 8px;
+}
+
+.pagination-admin-right img {
+    width: 6.84px;
+    height: auto;
+}
