@@ -16,6 +16,11 @@ export const profileSchema = Yup.object().shape({
     .matches(/^[0-9]{10,11}$/, "Số điện thoại phải gồm 10-11 chữ số"),
 
   age: Yup.number()
+    .transform((value, originalValue) => {
+      if (originalValue === "" || originalValue === null) return undefined;
+      const n = Number(originalValue);
+      return Number.isNaN(n) ? undefined : n;
+    })
     .required("Bạn chưa nhập tuổi")
     .min(1, "Tuổi phải lớn hơn 0")
     .max(120, "Tuổi không hợp lệ"),

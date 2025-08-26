@@ -6,9 +6,12 @@ import SosialLogin from './SosialLogin';
 import './login.css';
 import { useNavigate } from 'react-router-dom';
 import ForgotPasswordModal from './ForgotPasswordModal';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { loginUser, getCurrentUser } from '../../../services/services';
+import { registerAdmin } from '../../../services/services';
+import { useAuth } from '../../../contexts/AuthContext';
 const schema = Yup.object().shape({
     email: Yup.string()
         .required('Bạn chưa nhập email')
@@ -18,6 +21,7 @@ const schema = Yup.object().shape({
 });
 
 const Login = () => {
+    const { login } = useAuth();
     const navigate = useNavigate();
     const [showForgotPassword, setShowForgotPassword] = useState(false);
     const {
@@ -27,28 +31,34 @@ const Login = () => {
     } = useForm({
         resolver: yupResolver(schema)
     });
-
-    const onSubmit = (data) => {
-    const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
-
-    const matchedUser = storedUsers.find(
-      (user) => user.email === data.email && user.password === data.password
-    );
-
-    if (matchedUser) {
-  localStorage.setItem("currentUser", JSON.stringify(matchedUser)); 
-  navigate("/userlayout/home");
-} else {
-//   alert("Email hoặc mật khẩu không đúng!");
-  toast.error("Email hoặc mật khẩu không đúng!");
-}
+    useEffect(() => {
+  const Admin = {
+    email: "Admin@tramstress.com",
+    password: "12345678",
+    role: "admin",
   };
-
-
+  // gọi async trong useEffect
+  (async () => {
+    await registerAdmin(Admin);
+  })();
+}, []);
+    const onSubmit = async (data) => {
+        const result = await loginUser(data.email, data.password);
+        if (result.success) {
+            login(getCurrentUser());
+            navigate("/userlayout/home");
+            toast.success(result.message);
+        } else {
+            toast.error(result.message);
+        }
+    };
 
     const handleRegisterClick = () => {
         navigate('/signin');
     };
+    const handleGuest =() => {
+        navigate('userlayout/home')
+    }
     const handleForgotPasswordClick = () => {
         setShowForgotPassword(true);
     };
@@ -64,6 +74,7 @@ const Login = () => {
                     icon="mail"
                     {...register("email")}
                     error={errors.email?.message}
+                    
                 />
 
                 <InputFeild
@@ -86,7 +97,7 @@ const Login = () => {
             <p className="separator"></p>
             <p className="signup-text">Lần đầu ghé Trạm?</p>
             <div className='footer'>
-                <a href="#" className='left'>Tiếp tục với vai trò khách</a>
+                <a href="#" className='left' onClick={handleGuest}>Tiếp tục với vai trò khách</a>
                 <a href="#" className='right' onClick={handleRegisterClick}>Đăng ký hành trình ngay</a>
             </div>
             {showForgotPassword && <ForgotPasswordModal onClose={() => setShowForgotPassword(false)} />}

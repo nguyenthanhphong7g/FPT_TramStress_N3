@@ -3,7 +3,8 @@ import { FiBell, FiUser } from "react-icons/fi";
 import NotificationPanel from "../NotificationPanel/NotificationPanel";
 import UserMenu from "../UserMenu/UserMenu";
 import "./Header.css";
-
+import { getCurrentUser } from "../../../services/services";
+import { useNavigate } from "react-router-dom";
 const Header = ({
   title = "Hôm nay bạn thế nào?",
   onSettingClick,
@@ -18,6 +19,8 @@ const Header = ({
   const userRef = useRef(null);
 
   const unreadCount = notifications.filter((n) => !n.read).length;
+
+  const navigate = useNavigate();
 
   const toggleNoti = () =>
     setIsNotiOpen((prev) => {
@@ -38,11 +41,11 @@ const Header = ({
   };
 
   useEffect(() => {
-    const savedUser = JSON.parse(localStorage.getItem("currentUser"));
+    const savedUser = getCurrentUser();
     if (savedUser) setCurrentUser(savedUser);
 
     const handleStorageChange = () => {
-      const updatedUser = JSON.parse(localStorage.getItem("currentUser"));
+      const updatedUser = getCurrentUser();
       setCurrentUser(updatedUser);
     };
     window.addEventListener("storage", handleStorageChange);
@@ -78,8 +81,8 @@ const Header = ({
       <div className="header-center">
         <h2>{title}</h2>
       </div>
-
-      <div className="header-right">
+      {currentUser ? (
+        <div className="header-right">
         {/* <button
           className="header-action-btn"
           title="Cài đặt"
@@ -87,7 +90,6 @@ const Header = ({
         >
           <FiSettings className="icon" />
         </button> */}
-
         <div ref={notiRef} style={{ display: "inline-block" }}>
           <button
             className={`header-action-btn header-action-btn-bell ${isNotiOpen ? "active" : ""
@@ -136,6 +138,19 @@ const Header = ({
 
         </div>
       </div>
+      ) : (
+      <div className="io-class">
+        <button
+          className="io-btn"
+          onClick={() => navigate("/")}
+        >Đăng nhập</button>
+        <button
+          className="io-btn"
+          onClick={() => navigate("/signin")}
+        >Đăng ký <span>&rarr;</span></button>
+      </div>
+      )}
+      
     </header>
   );
 };

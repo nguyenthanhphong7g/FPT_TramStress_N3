@@ -2,13 +2,17 @@ import React from 'react';
 import { FiLogOut, FiSettings, FiUser } from 'react-icons/fi';
 import './UserMenu.css';
 import { useNavigate } from 'react-router-dom';
+import { logoutUser } from '../../../services/services';
+import { useAuth } from '../../../contexts/AuthContext';
 
 const UserMenu = ({ isOpen, currentUser, onClick }) => {
+  const { logout } = useAuth();
   const navigate = useNavigate();
   if (!isOpen) return null;
 
   const handleLogout = () => {
-    localStorage.removeItem("currentUser"); 
+    logout();
+    logoutUser(); 
     navigate('/');
   };
 

@@ -12,18 +12,24 @@ import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
 import './BarChartEmoji.css';
-import MoodEmotion from '../../Common/MoodEmotion/MoodEmotion';
 
 dayjs.extend(isoWeek);
 dayjs.extend(weekOfYear);
 
-const moodMap = MoodEmotion;
-
 const BarChartEmoji = ({ weekData, isCustomWeek, setIsCustomWeek, dailyMoods, selectedMonth }) => {
     const [timeRange, setTimeRange] = useState('week');
     const [chartData, setChartData] = useState([]);
+    const [moodMap, setMoodMap] = useState([])
 
     useEffect(() => {
+        fetch("http://localhost:3001/mood")
+        .then((res) => res.json())
+        .then((data) => setMoodMap(data))
+        .catch((err) => console.error(err));
+      }, []);
+
+    useEffect(() => {
+        if (!dailyMoods || dailyMoods.length === 0) return;
         if (isCustomWeek && weekData && weekData.length > 0) {
             setChartData(weekData);
         } else {
@@ -32,8 +38,9 @@ const BarChartEmoji = ({ weekData, isCustomWeek, setIsCustomWeek, dailyMoods, se
     }, [timeRange, weekData, isCustomWeek, dailyMoods, selectedMonth]);
 
     const groupData = (data, range, baseDate) => {
+        
         const now = baseDate || dayjs();
-
+        
         if (range === 'week') {
             const startOfWeek = now.startOf('isoWeek');
             const result = Array(7).fill(null).map((_, i) => ({
@@ -43,7 +50,7 @@ const BarChartEmoji = ({ weekData, isCustomWeek, setIsCustomWeek, dailyMoods, se
             }));
             data.forEach(entry => {
                 const date = dayjs(entry.date);
-                if (date.isSame(now, 'week')) {
+                if (date.isoWeek() === now.isoWeek() && date.isoWeekYear() === now.isoWeekYear()) {
                     const dayIndex = date.isoWeekday() - 1;
                     result[dayIndex].value = entry.value;
                 }
@@ -130,10 +137,10 @@ const BarChartEmoji = ({ weekData, isCustomWeek, setIsCustomWeek, dailyMoods, se
     };
 
     const renderCustomYAxis = ({ x, y, payload }) => {
-        const mood = moodMap.find(m => m.value === payload.value);
+        const mood = moodMap.find(m => m.mood_id === payload.value);
         return mood ? (
             <image
-                href={mood.img}
+                href={mood.image}
                 x={x - 38}
                 y={y - 32}
                 height={40}
@@ -177,11 +184,11 @@ const BarChartEmoji = ({ weekData, isCustomWeek, setIsCustomWeek, dailyMoods, se
                     <Bar dataKey="value" radius={[50, 50, 0, 0]} minPointSize={10}
                     >
                         {chartData.map((entry, index) => {
-                            const mood = moodMap.find(m => m.value === entry.value);
+                            const mood = moodMap.find(m => m.mood_id === entry.value);
                             return (
                                 <Cell
                                     key={`cell-${index}`}
-                                    fill={`url(#gradient-${mood?.value || 'default'})`}
+                                    fill={`url(#gradient-${mood?.mood_id || 'default'})`}
                                 />
                             );
                         })}
@@ -190,8 +197,8 @@ const BarChartEmoji = ({ weekData, isCustomWeek, setIsCustomWeek, dailyMoods, se
                     <defs>
                         {moodMap.map((mood) => (
                             <linearGradient
-                                key={mood.value}
-                                id={`gradient-${mood.value}`}
+                                key={mood.mood_id}
+                                id={`gradient-${mood.mood_id}`}
                                 x1="0" y1="0" x2="0" y2="1"
                             >
                                 <stop offset="30%" stopColor={mood.color} stopOpacity={0.9} />

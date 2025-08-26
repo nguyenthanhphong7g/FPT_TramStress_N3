@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { resetPasswordSchema, } from '../Schema/Schema';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { updateUserStorages, getUser} from '../../../services/services';
 
 
 const ForgotPasswordModal = ({ onClose }) => {
@@ -24,7 +25,7 @@ const ForgotPasswordModal = ({ onClose }) => {
         resolver: yupResolver(resetPasswordSchema)
     });
 
-    const handleChangePassword = (data) => {
+    const handleChangePassword = async (data) => {
     if (!data.password || !data.confirmPassword) {
         toast.error('Bạn cần nhập đầy đủ mật khẩu!');
         return;
@@ -34,12 +35,9 @@ const ForgotPasswordModal = ({ onClose }) => {
         return;
     }
 
-    const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
-    const updatedUsers = storedUsers.map(u =>
-        u.email === email ? { ...u, password: data.password } : u
-    );
-
-    localStorage.setItem("users", JSON.stringify(updatedUsers));
+    const user = await getUser(email);
+    await updateUserStorages({ ...user, password: data.password });
+    
 
     toast.success('Mật khẩu đã được cập nhật thành công!');
     onClose();
@@ -52,8 +50,7 @@ const ForgotPasswordModal = ({ onClose }) => {
             setError('Bạn cần nhập email để nhận mã xác nhận!');
             return;
         }
-        const storedUsers = JSON.parse(localStorage.getItem("users")) || [];
-    const currentUser = storedUsers.find(user => user.email === emailValue);
+    const currentUser = getUser(email)
 
     if (!currentUser) {
         setError('Email chưa được đăng ký!');
@@ -61,11 +58,11 @@ const ForgotPasswordModal = ({ onClose }) => {
     }
         setEmail(emailValue);
         const randomCode = Math.floor(100000 + Math.random() * 900000).toString();
-        localStorage.setItem('verifyCode', randomCode);
+        sessionStorage.setItem('verifyCode', randomCode);
         setStep(2);
     }
     const verifyCode = () => {
-        const savedCode = localStorage.getItem('verifyCode');
+        const savedCode = sessionStorage.getItem('verifyCode');
         if (code === savedCode) {
             toast.success('Mã xác nhận hợp lệ! Bạn có thể đặt lại mật khẩu mới.');
             setStep(3);

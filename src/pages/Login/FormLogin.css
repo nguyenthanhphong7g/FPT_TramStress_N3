@@ -1,7 +1,7 @@
 .form-login-container {
   display: grid;
   grid-template-columns: 4fr 6fr;
-  height: 100vh;
+  min-height: 100vh;
   background-image: 'Login.png';
 }
 
@@ -79,10 +79,10 @@
     background-size: cover;
     background-position: center;
     position: relative;
+    
   }
 
   .form-login-container {
     flex-direction: column;
-    padding: 20px;
   }
 }

@@ -1,19 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import "./DayData.css";
 
-const hashtagColors = {
-    "#MệtMỏi": "#002241",
-    "#LoLắng": "#38aadc",
-    "#CăngThẳng": "#a14747",
-    "#Buồn": "#5c6bc0",
-    "#HàoHứng": "#cc4f35",
-    "#ThưGiãn": "#81c784",
-    "#VuiVẻ": "#dbc255",
-    "#BìnhYên": "#f48fb1",
-};
+
 
 function DayData({ date, onClose, dailyMoods }) {
+    const [hashtag, setHashtag] = useState([])
+    useEffect(() => {
+        fetch("http://localhost:3001/hashtag")
+        .then((res) => res.json())
+        .then((data) => setHashtag(data))
+        .catch((err) => console.error(err));
+      }, []);
     const entry = dailyMoods.find((m) => dayjs(m.date).isSame(date, "day"));
 
     return (
@@ -26,14 +24,17 @@ function DayData({ date, onClose, dailyMoods }) {
 
                 {entry?.hashtags?.length > 0 && (
                     <div className="hashtag-list">
-                        {entry.hashtags.map((tag, i) => (
-                            <span
-                                key={i}
-                                style={{ background: hashtagColors[tag] || "#ccc" }}
-                            >
-                                {tag}
-                            </span>
-                        ))}
+                        {entry.hashtags.map((tag, i) => {
+                            const matched = hashtag.find((h) => h.name === tag);
+                            return (
+                                <span
+                                    key={i}
+                                    style={{ background: matched ? matched.color : "#ccc" }}
+                                >
+                                    {tag}
+                                </span>
+                            );
+                        })}
                     </div>
                 )}
 
