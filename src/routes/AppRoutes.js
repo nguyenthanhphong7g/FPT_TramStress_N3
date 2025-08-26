@@ -17,13 +17,8 @@ import AdminAdvise from "../pages/Admin/Advise";
 import AdminUser from "../pages/Admin/AdminUser";
 import AdminUserProfile from "../pages/Admin/AdminUserProfile";
 import AdminHome from "../pages/Admin/AdminHome";
-
-const ProtectedRoute = ({ allowedRoles }) => {
-  if (!allowedRoles.includes(userRole)) {
-    return <Navigate to="/" replace />;
-  }
-  return <Outlet />;
-};
+import ProtectedRoute from "./ProtectedRoute";
+import NotFound from "../pages/NotFound/NotFound"
 
 function AppRoutes() {
   return (
@@ -41,6 +36,7 @@ function AppRoutes() {
           <Route path="emotion/test" element={<Test />} />
           <Route path="diary" element={<Diary />} />
           <Route path="relax" element={<UserRelax />} />
+          <Route path="*" element={<NotFound />}/>
           <Route path="/userlayout/relax/:slug" element={<UserRelaxSeeAll />} />
         </Route>
 
@@ -52,7 +48,7 @@ function AppRoutes() {
           <Route path="user" element={<AdminUser />} />
           <Route path="content" element={<AdminContent />} />
           <Route path="advise" element={<AdminAdvise />} />
-          <Route path="*" element={<NotFound/>}/>
+          <Route path="*" element={<NotFound />}/>
           {/* <Route path="consulting" element={<UserConsulting />} /> */}
           <Route path="user/:id" element={<AdminUserProfile />} />
         </Route>
