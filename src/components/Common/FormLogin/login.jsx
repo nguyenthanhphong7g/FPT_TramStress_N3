@@ -32,21 +32,21 @@ const Login = () => {
         resolver: yupResolver(schema)
     });
     useEffect(() => {
-  const Admin = {
-    email: "Admin@tramstress.com",
-    password: "12345678",
-    role: "admin",
-  };
-  // gọi async trong useEffect
-  (async () => {
-    await registerAdmin(Admin);
-  })();
-}, []);
+        const Admin = {
+            email: "Admin@tramstress.com",
+            password: "12345678",
+            role: "admin",
+        };
+        (async () => {
+            await registerAdmin(Admin);
+        })();
+    }, []);
     const onSubmit = async (data) => {
         const result = await loginUser(data.email, data.password);
         if (result.success) {
             login(getCurrentUser());
-            navigate("/userlayout/home");
+            getCurrentUser().role === "admin" ? navigate("/adminlayout/home") :
+                navigate("/userlayout/home");
             toast.success(result.message);
         } else {
             toast.error(result.message);
@@ -56,7 +56,7 @@ const Login = () => {
     const handleRegisterClick = () => {
         navigate('/signin');
     };
-    const handleGuest =() => {
+    const handleGuest = () => {
         navigate('userlayout/home')
     }
     const handleForgotPasswordClick = () => {
@@ -74,7 +74,7 @@ const Login = () => {
                     icon="mail"
                     {...register("email")}
                     error={errors.email?.message}
-                    
+
                 />
 
                 <InputFeild

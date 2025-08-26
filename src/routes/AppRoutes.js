@@ -17,6 +17,7 @@ import UserConsulting from "../pages/User/UserConsulting";
 import AdminUser from "../pages/Admin/AdminUser";
 import AdminUserProfile from "../pages/Admin/AdminUserProfile";
 import AdminHome from "../pages/Admin/AdminHome";
+import AdminLayout from "../layouts/AdminLayout/AdminLayout";
 
 // // Giả lập role, sau này sẽ lấy từ API hoặc state management
 // const userRole = "user"; // "admin" | "user" | "guest"
@@ -34,6 +35,7 @@ function AppRoutes() {
       <Route path="/" element={<FormLogin />} exact/>
       <Route path="/signin" element={<FormSign />} />
 
+       {/* <Route> */}
        <Route>
         <Route path="/userlayout" element={<UserLayout />}>
           <Route index element={<Navigate to="home" replace />} />
@@ -53,6 +55,16 @@ function AppRoutes() {
         {/* <Route path='/adminlayout/user' element={<AdminUser />} />
         <Route path="/adminlayout/user/:id" element={<AdminUserProfile />} /> */}
       </Route>
+      <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
+        <Route path="/adminlayout" element={<AdminLayout />}>
+          <Route index element={<Navigate to="home" replace />} />
+          <Route path="home" element={<AdminHome />} />
+          <Route path="user" element={<AdminUser />} />
+          <Route path="*" element={<NotFound/>}/>
+          {/* <Route path="consulting" element={<UserConsulting />} /> */}
+          <Route path="user/:id" element={<AdminUserProfile />} />
+        </Route>
+        </Route>
       
     </Routes>
   );
