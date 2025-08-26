@@ -11,6 +11,9 @@ import Test from "../components/User/Emotion/Test/Test";
 import Diary from "../components/User/Diary/Diary"
 import UserRelax from "../pages/User/UserRelax";
 import UserRelaxSeeAll from "../pages/User/UserRelaxSeeAll";
+import AdminLayout from "../layouts/AdminLayout/AdminLayout";
+import AdminContent from "../pages/Admin/AdminContent"; 
+import AdminAdvise from "../pages/Admin/Advise";
 
 // Giả lập role, sau này sẽ lấy từ API hoặc state management
 const userRole = "user"; // "admin" | "user" | "guest"
@@ -38,6 +41,11 @@ function AppRoutes() {
           <Route path="diary" element={<Diary />} />
           <Route path="relax" element={<UserRelax />} />
           <Route path="/userlayout/relax/:slug" element={<UserRelaxSeeAll />} />
+        </Route>
+        <Route path="/adminlayout" element={<AdminLayout />}>
+          <Route path="content" element={<AdminContent />} />
+          <Route path="advise" element={<AdminAdvise />} />
+
         </Route>
       </Route>
     </Routes>

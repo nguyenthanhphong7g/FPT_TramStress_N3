@@ -12,6 +12,7 @@
   border-radius: 6px;
   background: white;
   cursor: pointer;
+  width: 38px;
 }
 
 .pagination button:disabled {

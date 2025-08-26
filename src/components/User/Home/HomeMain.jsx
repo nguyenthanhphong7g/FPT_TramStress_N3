@@ -1,9 +1,7 @@
 import react from "react";
 import BarChart from "../Recharts/BarChart";
 import "./HomeMain.css";
-import Test from "./../Emotion/Test/Test";
 import Cat from "../../../assets/images/Home/Home_Emotion_Cat.png";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 const HomeMain = () => {
   const navigate = useNavigate();
