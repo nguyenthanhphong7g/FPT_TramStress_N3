@@ -5,14 +5,12 @@
       "user_name": "Phong",
       "email": "phong1@gmail.com",
       "password": "123456",
-      "id": "d01c"
     },
     {
       "user_id": "u2",
       "user_name": "Lan",
       "email": "lan@example.com",
       "password": "abcdef",
-      "id": "9645"
     },
     {
       "id": "dfb5",
@@ -82,8 +80,13 @@
   ],
   "daily_activity": [
     {
-      "id": "f985",
-      "activity_id": 1756150534261,
+      "id": "190e",
+      "user_id": "5dda",
+      "date": "2025-08-26"
+    },
+    {
+      "id": "4fcd",
+      "user_id": "4743",
       "date": "2025-08-26"
     }
   ],
@@ -93,49 +96,41 @@
       "hashtag_id": 1,
       "name": "#MệtMỏi",
       "color": "#002241",
-      "id": "9dd3"
     },
     {
       "hashtag_id": 2,
       "name": "#LoLắng",
       "color": "#38aadc",
-      "id": "a15f"
     },
     {
       "hashtag_id": 3,
       "name": "#CăngThẳng",
       "color": "#a14747",
-      "id": "bb8a"
     },
     {
       "hashtag_id": 4,
       "name": "#Buồn",
       "color": "#5c6bc0",
-      "id": "86af"
     },
     {
       "hashtag_id": 5,
       "name": "#HàoHứng",
       "color": "#cc4f35",
-      "id": "db74"
     },
     {
       "hashtag_id": 6,
       "name": "#ThưGiãn",
       "color": "#81c784",
-      "id": "3f94"
     },
     {
       "hashtag_id": 7,
       "name": "#VuiVẻ",
       "color": "#dbc255",
-      "id": "306f"
     },
     {
       "hashtag_id": 8,
       "name": "#BìnhYên",
       "color": "#f48fb1",
-      "id": "29fc"
     }
   ],
   "mood": [
@@ -143,54 +138,59 @@
       "mood_id": 1,
       "image": "/image/Emoji/Do.png",
       "color": "#F54334",
-      "id": "7683"
     },
     {
       "mood_id": 2,
       "image": "/image/Emoji/Cam.png",
       "color": "#FF981E",
-      "id": "b933"
     },
     {
       "mood_id": 3,
       "image": "/image/Emoji/Vang.png",
       "color": "#FFC12D",
-      "id": "df0d"
     },
     {
       "mood_id": 4,
       "image": "/image/Emoji/XanhLa.png",
       "color": "#8CC255",
-      "id": "5f5e"
     },
     {
       "mood_id": 5,
       "image": "/image/Emoji/XanhNhat.png",
       "color": "#4AAF57",
-      "id": "ccff"
     }
   ],
   "mood_log": [
     {
-      "id": "118f",
-      "mood_log_id": 1756150533855,
-      "activity_id": 1756150534261,
+      "id": "3049",
+      "activity_id": "190e",
+      "content": "sạkbfkjcs",
+      "mood_id": 5
+    },
+    {
+      "id": "7d2b",
+      "activity_id": "4fcd",
       "content": "",
-      "mood_id": null
+      "mood_id": 3
     }
   ],
   "relax_content": [],
   "user_relax_history": [],
   "mood_hashtag": [
     {
-      "id": "4d0d",
-      "mood_log_id": 1756150533855,
+      "id": "7c3e",
+      "mood_log_id": "3049",
       "hashtag_id": 7
     },
     {
-      "id": "6d68",
-      "mood_log_id": 1756150533855,
+      "id": "0042",
+      "mood_log_id": "3049",
       "hashtag_id": 8
+    },
+    {
+      "id": "62cd",
+      "mood_log_id": "7d2b",
+      "hashtag_id": 5
     }
   ]
 }

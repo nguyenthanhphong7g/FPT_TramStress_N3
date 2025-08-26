@@ -14,10 +14,9 @@ import UserRelaxSeeAll from "../pages/User/UserRelaxSeeAll";
 import AdminLayout from "../layouts/AdminLayout/AdminLayout";
 import AdminContent from "../pages/Admin/AdminContent";
 import AdminAdvise from "../pages/Admin/Advise";
-import HomeAdmin from "../pages/Admin/AdminHome";
 import AdminUser from "../pages/Admin/AdminUser";
-// Giả lập role, sau này sẽ lấy từ API hoặc state management
-const userRole = "user"; // "admin" | "user" | "guest"
+import AdminUserProfile from "../pages/Admin/AdminUserProfile";
+import AdminHome from "../pages/Admin/AdminHome";
 
 const ProtectedRoute = ({ allowedRoles }) => {
   if (!allowedRoles.includes(userRole)) {
@@ -32,7 +31,8 @@ function AppRoutes() {
       <Route path="/" element={<FormLogin />} />
       <Route path="/signin" element={<FormSign />} />
 
-      <Route element={<ProtectedRoute allowedRoles={["user", "admin"]} />}>
+       {/* <Route> */}
+       <Route>
         <Route path="/userlayout" element={<UserLayout />}>
           <Route path="home" element={<UserHome />} />
           <Route path="home/test" element={<Test />} />
@@ -43,14 +43,21 @@ function AppRoutes() {
           <Route path="relax" element={<UserRelax />} />
           <Route path="/userlayout/relax/:slug" element={<UserRelaxSeeAll />} />
         </Route>
-        <Route path="/adminlayout" element={<AdminLayout />}>
-          <Route path="home" element={<HomeAdmin />} />
-          <Route path="content" element={<AdminContent />} />
-          <Route path="advise" element={<AdminAdvise />} />
-          <Route path="user" element={<AdminUser />} />
-        </Route>
 
       </Route>
+      <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
+        <Route path="/adminlayout" element={<AdminLayout />}>
+          <Route index element={<Navigate to="home" replace />} />
+          <Route path="home" element={<AdminHome />} />
+          <Route path="user" element={<AdminUser />} />
+          <Route path="content" element={<AdminContent />} />
+          <Route path="advise" element={<AdminAdvise />} />
+          <Route path="*" element={<NotFound/>}/>
+          {/* <Route path="consulting" element={<UserConsulting />} /> */}
+          <Route path="user/:id" element={<AdminUserProfile />} />
+        </Route>
+        </Route>
+      
     </Routes>
   );
 }
