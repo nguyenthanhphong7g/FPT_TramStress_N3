@@ -1,5 +1,5 @@
 import SidebarFormLayout from '../../components/Common/Sidebar/SidebarFormLayout';
-import { FaHome, FaHeart, FaBook, FaUserFriends, FaPaw, FaSmile } from 'react-icons/fa';
+import { FaHome, FaHeart, FaBook, FaSmile, FaUserFriends } from 'react-icons/fa';
 import Header from '../../components/Common/Header/Header';
 import { Outlet, useNavigate } from 'react-router-dom';
 import Footer from '../../components/Common/Footer/Footer';
@@ -10,7 +10,6 @@ function UserLayout() {
   const navigate = useNavigate();
   const [notifications, setNotifications] = useState([]);
 
-  // Lấy dữ liệu từ localStorage khi load app
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem("notifications")) || [];
     setNotifications(stored);
@@ -27,6 +26,7 @@ function UserLayout() {
     { icon: <FaHome />, label: "Home", path: "/userlayout/home" },
     { icon: <FaHeart />, label: "Góc thư giãn", path: "/userlayout/relax" },
     { icon: <FaBook />, label: "Góc nhật ký", path: "/userlayout/diary" },
+    { icon: <FaUserFriends />, label: "Góc tư vấn", path: "/userlayout/consulting" },
     { icon: <FaSmile />, label: "Góc cảm xúc", path: "/userlayout/emotion" },
   ];
 
@@ -34,7 +34,7 @@ function UserLayout() {
     { label: 'Home', href: '/userlayout/home' },
     { label: 'Góc thư giãn', path: '/userlayout/relax' },
     { label: 'Góc nhật ký', path: '/#' },
-    { label: 'Góc tư vấn', path: '/#' },
+    { label: 'Góc tư vấn', path: '/userlayout/consulting' },
     { label: 'Góc thú cưng', path: '/userlayout/login' },
     { label: 'Góc cảm xúc', path: '/userlayout/emotion' },
   ];

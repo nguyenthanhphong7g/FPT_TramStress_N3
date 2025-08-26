@@ -62,22 +62,12 @@
 }
 
 .input-error {
-  border: 1px solid red;
-}
-
-.error-message {
-  color: red;
-  font-size: 0.8rem;
-  margin-top: 4px;
-}
-
-.input-error {
-  border-color: red;
+  border: 1px solid red !important;
 }
 
 .input-error-message {
   color: red;
-  font-size: 12px;
+  font-size: 12px !important;
   margin-top: 4px;
 }
 
@@ -86,29 +76,11 @@
   color: red;
 }
 
-.input-error {
-    border: 1px solid red;
-}
 
 .error-message {
     color: red;
     font-size: 0.8rem;
     margin-top: 4px;
-}
-
-.input-error {
-    border-color: red;
-}
-
-.input-error-message {
-    color: red;
-    font-size: 12px;
-    margin-top: 4px;
-}
-
-.input-wrapper-error .input-icon,
-.input-wrapper-error .eye-icon {
-    color: red;
 }
 
 .input-wrapper {

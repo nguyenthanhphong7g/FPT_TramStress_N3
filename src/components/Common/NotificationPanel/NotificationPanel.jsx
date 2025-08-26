@@ -4,7 +4,7 @@ import './NotificationPanel.css';
 
 const NotificationPanel = ({ isOpen, notifications, onNotificationClick, onClose }) => {
   if (!isOpen) return null;
-  // Hàm tạo dữ liệu mẫu
+
 const seedNotifications = () => {
   const sampleNotifications = [
     {

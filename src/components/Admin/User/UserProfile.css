@@ -1,0 +1,145 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.user-profile {
+    padding: 24px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 90px;
+}
+
+.admin-user-title {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.admin-user-title h4 {
+    color: #333843;
+    font-size: 24px;
+    letter-spacing: 0.12px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.admin-user-title h5 {
+    color: #2a567a;
+    font-size: 14px;
+    margin: 0;
+}
+
+.admin-user-title-sub {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.admin-user-title-sub img {
+    width: 6.16px;
+    height: 10.5px;
+}
+
+.admin-user-title-sub .title-sub-current {
+    color: #667085;
+}
+
+.user-profile-content {
+    border: 1px solid rgba(162, 161, 168, 0.2);
+    border-radius: 10px;
+    width: 100%;
+    padding: 10px 20px;
+    gap:36px;
+    display: flex;
+    flex-direction: column;
+    min-height: 700px;
+}
+
+.user-profile-content .overview {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(162, 161, 168, 0.2);
+    height: 140px;
+    position: relative;
+    z-index: 0;
+}
+
+.overview-header {
+    display: flex;
+    gap: 16px;
+}
+
+.overview-header img {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+}
+
+.overview-header p {
+    color: #16151C;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.overview-stats {
+    display: flex;
+    gap: 24px;
+    transform: translateY(-50px);
+    /* đẩy toàn bộ stats tràn lên */
+    position: relative;
+    z-index: 1;
+}
+
+.details{
+    display: flex;
+    gap:8px;
+}
+.details .tab-buttons{
+    width: 264px;
+    border: 1px solid #d9d9d9;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height:fit-content;
+}
+.details .tab-buttons button{
+    display: flex;
+    padding: 8px 12px;
+    gap: 8px;
+    align-items: center;
+    height:56px;
+    background-color: #fff;
+    border: none;
+    
+}
+.details .tab-buttons button .tab-button-img{
+    background-color: #e0e2e7;
+    width: 40px;
+    height: 40px;
+    border: solid 4px #f0f1f3;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.tab-button-img img{
+    width: 19px;
+}
+.tab-buttons button p{
+    margin: 0;
+    color: #667085;
+    font-size: 14px;
+    font-weight: 600;
+}
+.details .tab-buttons  .active{
+    background-color: #2a567a;
+}
+.details .tab-buttons .active p{
+    color:#fff;
+}
+.details .tab-content{
+    
+}

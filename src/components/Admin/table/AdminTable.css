@@ -1,0 +1,108 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.admin-user-table {
+    border-radius: 8px;
+    border: solid 1px #e0e2e7;
+    border-collapse: separate;
+    box-shadow: 0 1.5px 2px rgba(16, 24, 40, 0.1);
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+    /* background-color: aqua; */
+}
+
+.table-wrapper {
+    flex-grow: 1;
+    max-height: fit-content;
+}
+
+.admin-user-table table {
+    font-size: 14px;
+    color: #333843;
+    font-weight: 400;
+    border-bottom: solid 1px #e0e2e7;
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+}
+
+.admin-user-table table th:first-child {
+    border-top-left-radius: 8px;
+}
+
+.admin-user-table table th:last-child {
+    border-top-right-radius: 8px;
+}
+
+.admin-user-table table tr:last-child td:first-child {
+    border-bottom-left-radius: 8px;
+}
+
+.admin-user-table table tr:last-child td:last-child {
+    border-bottom-right-radius: 8px;
+}
+
+.admin-user-table table th {
+    background-color: #f9f9fc;
+    border-bottom: solid 1px #f0f1f3;
+    padding: 18px 22px;
+    font-weight: 500;
+}
+
+.admin-user-table table td {
+    padding: 18px 0px 18px 22px;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.admin-user-table table td:hover::after {
+  content: attr(data-fulltext);
+  position: absolute;
+  border: 1px solid #ccc;
+  padding: 4px 8px;
+  z-index: 10;
+  top: 100%;
+  left: 0;
+  white-space: normal;
+  width: max-content;
+  max-width: 300px;
+}
+.admin-user-table table img {
+    width: 15px;
+}
+
+.admin-user-table button {
+    border: none;
+    background-color: #fff;
+}
+
+.admin-user-table table .admin-table-action {
+    display: flex;
+    gap: 8px;
+    padding-left: 38px;
+    align-items: center;
+}
+
+.admin-user-table .td-name {
+    padding-top: 0;
+    padding-bottom: 0;
+    gap: 4px;
+
+}
+
+.admin-user-table .td-name h6 {
+    font-size: 12px;
+    color: #667085;
+    margin: 0;
+    font-weight: 300;
+}
+
+.footer-admin {
+    /* margin-top: auto; */
+}

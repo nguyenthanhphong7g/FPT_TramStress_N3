@@ -1,0 +1,19 @@
+.admin-filter button {
+    display: flex;
+    height:40px;
+    gap:8px;
+    padding:10px 14px;
+    align-items: center;
+    border:solid 1px #e0e2e7;
+    background-color: #fff;
+    border-radius: 8px;
+}
+.admin-filter img{
+    width:15px;
+    height:auto;
+} 
+.admin-filter p{
+    margin:0;
+    font-size: 14px;
+    color:#667085;
+}

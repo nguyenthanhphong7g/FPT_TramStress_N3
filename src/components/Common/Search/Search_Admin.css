@@ -1,0 +1,32 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+.search-bar{
+    display:flex;
+    width:320px;
+    height:40px;
+    border: solid 1px #e0e2e7;
+    border-radius: 8px;
+    padding:0 12px;
+    align-items: center;
+    gap:8px;
+}
+.search-bar img{
+    width:19px;
+    height:auto;
+}
+.search-bar input{
+    border:none;
+    cursor: text;
+}
+.search-input::placeholder {
+  color: #858d9d; 
+  opacity: 1;
+  font-size: 14px;
+}
+.search-input:focus {
+  outline: none;
+}
+

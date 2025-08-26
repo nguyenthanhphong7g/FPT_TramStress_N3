@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 import { FaSave } from "react-icons/fa";
 import imgCat01 from "./../../../assets/images/CatDiary.png";
 import MiniCalendar from "./MiniCalendar";
+import { useAuth } from "../../../contexts/AuthContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Diary() {
   const today = new Date();
@@ -10,6 +13,8 @@ function Diary() {
   const [month, setMonth] = useState(today.getMonth() + 1);
   const [day, setDay] = useState(today.getDate());
   const [content, setContent] = useState("");
+
+  const { user } = useAuth();
 
   // State cho modal
   const [modalDate, setModalDate] = useState("");
@@ -42,6 +47,10 @@ function Diary() {
 
   // Lưu nhật ký
   const saveDiary = () => {
+    if (!user) {
+      toast.error("Bạn cần đăng nhập để tiếp tục!!!")
+      return;
+    }
     const saved = JSON.parse(localStorage.getItem("myDiarys") || "{}");
     const key = `${year}-${month}-${day}`;
     saved[key] = content;
@@ -271,6 +280,7 @@ function Diary() {
           </div>
         </div>
       )}
+      <ToastContainer position="top-right" autoClose={2000} />
     </div>
   );
 }

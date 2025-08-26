@@ -16,6 +16,11 @@ export const profileSchema = Yup.object().shape({
     .matches(/^[0-9]{10,11}$/, "Số điện thoại phải gồm 10-11 chữ số"),
 
   age: Yup.number()
+    .transform((value, originalValue) => {
+      if (originalValue === "" || originalValue === null) return undefined;
+      const n = Number(originalValue);
+      return Number.isNaN(n) ? undefined : n;
+    })
     .required("Bạn chưa nhập tuổi")
     .min(1, "Tuổi phải lớn hơn 0")
     .max(120, "Tuổi không hợp lệ"),
@@ -47,4 +52,20 @@ export const signinSchema = Yup.object().shape({
     .matches(/[A-Z]/, "Mật khẩu cần ít nhất 1 chữ hoa")
     .matches(/\d/, "Mật khẩu cần ít nhất 1 số")
     .matches(/[@$!%*?&^#]/, "Mật khẩu cần ít nhất 1 ký tự đặc biệt (@$!%*?&^#)"),
+});
+
+export const resetPasswordSchema = Yup.object().shape({
+  email: Yup.string()
+    .required("Bạn chưa nhập email")
+    .email("Email không hợp lệ"),
+  password: Yup.string()
+    .required("Bạn chưa nhập mật khẩu")
+    .min(8, "Mật khẩu cần ít nhất 8 ký tự")
+    .matches(/[a-z]/, "Mật khẩu cần ít nhất 1 chữ thường")
+    .matches(/[A-Z]/, "Mật khẩu cần ít nhất 1 chữ hoa")
+    .matches(/\d/, "Mật khẩu cần ít nhất 1 số")
+    .matches(/[@$!%*?&^#]/, "Mật khẩu cần ít nhất 1 ký tự đặc biệt (@$!%*?&^#)"),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref("password"), null], "Mật khẩu xác nhận không khớp")
+    .required("Bạn cần xác nhận lại mật khẩu"),
 });

@@ -1,26 +1,15 @@
 import React, { useState } from 'react'
 import './NoiDungThuGian.css'
-import icon_search from '../../../../assets/images/Relax/icon_search.png'
-import GocThuGian from './GocThuGian'
 import { Link } from 'react-router-dom';
+import dataExercise from '../../../../data/contentRelax/dataExercise'
+import dataMusic from '../../../../data/contentRelax/dataMusic'
+import dataQuote from '../../../../data/contentRelax/dataQuote'
+import popularContent from '../../../../data/contentRelax/popularContent'
+import SectionBlock from './SectionBlock';
 
 const NoiDung = ({ refs }) => {
-  const [activeIndex, setActiveIndex] = useState(null);
-  const [activeSection, setActiveSection] = useState(null);
-
-  const handleClick = (sectionIdx, itemIdx, itemType) => {
-    if (itemType !== 'loihay') return;
-
-    if (activeIndex === itemIdx && activeSection === sectionIdx) {
-      setActiveIndex(null);
-      setActiveSection(null);
-    } else {
-      setActiveIndex(itemIdx);
-      setActiveSection(sectionIdx);
-    }
-  };
-
   return (
+<<<<<<< HEAD
     <div className='all'>
       {GocThuGian.map((section, sectionIdx) => (
         <div key={sectionIdx} ref={refs[sectionIdx + 1]} className='noidung'>
@@ -65,6 +54,33 @@ const NoiDung = ({ refs }) => {
           </div>
         </div>
       ))}
+=======
+    <div className='relax-content'>
+      <SectionBlock
+        title="Phổ biến"
+        slug="popular"
+        data={popularContent}
+        refProp={refs[1]}
+      />
+      <SectionBlock
+        title="Bài tập"
+        slug="exercise"
+        data={dataExercise}
+        refProp={refs[2]}
+      />
+      <SectionBlock
+        title="Giai điệu"
+        slug="music"
+        data={dataMusic}
+        refProp={refs[3]}
+      />
+      <SectionBlock 
+        title="Lời hay"
+        slug="quote"
+        data={dataQuote}
+        refProp={refs[4]}
+      />
+>>>>>>> 9a35a2bb3174dec17a591e814ab8dc240c917cb3
     </div>
   );
 };
