@@ -4,16 +4,15 @@ import calendar from '../../../assets/images/admin/calendar.png'
 import arrow_left from '../../../assets/images/admin/arrow_left.png'
 import arrow_right from '../../../assets/images/admin/arrow_right.png'
 
-// Demo data
 const scheduleData = {
     "2025-08-26": [
         { time: "08:00", title: "Design Sync" },
-        { time: "09:30", title: "Standup" },
-        { time: "11:00", title: "Review" },
-        { time: "13:00", title: "Planning" },
+        { time: "09:30", title: "Design Sync" },
+        { time: "11:00", title: "Design Sync" },
+        { time: "13:00", title: "Design Sync" },
     ],
     "2025-08-27": [
-        { time: "10:00", title: "Client Meeting" },
+        { time: "10:00", title: "Design Sync" },
         { time: "15:00", title: "Design Sync" },
     ],
 };
@@ -109,15 +108,15 @@ const WorkArea = () => {
                         );
                     })}
 
-                    {/* Current time line */}
-                    {getLinePosition() !== null && (
-                        <div
-                            className="current-line"
-                            style={{ top: `${getLinePosition()}px` }}
-                        />
-                    )}
-                </div>
 
+                </div>
+                {/* Current time line */}
+                {getLinePosition() !== null && (
+                    <div
+                        className="current-line"
+                        style={{ top: `${getLinePosition()}px` }}
+                    />
+                )}
             </div>
         </div>
     );

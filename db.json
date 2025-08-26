@@ -4,13 +4,15 @@
       "user_id": "u1",
       "user_name": "Phong",
       "email": "phong1@gmail.com",
-      "password": "123456"
+      "password": "123456",
+      "id": "d01c"
     },
     {
       "user_id": "u2",
       "user_name": "Lan",
       "email": "lan@example.com",
-      "password": "abcdef"
+      "password": "abcdef",
+      "id": "9645"
     },
     {
       "id": "dfb5",
@@ -52,6 +54,30 @@
       "email": "phong5@gmail.com",
       "password": "$2b$10$gvsJfrsvAmJB3H6sijG65OXnpwc9Ha38UEIaiDmNM7zS6Ldf8DTWy",
       "role": "user"
+    },
+    {
+      "id": "e1a6",
+      "email": "lethingoctram59@gmail.com",
+      "password": "$2b$10$k2kbSHToWtxjiy0B1sjcdekSTyq23vln7g1zvetqRpLEOmYDtsBSW",
+      "role": "user"
+    },
+    {
+      "id": "1972",
+      "email": "lethingoctram5@gmail.com",
+      "password": "$2b$10$oOwsqrH.hoophFRaqm7TjudPH80rciJXX00OcHhoUVs.wioBl3msy",
+      "role": "user"
+    },
+    {
+      "id": "26a2",
+      "email": "lethingoctram5000@gmail.com",
+      "password": "$2b$10$uFbm.q076Bpm9TM0a15cO.4Fe/GZ2mg3kFh2zkMW4xwVTvTyY/sHW",
+      "role": "user"
+    },
+    {
+      "id": "97c3",
+      "email": "lethingoctram59009@gmail.com",
+      "password": "$2b$10$zjk7h3D5uEK5NwDLBSfLCuTd25R41DXCVgP0OJqRscTTUD/rLyGFe",
+      "role": "user"
     }
   ],
   "daily_activity": [
@@ -66,69 +92,82 @@
     {
       "hashtag_id": 1,
       "name": "#MệtMỏi",
-      "color": "#002241"
+      "color": "#002241",
+      "id": "9dd3"
     },
     {
       "hashtag_id": 2,
       "name": "#LoLắng",
-      "color": "#38aadc"
+      "color": "#38aadc",
+      "id": "a15f"
     },
     {
       "hashtag_id": 3,
       "name": "#CăngThẳng",
-      "color": "#a14747"
+      "color": "#a14747",
+      "id": "bb8a"
     },
     {
       "hashtag_id": 4,
       "name": "#Buồn",
-      "color": "#5c6bc0"
+      "color": "#5c6bc0",
+      "id": "86af"
     },
     {
       "hashtag_id": 5,
       "name": "#HàoHứng",
-      "color": "#cc4f35"
+      "color": "#cc4f35",
+      "id": "db74"
     },
     {
       "hashtag_id": 6,
       "name": "#ThưGiãn",
-      "color": "#81c784"
+      "color": "#81c784",
+      "id": "3f94"
     },
     {
       "hashtag_id": 7,
       "name": "#VuiVẻ",
-      "color": "#dbc255"
+      "color": "#dbc255",
+      "id": "306f"
     },
     {
       "hashtag_id": 8,
       "name": "#BìnhYên",
-      "color": "#f48fb1"
+      "color": "#f48fb1",
+      "id": "29fc"
     }
   ],
   "mood": [
     {
       "mood_id": 1,
       "image": "/image/Emoji/Do.png",
-      "color": "#F54334"
+      "color": "#F54334",
+      "id": "7683"
     },
     {
       "mood_id": 2,
       "image": "/image/Emoji/Cam.png",
-      "color": "#FF981E"
+      "color": "#FF981E",
+      "id": "b933"
     },
     {
       "mood_id": 3,
       "image": "/image/Emoji/Vang.png",
-      "color": "#FFC12D"
+      "color": "#FFC12D",
+      "id": "df0d"
     },
     {
       "mood_id": 4,
       "image": "/image/Emoji/XanhLa.png",
-      "color": "#8CC255"
+      "color": "#8CC255",
+      "id": "5f5e"
     },
     {
       "mood_id": 5,
       "image": "/image/Emoji/XanhNhat.png",
-      "color": "#4AAF57"
+      "color": "#4AAF57",
+      "id": "ccff"
     }
   ],
   "mood_log": [

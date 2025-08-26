@@ -150,17 +150,10 @@
 .exercise:hover::after, .music:hover::after {
   opacity: 1;
 }
-<<<<<<< HEAD
-.loihay .content-relax {
-  display: none;
-}
-.loihay.show .content-relax {
-=======
 .quote .content-relax {
   display: none;
 }
 .quote.show .content-relax {
->>>>>>> 9a35a2bb3174dec17a591e814ab8dc240c917cb3
   display: flex;
   flex-direction: column;  
   justify-content: space-between;
@@ -174,21 +167,13 @@
   background-color: rgba(0,0,0,0.5);
   color: white;
 }
-<<<<<<< HEAD
-.loihay.show .content-relax p {
-=======
 .quote.show .content-relax p {
->>>>>>> 9a35a2bb3174dec17a591e814ab8dc240c917cb3
   font-size: 24px;
   font-weight: bolder;
   text-align: center;
   margin: auto 0; 
 }
-<<<<<<< HEAD
-.loihay.show .content-relax h4 {
-=======
 .quote.show .content-relax h4 {
->>>>>>> 9a35a2bb3174dec17a591e814ab8dc240c917cb3
   font-size: 20px;
   font-weight: 400;
   align-self: flex-end; 

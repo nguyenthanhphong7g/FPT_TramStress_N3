@@ -6,6 +6,7 @@ import Footer from '../../components/Common/Footer/Footer';
 import '../layout.css';
 import { useEffect, useState } from 'react';
 
+
 function UserLayout() {
   const navigate = useNavigate();
   const [notifications, setNotifications] = useState([]);
@@ -27,16 +28,16 @@ function UserLayout() {
     { icon: <FaHome />, label: "Home", path: "/adminlayout/home" },
     { icon: <FaHeart />, label: "Nội dung", path: "/adminlayout/content" },
     { icon: <FaUser />, label: "Chuyên gia", path: "/#" },
-    { icon: <FaUsers />, label: "Người dùng", path: "/#" },
+    { icon: <FaUsers />, label: "Người dùng", path: "/adminlayout/user" },
     { icon: <FaCalendarAlt />, label: "Lịch tư vấn", path: "/adminlayout/advise" },
     { icon: <FaChartLine />, label: "Thống kê", path: "/#" },
   ];
 
   const menuItems = [
-    { label: 'Home', href: '/admin/home' },
+    { label: 'Home', href: '/adminlayout/home' },
     { label: 'Nội dung', path: '/adminlayout/content' },
     { label: 'Chuyên gia', path: '/#' },
-    { label: 'Người dùng', path: '/#' },
+    { label: 'Người dùng', path: '/adminlayout/user' },
     { label: 'Lịch tư vấn', path: '/adminlayout/advise' },
     { label: 'Thống kê', path: '/#' },
   ];

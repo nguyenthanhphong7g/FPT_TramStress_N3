@@ -367,3 +367,42 @@
   border-left: 2px solid rgb(108, 106, 106);
   flex: 1.5;
 }
+
+.pagination-container-Content {
+  display: flex;
+  justify-content: space-between; /* Bên trái - bên phải */
+  align-items: center;
+  margin-top: 16px;
+  padding: 8px 12px;
+}
+
+.pagination-info-content {
+  font-size: 14px;
+  color: #555;
+  font-style: italic;
+}
+
+.pagination-buttons-content button {
+  padding: 6px 12px;
+  border: 1px solid #001d6c;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  width: 38px;
+  margin-left: 10px;
+}
+
+.pagination-buttons-content button:hover {
+  background: #f0f0f0;
+}
+
+.pagination-buttons-content button.active {
+  background: #1976d2; /* xanh đậm */
+  color: white;
+  border-color: #1976d2;
+}
+
+.pagination-buttons-content button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -13,7 +13,8 @@
   border: 1px solid #696666;
   display: flex;
   border-radius: 8px;
-  margin-top: 20px;
+  margin-top: 2px;
+  margin-left: 20px;
 }
 .btn-Admin-Advise {
   background-color: #f0f0f0; /* mặc định xám nhạt */
@@ -37,7 +38,12 @@
   color: #fff;
   font-weight: bold;
 }
-
+.Content-advise-left{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 2;
+}
 .calendar-advise {
   position: relative;
   display: flex;
@@ -46,18 +52,17 @@
   border: 2px solid black;
   border-radius: 6px;
   padding-left: 32px; /* chừa chỗ icon */
+  margin: 0 auto;
 }
 
 .text-calendar-advise {
   border: none;
   outline: none;
-  font-size: 14px;
+  font-size: 20px;
   color: #333;
-  padding: 8px 12px 8px 36px; /* chừa khoảng trống cho icon */
+  padding: 5px 3px; /* chừa khoảng trống cho icon */
   background-color: #fff;
   border-radius: 6px;
-  border: 2px solid red;
-  width: 140px;
 }
 
 .text-calendar-advise::-webkit-calendar-picker-indicator {

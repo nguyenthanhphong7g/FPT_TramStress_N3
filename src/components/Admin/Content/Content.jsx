@@ -7,171 +7,12 @@ import {
   FaEdit,
   FaTrash,
   FaSlidersH,
-  FaTimes, FaChevronLeft, FaChevronRight
+  FaTimes,
+  FaChevronLeft,
+  FaChevronRight,
 } from "react-icons/fa";
 import "./Content.css";
-
-const dataFake = [
-  {
-    id: 1,
-    noidung: "Bài tập Yoga",
-    camxuc: 1,
-    loaihinh: "Bài tập",
-    thoiluong: "10p10s",
-    luottuongtac: 1240,
-    ngaythem: "24/08/2025",
-  },
-  {
-    id: 2,
-    noidung: "Bài tập Thiền-09",
-    camxuc: 1,
-    loaihinh: "Bài tập",
-    thoiluong: "15p20s",
-    luottuongtac: 2300,
-    ngaythem: "22/08/2025",
-  },
-  {
-    id: 3,
-    noidung: "This Love - nhạc thư giãn",
-    camxuc: 2,
-    loaihinh: "Giai điệu",
-    thoiluong: "15p20s",
-    luottuongtac: 2200,
-    ngaythem: "09/08/2025",
-  },
-  {
-    id: 4,
-    noidung: "Bài tập Thiền-09",
-    camxuc: 1,
-    loaihinh: "Bài tập",
-    thoiluong: "15p20s",
-    luottuongtac: 2300,
-    ngaythem: "22/08/2025",
-  },
-  {
-    id: 5,
-    noidung: "Tiếng mưa thư giãn",
-    camxuc: 2,
-    loaihinh: "Giai điệu",
-    thoiluong: "15p20s",
-    luottuongtac: 4600,
-    ngaythem: "19/08/2025",
-  },
-  {
-    noidung: "Tiếng gió thư giãn",
-    camxuc: 2,
-    loaihinh: "Giai điệu",
-    thoiluong: "15p20s",
-    luottuongtac: 2910,
-    ngaythem: "10/08/2025",
-  },
-  {
-    noidung: "Không quan trọng bạn....",
-    camxuc: 3,
-    loaihinh: "Lời hay",
-    thoiluong: "1p10s",
-    luottuongtac: 4010,
-    ngaythem: "08/08/2025",
-  },
-  {
-    noidung: "Bài tập Thiền-04",
-    camxuc: 1,
-    loaihinh: "Bài tập",
-    thoiluong: "15p20s",
-    luottuongtac: 2300,
-    ngaythem: "04/08/2025",
-  },
-  {
-    id: 6,
-    noidung: "Bài tập Thiền-03",
-    camxuc: 1,
-    loaihinh: "Bài tập",
-    thoiluong: "15p20s",
-    luottuongtac: 2300,
-    ngaythem: "01/08/2025",
-  },
-  {
-    id: 7,
-    noidung: "Cảm xúc của bạn...",
-    camxuc: 3,
-    loaihinh: "Lời hay",
-    thoiluong: "1p10s",
-    luottuongtac: 4010,
-    ngaythem: "23/07/2025",
-  },
-  {
-    id: 8,
-    noidung: "Bài tập YoGa-03",
-    camxuc: 1,
-    loaihinh: "Bài tập",
-    thoiluong: "10p20s",
-    luottuongtac: 2800,
-    ngaythem: "18/07/2025",
-  },
-  {
-    id: 9,
-    noidung: "Bài tập Thiền-02",
-    camxuc: 1,
-    loaihinh: "Bài tập",
-    thoiluong: "15p20s",
-    luottuongtac: 3900,
-    ngaythem: "10/07/2025",
-  },
-  {
-    id: 10,
-    noidung: "Thời gian rất quý...",
-    camxuc: 3,
-    loaihinh: "Lời hay",
-    thoiluong: "1p01s",
-    luottuongtac: 9010,
-    ngaythem: "07/07/2025",
-  },
-  {
-    id: 11,
-    noidung: "Phim thư giãn-02",
-    camxuc: 2,
-    loaihinh: "Giai điệu",
-    thoiluong: "45p20s",
-    luottuongtac: 19000,
-    ngaythem: "02/06/2025",
-  },
-  {
-    id: 12,
-    noidung: "Xem phim thư giãn-01",
-    camxuc: 2,
-    loaihinh: "Giai điệu",
-    thoiluong: "25p20s",
-    luottuongtac: 19000,
-    ngaythem: "01/05/2025",
-  },
-  {
-    id: 13,
-    noidung: "Bài tập Thiền-01",
-    camxuc: 1,
-    loaihinh: "Bài tập",
-    thoiluong: "15p20s",
-    luottuongtac: 9000,
-    ngaythem: "01/05/2025",
-  },
-  {
-    id: 14,
-    noidung: "Đi 1 ngày đàng, học...",
-    camxuc: 3,
-    loaihinh: "Lời hay",
-    thoiluong: "1p01s",
-    luottuongtac: 10200,
-    ngaythem: "27/04/2025",
-  },
-  {
-    id: 15,
-    noidung: "Sống chậm lại, để...",
-    camxuc: 3,
-    loaihinh: "Lời hay",
-    thoiluong: "1p01s",
-    luottuongtac: 9110,
-    ngaythem: "21/04/2025",
-  },
-];
+import dataFake from "./DataFake";
 function ContentAdmin() {
   const [data, setData] = useState(dataFake);
   const [selectedItem, setSelectedItem] = useState(null); // item đang xem
@@ -633,32 +474,41 @@ function ContentAdmin() {
           </div>
         </div>
       )}
-      <div className="pagination">
-        <button
-          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-          disabled={currentPage === 1}
-        >
-           <FaChevronLeft/>
-        </button>
+      <div className="pagination-container-Content">
+        <div className="pagination-info-content">
+          {`Showing ${(currentPage - 1) * itemsPerPage + 1}–${Math.min(
+            currentPage * itemsPerPage,
+            filteredItems.length 
+          )} from ${filteredItems.length}`}{" "}
+        </div>
 
-        {[...Array(totalPages)].map((_, i) => (
+        <div className="pagination-buttons-content">
           <button
-            key={i}
-            onClick={() => setCurrentPage(i + 1)}
-            className={currentPage === i + 1 ? "active" : ""}
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
           >
-            {i + 1}
+            {"<"}
           </button>
-        ))}
 
-        <button
-          onClick={() =>
-            setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-          }
-          disabled={currentPage === totalPages}
-        >
-          <FaChevronRight/>
-        </button>
+          {[...Array(totalPages)].map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrentPage(i + 1)}
+              className={currentPage === i + 1 ? "active" : ""}
+            >
+              {i + 1}
+            </button>
+          ))}
+
+          <button
+            onClick={() =>
+              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+            }
+            disabled={currentPage === totalPages}
+          >
+            {">"}
+          </button>
+        </div>
       </div>
     </div>
   );
