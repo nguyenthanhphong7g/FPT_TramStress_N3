@@ -8,7 +8,9 @@ import { Link, useNavigate } from "react-router-dom";
 import '../Relax/Main/NoiDungThuGian.css'
 import GocThuGian from '../Relax/Main/GocThuGian'
 import icon_search from '../../../assets/images/Relax/icon_search.png'
-import Section from "../Relax/Main/Section";
+import Item from "../Relax/Main/Item";
+import popularContent from '../../../data/contentRelax/popularContent'
+
 const HomeMain = () => {
   const navigate = useNavigate();
   return (
@@ -46,7 +48,11 @@ const HomeMain = () => {
             <img src={icon_search} alt="" />
           </Link>
         </div>
-        <Section slug={'popular'} />
+        <div className='noidung-bottom'>
+          {popularContent.slice(0, 4).map((item, itemIdx) => (
+            <Item item={item} itemIdx={itemIdx} />
+          ))}
+        </div>
       </div>
       <div className="home-action"></div>
     </div>

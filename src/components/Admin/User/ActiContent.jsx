@@ -5,7 +5,7 @@ import Loc from '../../Common/Button/Admin/Loc'
 import Pagination from '../../Common/Pagination/Admin/Pagination'
 import './User.css'
 import feedback from './ConsultingHistory'
-import HistoryConsulting from './table/HistoryConsulting'
+import HistoryConsulting from '../table/HistoryConsulting'
 
 const ActiContent = () => {
     const itemsPerPage = 5;
@@ -18,7 +18,7 @@ const ActiContent = () => {
                     <Loc />
                 </div>
             </div>
-            <HistoryConsulting arr_user={feedback} pagesize={itemsPerPage}/>
+            <HistoryConsulting arr_user={feedback} pagesize={itemsPerPage} />
         </div>
     )
 }

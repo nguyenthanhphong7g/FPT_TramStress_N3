@@ -14,6 +14,7 @@ import UserRelaxSeeAll from "../pages/User/UserRelaxSeeAll";
 import UserConsulting from "../pages/User/UserConsulting";
 import AdminUser from "../pages/Admin/AdminUser";
 import AdminUserProfile from "../pages/Admin/AdminUserProfile";
+import AdminHome from "../pages/Admin/AdminHome";
 
 
 // Giả lập role, sau này sẽ lấy từ API hoặc state management
@@ -43,7 +44,7 @@ function AppRoutes() {
           <Route path="relax" element={<UserRelax />} />
           <Route path="/userlayout/relax/:slug" element={<UserRelaxSeeAll />} />
           {/* <Route path="consulting" element={<UserConsulting />} /> */}
-          <Route path='consulting' element={<AdminUser />} />
+          <Route path='consulting' element={<AdminHome />} />
           <Route path="consulting/:id" element={<AdminUserProfile />} />
         </Route>
         {/* <Route path='/adminlayout/user' element={<AdminUser />} />

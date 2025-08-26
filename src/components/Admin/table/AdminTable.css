@@ -51,12 +51,28 @@
     background-color: #f9f9fc;
     border-bottom: solid 1px #f0f1f3;
     padding: 18px 22px;
+    font-weight: 500;
 }
 
 .admin-user-table table td {
     padding: 18px 0px 18px 22px;
+    position: relative;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
-
+.admin-user-table table td:hover::after {
+  content: attr(data-fulltext);
+  position: absolute;
+  border: 1px solid #ccc;
+  padding: 4px 8px;
+  z-index: 10;
+  top: 100%;
+  left: 0;
+  white-space: normal;
+  width: max-content;
+  max-width: 300px;
+}
 .admin-user-table table img {
     width: 15px;
 }

@@ -1,5 +1,5 @@
 import SidebarFormLayout from '../../components/Common/Sidebar/SidebarFormLayout';
-import { FaHome, FaHeart, FaBook, FaSmile } from 'react-icons/fa';
+import { FaHome, FaHeart, FaBook, FaSmile, FaUserFriends } from 'react-icons/fa';
 import Header from '../../components/Common/Header/Header';
 import { Outlet, useNavigate } from 'react-router-dom';
 import Footer from '../../components/Common/Footer/Footer';

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import Pagination from '../../../Common/Pagination/Admin/Pagination'
-import eye from '../../../../assets/images/admin/eye.png'
-import pencil from '../../../../assets/images/admin/pencil.png'
-import trash from '../../../../assets/images/admin/trash.png'
+import Pagination from '../../Common/Pagination/Admin/Pagination'
+import eye from '../../../assets/images/admin/eye.png'
+import pencil from '../../../assets/images/admin/pencil.png'
+import trash from '../../../assets/images/admin/trash.png'
 import { useNavigate } from 'react-router-dom'
 import './AdminTable.css'
 
