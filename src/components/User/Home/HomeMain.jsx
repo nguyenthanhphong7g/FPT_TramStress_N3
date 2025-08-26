@@ -1,16 +1,8 @@
 import react from "react";
 import BarChart from "../Recharts/BarChart";
 import "./HomeMain.css";
-import Test from "./../Emotion/Test/Test";
 import Cat from "../../../assets/images/Home/Home_Emotion_Cat.png";
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import '../Relax/Main/NoiDungThuGian.css'
-import GocThuGian from '../Relax/Main/GocThuGian'
-import icon_search from '../../../assets/images/Relax/icon_search.png'
-import Item from "../Relax/Main/Item";
-import popularContent from '../../../data/contentRelax/popularContent'
-
+import { useNavigate } from "react-router-dom";
 const HomeMain = () => {
   const navigate = useNavigate();
   return (
@@ -37,23 +29,7 @@ const HomeMain = () => {
         </div>
       </div>
 
-      <div className='home-relax'>
-        <div className='noidung-top'>
-          <h4>Nội dung thư giãn hôm nay!!!</h4>
-          <Link
-            to={'/userlayout/relax'}
-            className='noidung-top-right'
-          >
-            <h5>Xem tất cả</h5>
-            <img src={icon_search} alt="" />
-          </Link>
-        </div>
-        <div className='noidung-bottom'>
-          {popularContent.slice(0, 4).map((item, itemIdx) => (
-            <Item item={item} itemIdx={itemIdx} />
-          ))}
-        </div>
-      </div>
+      <div></div>
       <div className="home-action"></div>
     </div>
   );

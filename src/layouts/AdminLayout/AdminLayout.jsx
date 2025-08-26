@@ -25,18 +25,18 @@ function AdminLayout() {
   const sidebarItems = [
     { icon: <FaHome />, label: "Home", path: "/adminlayout/home" },
     { icon: <FaHeart />, label: "Nội dung", path: "/adminlayout/content" },
-    { icon: <FaUserFriends/>, label: "Chuyên gia", path: "/adminlayout/abc" },
-    { icon: <FaUser />, label: "Người dùng", path: "/adminlayout/user" },
+    { icon: <FaUser />, label: "Chuyên gia", path: "/#" },
+    { icon: <FaUsers />, label: "Người dùng", path: "/adminlayout/user" },
+    { icon: <FaCalendarAlt />, label: "Lịch tư vấn", path: "/adminlayout/advise" },
     { icon: <FaCalendar />, label: "Lịch tư vấn", path: "/adminlayout/a" },
   ];
 
   const menuItems = [
     { label: 'Home', href: '/adminlayout/home' },
     { label: 'Nội dung', path: '/adminlayout/content' },
-    { label: 'Chuyên gia', path: '/adminlayout/abc' },
+    { label: 'Chuyên gia', path: '/#' },
     { label: 'Người dùng', path: '/adminlayout/user' },
-    { label: 'Lịch tư vấn', path: '/adminlayout/a' },
-    // { label: 'Góc cảm xúc', path: '/userlayout/emotion' },
+    { label: 'Lịch tư vấn', path: '/adminlayout/advise' },
   ];
 
   return (
