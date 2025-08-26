@@ -1,12 +1,12 @@
 import SidebarFormLayout from '../../components/Common/Sidebar/SidebarFormLayout';
-import { FaHome, FaHeart, FaBook, FaSmile, FaUserFriends } from 'react-icons/fa';
+import { FaHome, FaHeart, FaUserFriends, FaUser, FaCalendar } from 'react-icons/fa';
 import Header from '../../components/Common/Header/Header';
 import { Outlet, useNavigate } from 'react-router-dom';
 import Footer from '../../components/Common/Footer/Footer';
 import '../layout.css';
 import { useEffect, useState } from 'react';
 
-function UserLayout() {
+function AdminLayout() {
   const navigate = useNavigate();
   const [notifications, setNotifications] = useState([]);
 
@@ -23,17 +23,20 @@ function UserLayout() {
   };
 
   const sidebarItems = [
-    { icon: <FaHome />, label: "Home", path: "/userlayout/home" },
-    { icon: <FaHeart />, label: "Góc thư giãn", path: "/userlayout/relax" },
-    { icon: <FaBook />, label: "Góc nhật ký", path: "/userlayout/diary" },
-    { icon: <FaSmile />, label: "Góc cảm xúc", path: "/userlayout/emotion" },
+    { icon: <FaHome />, label: "Home", path: "/adminlayout/home" },
+    { icon: <FaHeart />, label: "Nội dung", path: "/adminlayout/content" },
+    { icon: <FaUserFriends/>, label: "Chuyên gia", path: "/adminlayout/abc" },
+    { icon: <FaUser />, label: "Người dùng", path: "/adminlayout/user" },
+    { icon: <FaCalendar />, label: "Lịch tư vấn", path: "/adminlayout/a" },
   ];
 
   const menuItems = [
-    { label: 'Home', href: '/userlayout/home' },
-    { label: 'Góc thư giãn', path: '/userlayout/relax' },
-    { label: 'Góc nhật ký', path: '/userlayout/diary' },
-    { label: 'Góc cảm xúc', path: '/userlayout/emotion' },
+    { label: 'Home', href: '/adminlayout/home' },
+    { label: 'Nội dung', path: '/adminlayout/content' },
+    { label: 'Chuyên gia', path: '/adminlayout/abc' },
+    { label: 'Người dùng', path: '/adminlayout/user' },
+    { label: 'Lịch tư vấn', path: '/adminlayout/a' },
+    // { label: 'Góc cảm xúc', path: '/userlayout/emotion' },
   ];
 
   return (
@@ -55,4 +58,4 @@ function UserLayout() {
   );
 }
 
-export default UserLayout;
+export default AdminLayout;
