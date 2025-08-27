@@ -4,31 +4,30 @@ import { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import "./History.css";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../../contexts/AuthContext";
+import { getDailyMoodEntry } from "../../../../services/activity/getDailyMoodEntry";
 
 function History() {
   const [dailyMoods, setDailyMoods] = useState([]);
   const [selectedWeekData, setSelectedWeekData] = useState([]);
   const [isCustomWeek, setIsCustomWeek] = useState(false);
   const [selectedMonth, setSelectedMonth] = useState(dayjs());
+  const { user } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedData = localStorage.getItem("dailyMoods");
-    if (storedData) {
-      setDailyMoods(JSON.parse(storedData));
-    } else {
-      const demoData = [];
-      const today = dayjs();
-      for (let i = 0; i < 365; i++) {
-        demoData.push({
-          date: today.subtract(i, "day").format("YYYY-MM-DD"),
-          value: Math.floor(Math.random() * 5) + 1,
-        });
-      }
-      localStorage.setItem("dailyMoods", JSON.stringify(demoData));
-      setDailyMoods(demoData);
-    }
-  }, []);
+  if (!user) return;
+  const fetchMood = async () => {
+    const userId = user.id;
+    // const date = dayjs().format("YYYY-MM-DD")
+
+    const moodEntry = await getDailyMoodEntry(userId);
+    setDailyMoods(moodEntry)
+  };
+
+  fetchMood();
+}, []);
+
 
   return (
     <div className="container">

@@ -3,6 +3,8 @@ import dayjs from "dayjs";
 import isoWeek from "dayjs/plugin/isoWeek";
 import weekOfYear from "dayjs/plugin/weekOfYear";
 import BarChartEmoji from "../../Common/Recharts/BarChartComponent";
+import { useAuth } from "../../../contexts/AuthContext";
+import { getDailyMoodEntry } from "../../../services/activity/getDailyMoodEntry";
 dayjs.extend(isoWeek);
 dayjs.extend(weekOfYear);
 
@@ -10,8 +12,8 @@ function BarChart() {
     const [dailyMoods, setDailyMoods] = useState([]);
     const [chartData, setChartData] = useState([]);
     const [timeRange, setTimeRange] = useState("week");
+    const { user } = useAuth();
 
-    // Hàm xử lý dữ liệu
     const groupData = (data, range, baseDate) => {
         if (!Array.isArray(data)) return [];
         const now = baseDate || dayjs();
@@ -81,28 +83,20 @@ function BarChart() {
         return [];
     };
 
-    // Lấy dữ liệu từ localStorage hoặc tạo dữ liệu demo
-    useEffect(() => {
-        let storedData = localStorage.getItem("dailyMoods");
-        if (!storedData) {
-            const today = dayjs();
-            const demoData = [];
-            for (let i = 0; i < 365; i++) {
-                demoData.push({
-                    date: today.subtract(i, "day").format("YYYY-MM-DD"),
-                    value: Math.floor(Math.random() * 5) + 1
-                });
-            }
-            localStorage.setItem("dailyMoods", JSON.stringify(demoData));
-            storedData = JSON.stringify(demoData);
-        }
 
-        const parsedData = JSON.parse(storedData);
-        setDailyMoods(parsedData);
-        setChartData(groupData(parsedData, timeRange, dayjs()));
+    useEffect(() => {
+        if (!user) return;
+        const fetchMood = async () => {
+            const userId = user.id;
+            // const date = dayjs().format("YYYY-MM-DD")
+
+            const moodEntry = await getDailyMoodEntry(userId);
+            setDailyMoods(moodEntry)
+        };
+
+        fetchMood();
     }, []);
 
-    // Cập nhật dữ liệu khi đổi chế độ xem
     useEffect(() => {
         setChartData(groupData(dailyMoods, timeRange, dayjs()));
     }, [timeRange, dailyMoods]);
@@ -112,7 +106,7 @@ function BarChart() {
             <BarChartEmoji
                 weekData={chartData}
                 isCustomWeek={false}
-                setIsCustomWeek={() => {}}
+                setIsCustomWeek={() => { }}
                 dailyMoods={dailyMoods}
                 selectedMonth={dayjs()}
             />

@@ -1,32 +1,43 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react';
 import TatCa from '../../Common/Button/Admin/TatCa';
 import BaiTap from '../../Common/Button/Admin/BaiTap';
 import GiaiDieu from '../../Common/Button/Admin/GiaiDieu';
 import LoiHay from '../../Common/Button/Admin/LoiHay';
 import Pagination from '../../Common/Pagination/Admin/Pagination';
-import popularContent from '../../../data/contentRelax/popularContent'
-import dataExercise from '../../../data/contentRelax/dataExercise'
-import dataMusic from '../../../data/contentRelax/dataMusic'
-import dataQuote from '../../../data/contentRelax/dataQuote'
+import { getRelaxContent } from '../../../services/activity/getRelaxContent';
 
 const TrendingContent = () => {
+    const [allData, setAllData] = useState([]);
+    const [selected, setSelected] = useState('tatca');
     const [currentPage, setCurrentPage] = useState(1);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const pagesize = 5;
 
-    const handlePageChange = (page) => {
-        setCurrentPage(page);
-    }
-    const [selected, setSelected] = useState('tatca');
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const data = await getRelaxContent();
+                setAllData(data);
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchData();
+    }, []);
+
     const getFilteredContent = () => {
         switch (selected) {
             case 'baitap':
-                return dataExercise;
+                return allData.filter(item => item.slug === 'exercise');
             case 'giaidieu':
-                return dataMusic;
+                return allData.filter(item => item.slug === 'music');
             case 'loihay':
-                return dataQuote;
+                return allData.filter(item => item.slug === 'quote');
             default:
-                return popularContent;
+                return allData;
         }
     };
 
@@ -35,6 +46,11 @@ const TrendingContent = () => {
     const startIdx = (currentPage - 1) * pagesize;
     const endIdx = startIdx + pagesize;
     const currentContent = filteredContent.slice(startIdx, endIdx);
+
+    const handlePageChange = (page) => setCurrentPage(page);
+
+    if (loading) return <p>Đang tải dữ liệu...</p>;
+    if (error) return <p>Lỗi: {error}</p>;
 
     return (
         <div className="trending-content">
@@ -47,9 +63,7 @@ const TrendingContent = () => {
                     <LoiHay isActive={selected === 'loihay'} onClick={() => { setSelected('loihay'); setCurrentPage(1); }} />
                 </div>
             </div>
-            <div className="admin-user-table"
-                style={{ minHeight: `${pagesize * 60 + 125}px` }}
-            >
+            <div className="admin-user-table" style={{ minHeight: `${pagesize * 60 + 125}px` }}>
                 <div className="table-wrapper">
                     <table>
                         <colgroup>
@@ -92,8 +106,7 @@ const TrendingContent = () => {
                 </div>
             </div>
         </div>
+    );
+};
 
-    )
-}
-
-export default TrendingContent
+export default TrendingContent;

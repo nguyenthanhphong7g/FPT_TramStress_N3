@@ -18,13 +18,15 @@
      outline: 0;
      background: transparent;
      font-size: 20px;
-     color: #737373;
+     color: black;
      cursor: text;
+     flex: 1;
  }
 
- .search-box input:focus {
-     color: black;
+ .search-box input::placeholder {
+     color: #737373;
  }
+
 
  .search-box img {
      width: 25px;

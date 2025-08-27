@@ -247,7 +247,7 @@ const Test = () => {
         )}
 
         {/* Châm ngôn */}
-        <p className="quote">
+        <p className="quote-Test">
           <span className="quote-icon">🍀</span> {currentQuestion.quote}
         </p>
       </div>

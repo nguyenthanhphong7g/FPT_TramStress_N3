@@ -1,0 +1,218 @@
+/* Ô chọn ngày */
+.Admin-container-box{
+  display: flex;
+  border: 1px solide black;
+  width: 100%;
+}
+.Admin-container-left{
+  flex: 1;
+  height: 100%;
+}
+.Admin-container-right{
+  flex: 4;
+  border: 1px solid #696666;
+  display: flex;
+  border-radius: 8px;
+  margin-top: 2px;
+  margin-left: 20px;
+}
+.btn-Admin-Advise {
+  background-color: #f0f0f0; /* mặc định xám nhạt */
+  color: #333;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 8px;
+  transition: 0.3s;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+.btn-Admin-Advise:hover {
+  background-color: #dcdcdc;
+}
+
+.btn-Admin-Advise.active {
+  background-color: #1577df; /* xanh */
+  color: #fff;
+  font-weight: bold;
+}
+.Content-advise-left{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 2;
+}
+.calendar-advise {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  border: 2px solid black;
+  border-radius: 6px;
+  padding-left: 32px; /* chừa chỗ icon */
+  margin: 0 auto;
+}
+
+.text-calendar-advise {
+  border: none;
+  outline: none;
+  font-size: 20px;
+  color: #333;
+  padding: 5px 3px; /* chừa khoảng trống cho icon */
+  background-color: #fff;
+  border-radius: 6px;
+}
+
+.text-calendar-advise::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
+}
+
+.icon-calendar-advise {
+  position: absolute;
+  left: 10px;
+  /* color: #4a90e2; */
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+/* Layout chính */
+.Content-container-advise {
+  display: flex;
+  gap: 20px;
+}
+
+/* Timeline */
+.Content-advise-right {
+  flex: 1;
+  background: #fff;
+  border: 2px solid black;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.05);
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+/* Ô giờ */
+.Content-advise-right span {
+  color: #999;
+  font-size: 11px;
+}
+
+/* Event block */
+.Content-advise-right .absolute.bg-green-500 {
+  background: linear-gradient(135deg, #4caf50, #66bb6a);
+  font-size: 12px;
+  border-left: 3px solid #388e3c;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 4px 6px;
+  border-radius: 4px;
+
+  /* kiểm soát chiều cao event */
+  height: auto !important;
+  min-height: 24px;
+  max-height: 60px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* Đường giờ hiện tại */
+.Content-advise-right .absolute.bg-red-500 {
+  background: #e53935;
+}
+.Content-Table-Advise {
+  width: 1000px;
+  border-collapse: collapse; /* Gộp viền */
+  margin-top: 16px;
+  font-size: 14px;
+  text-align: center;
+  margin-left: 20px
+}
+
+.Content-Table-Advise th,
+.Content-Table-Advise td {
+  border: 1px solid #ddd; /* Đường kẻ ô */
+  padding: 8px;
+}
+
+.Content-Table-Advise th {
+  background-color: #f4f4f4; /* Màu nền header */
+  font-weight: bold;
+}
+
+.Content-Table-Advise tr:nth-child(even) {
+  background-color: #fafafa; /* Tô màu xen kẽ */
+}
+
+.Content-Table-Advise tr:hover {
+  background-color: #f1f1f1; /* Hiệu ứng hover */
+}
+.Admin-Advise-pagination{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 100px;
+  margin-left: 10px;
+}
+.Admin-Advise-pagination button {
+  padding: 6px 12px;
+  border: 1px solid #001d6c;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  width: 38px;
+}
+.Admin-Advise-pagination button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+.Admin-Advise-pagination button.active {
+  background: #007bff;   /* Màu xanh */
+  color: white;
+  font-weight: bold;     /* Chữ đậm */
+  border-color: #1a73d3;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: space-between; /* Bên trái - bên phải */
+  align-items: center;
+  margin-top: 16px;
+  padding: 8px 12px;
+}
+
+.pagination-info {
+  font-size: 14px;
+  color: #555;
+  font-style: italic;
+}
+
+.pagination-buttons button {
+  padding: 6px 12px;
+  border: 1px solid #001d6c;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+  width: 38px;
+  margin-left: 10px;
+}
+
+.pagination-buttons button:hover {
+  background: #f0f0f0;
+}
+
+.pagination-buttons button.active {
+  background: #1976d2; /* xanh đậm */
+  color: white;
+  border-color: #1976d2;
+}
+
+.pagination-buttons button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

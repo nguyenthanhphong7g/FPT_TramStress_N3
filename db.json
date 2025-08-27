@@ -3,16 +3,14 @@
     {
       "user_id": "u1",
       "user_name": "Phong",
-      "email": "phong1@gmail.com",
-      "password": "123456",
-      "id": "72cf"
+      "email": "phong1@gmail.c",
+      "password": "123456"
     },
     {
       "user_id": "u2",
       "user_name": "Lan",
       "email": "lan@example.com",
-      "password": "abcdef",
-      "id": "ae86"
+      "password": "abcdef"
     },
     {
       "id": "dfb5",
@@ -56,16 +54,39 @@
       "role": "user"
     },
     {
-      "id": "6aeb",
-      "email": "lenguyenvietquang1510@gmail.com",
-      "password": "$2b$10$.EuJ04Xroqf0AJ/Hv68YRuyZ1.iDb3ch4XttI1.ncKwZt.8GomJeq",
+      "id": "e1a6",
+      "email": "lethingoctram59@gmail.com",
+      "password": "$2b$10$k2kbSHToWtxjiy0B1sjcdekSTyq23vln7g1zvetqRpLEOmYDtsBSW",
+      "role": "user"
+    },
+    {
+      "id": "1972",
+      "email": "lethingoctram5@gmail.com",
+      "password": "$2b$10$oOwsqrH.hoophFRaqm7TjudPH80rciJXX00OcHhoUVs.wioBl3msy",
+      "role": "user"
+    },
+    {
+      "id": "26a2",
+      "email": "lethingoctram5000@gmail.com",
+      "password": "$2b$10$uFbm.q076Bpm9TM0a15cO.4Fe/GZ2mg3kFh2zkMW4xwVTvTyY/sHW",
+      "role": "user"
+    },
+    {
+      "id": "97c3",
+      "email": "lethingoctram59009@gmail.com",
+      "password": "$2b$10$zjk7h3D5uEK5NwDLBSfLCuTd25R41DXCVgP0OJqRscTTUD/rLyGFe",
       "role": "user"
     }
   ],
   "daily_activity": [
     {
-      "id": "f985",
-      "activity_id": 1756150534261,
+      "id": "190e",
+      "user_id": "5dda",
+      "date": "2025-08-26"
+    },
+    {
+      "id": "4fcd",
+      "user_id": "4743",
       "date": "2025-08-26"
     }
   ],
@@ -74,214 +95,223 @@
     {
       "hashtag_id": 1,
       "name": "#MệtMỏi",
-      "color": "#002241",
-      "id": "1c95"
+      "color": "#002241"
     },
     {
       "hashtag_id": 2,
       "name": "#LoLắng",
-      "color": "#38aadc",
-      "id": "d779"
+      "color": "#38aadc"
     },
     {
       "hashtag_id": 3,
       "name": "#CăngThẳng",
-      "color": "#a14747",
-      "id": "5cc0"
+      "color": "#a14747"
     },
     {
       "hashtag_id": 4,
       "name": "#Buồn",
-      "color": "#5c6bc0",
-      "id": "7ae2"
+      "color": "#5c6bc0"
     },
     {
       "hashtag_id": 5,
       "name": "#HàoHứng",
-      "color": "#cc4f35",
-      "id": "b19c"
+      "color": "#cc4f35"
     },
     {
       "hashtag_id": 6,
       "name": "#ThưGiãn",
-      "color": "#81c784",
-      "id": "f45b"
+      "color": "#81c784"
     },
     {
       "hashtag_id": 7,
       "name": "#VuiVẻ",
-      "color": "#dbc255",
-      "id": "1ebf"
+      "color": "#dbc255"
     },
     {
       "hashtag_id": 8,
       "name": "#BìnhYên",
-      "color": "#f48fb1",
-      "id": "18fa"
+      "color": "#f48fb1"
     }
   ],
   "mood": [
     {
       "mood_id": 1,
       "image": "/image/Emoji/Do.png",
-      "color": "#F54334",
-      "id": "1665"
+      "color": "#F54334"
     },
     {
       "mood_id": 2,
       "image": "/image/Emoji/Cam.png",
-      "color": "#FF981E",
-      "id": "e21b"
+      "color": "#FF981E"
     },
     {
       "mood_id": 3,
       "image": "/image/Emoji/Vang.png",
-      "color": "#FFC12D",
-      "id": "82d1"
+      "color": "#FFC12D"
     },
     {
       "mood_id": 4,
       "image": "/image/Emoji/XanhLa.png",
-      "color": "#8CC255",
-      "id": "7a59"
+      "color": "#8CC255"
     },
     {
       "mood_id": 5,
       "image": "/image/Emoji/XanhNhat.png",
-      "color": "#4AAF57",
-      "id": "200f"
+      "color": "#4AAF57"
     }
   ],
   "mood_log": [
     {
-      "id": "118f",
-      "mood_log_id": 1756150533855,
-      "activity_id": 1756150534261,
+      "id": "3049",
+      "activity_id": "190e",
+      "content": "sạkbfkjcs",
+      "mood_id": 5
+    },
+    {
+      "id": "7d2b",
+      "activity_id": "4fcd",
       "content": "",
-      "mood_id": null
+      "mood_id": 3
     }
   ],
   "relax_content": [
-  {
-    "id": "e1",
-    "title": "Bài tập Yoga",
-    "slug": "exercise",
-    "emotion_number": 1,
-    "duration": "10m10s",
-    "views": 58326,
-    "type": "Bài tập",
-    "img": "../../assets/images/Relax/yoga.png",
-    "text": "Yoga giảm stress và căng thẳng cho người mới",
-    "url": "https://www.youtube.com/watch?v=TTdHXFafWmQ&t=548s"
-  },
-  {
-    "id": "e2",
-    "title": "Bài tập Yoga",
-    "slug": "exercise",
-    "emotion_number": 1,
-    "duration": "10m10s",
-    "views": 58326,
-    "type": "Bài tập",
-    "img": "../../assets/images/Relax/yoga.png",
-    "text": "Yoga giảm stress và căng thẳng cho người mới",
-    "url": "https://www.youtube.com/watch?v=TTdHXFafWmQ&t=548s"
-  },
-  {
-    "id": "e3",
-    "title": "Bài tập Yoga",
-    "slug": "exercise",
-    "emotion_number": 1,
-    "duration": "10m10s",
-    "views": 58326,
-    "type": "Bài tập",
-    "img": "../../assets/images/Relax/yoga.png",
-    "text": "Yoga giảm stress và căng thẳng cho người mới",
-    "url": "https://www.youtube.com/watch?v=TTdHXFafWmQ&t=548s"
-  },
-  {
-    "id": "m1",
-    "title": "Giai điệu thiên nhiên",
-    "slug": "music",
-    "emotion_number": 2,
-    "duration": "08m45s",
-    "views": 41230,
-    "type": "Giai điệu",
-    "img": "../../assets/images/Relax/rain.png",
-    "text": "Tiếng mưa thư giãn",
-    "url": "https://www.youtube.com/watch?v=Z0VSMvO7DNk&list=PLH2lykxD-tSaLk9QU80vmrriXlYebb8Hx&index=2"
-  },
-  {
-    "id": "m2",
-    "title": "Giai điệu thiên nhiên",
-    "slug": "music",
-    "emotion_number": 2,
-    "duration": "08m45s",
-    "views": 41230,
-    "type": "Giai điệu",
-    "img": "../../assets/images/Relax/rain.png",
-    "text": "Tiếng mưa thư giãn",
-    "url": "https://www.youtube.com/watch?v=Z0VSMvO7DNk&list=PLH2lykxD-tSaLk9QU80vmrriXlYebb8Hx&index=2"
-  },
-  {
-    "id": "m3",
-    "title": "Giai điệu thiên nhiên",
-    "slug": "music",
-    "emotion_number": 2,
-    "duration": "08m45s",
-    "views": 41230,
-    "type": "Giai điệu",
-    "img": "../../assets/images/Relax/rain.png",
-    "text": "Tiếng mưa thư giãn",
-    "url": "https://www.youtube.com/watch?v=Z0VSMvO7DNk&list=PLH2lykxD-tSaLk9QU80vmrriXlYebb8Hx&index=2"
-  },
-  {
-    "id": "q1",
-    "title": "Lời hay ý đẹp",
-    "slug": "quote",
-    "emotion_number": 3,
-    "duration": "0",
-    "views": 22340,
-    "type": "Lời hay",
-    "img": "../../assets/images/Relax/sunset.png",
-    "text": "Không quan trọng việc bạn đi chậm thế nào, miễn là đừng bao giờ dừng lại",
-    "author": "Khổng Tử"
-  },
-  {
-    "id": "q2",
-    "title": "Lời hay ý đẹp",
-    "slug": "quote",
-    "emotion_number": 3,
-    "duration": "0",
-    "views": 22340,
-    "type": "Lời hay",
-    "img": "../../assets/images/Relax/sunset.png",
-    "text": "Không quan trọng việc bạn đi chậm thế nào, miễn là đừng bao giờ dừng lại",
-    "author": "Khổng Tử"
-  },
-  {
-    "id": "q3",
-    "title": "Lời hay ý đẹp",
-    "slug": "quote",
-    "emotion_number": 3,
-    "duration": "0",
-    "views": 22340,
-    "type": "Lời hay",
-    "img": "../../assets/images/Relax/sunset.png",
-    "text": "Không quan trọng việc bạn đi chậm thế nào, miễn là đừng bao giờ dừng lại",
-    "author": "Khổng Tử"
-  }
-],
+    {
+      "id": "e1",
+      "title": "Bài tập Yoga",
+      "slug": "exercise",
+      "emotion_number": 1,
+      "duration": "25:18",
+      "views": 0,
+      "type": "Bài tập",
+      "img": "/image/Relax/yoga.png",
+      "text": "Yoga Giảm Stress và Căng Thẳng cho Người Mới | Nguyên Yoga",
+      "url": "https://www.youtube.com/watch?v=TTdHXFafWmQ&t=548s"
+    },
+    {
+      "id": "e2",
+      "title": "Yoga trị liệu",
+      "slug": "exercise",
+      "emotion_number": 1,
+      "duration": "37:40",
+      "views": 0,
+      "type": "Bài tập",
+      "img": "/image/Relax/yoga.png",
+      "text": "Yoga trị liệu Trầm cảm, Mệt mỏi, Mất năng lượng (30 phút, Mọi trình độ) | Kim Ba Yoga",
+      "url": "https://www.youtube.com/watch?v=-wWiI95RDIg"
+    },
+    {
+      "id": "e3",
+      "title": "Bài thiền 5 phút",
+      "slug": "exercise",
+      "emotion_number": 1,
+      "duration": "6:56",
+      "views": 0,
+      "type": "Bài tập",
+      "img": "/image/Relax/yoga.png",
+      "text": "Bài thiền 5 phút-5 phút buổi sáng và 5 phút buổi tối-Thay đổi cuộc sống",
+      "url": "https://www.youtube.com/watch?v=8bROgHYDbzc"
+    },
+    {
+      "id": "m1",
+      "title": "Tiếng mưa trên vỉa hè",
+      "slug": "music",
+      "emotion_number": 2,
+      "duration": "2:59:59",
+      "views": 0,
+      "type": "Giai điệu",
+      "img": "/image/Relax/rain.png",
+      "text": "Ngủ ngon dã man với tiếng mưa rơi tí tách trên vỉa hè「 Nhạc thư giãn dễ ngủ 」",
+      "url": "https://www.youtube.com/watch?v=Z0VSMvO7DNk&list=PLH2lykxD-tSaLk9QU80vmrriXlYebb8Hx&index=2"
+    },
+    {
+      "id": "m2",
+      "title": "Hòa tấu piano",
+      "slug": "music",
+      "emotion_number": 2,
+      "duration": "1:02:07",
+      "views": 0,
+      "type": "Giai điệu",
+      "img": "/image/Relax/rain.png",
+      "text": "Hòa Tấu PIANO - Nhạc Không Lời Nhẹ, Nhạc Thư Giãn Dễ Ngủ Sâu Hay Nhất | Nhạc Ru Ngủ",
+      "url": "https://www.youtube.com/watch?v=Fn-3baI_MPE"
+    },
+    {
+      "id": "m3",
+      "title": "Tiếng sóng biển",
+      "slug": "music",
+      "emotion_number": 2,
+      "duration": "1:00:00",
+      "views": 0,
+      "type": "Giai điệu",
+      "img": "/image/Relax/rain.png",
+      "text": "TIẾNG SÓNG BIỂN | Phút giây thư giãn, một giấc ngủ ngon, tập trung học tập | Niwcorner",
+      "url": "https://www.youtube.com/watch?v=oQqmDSmsL04"
+    },
+    {
+      "id": "q1",
+      "title": "Lời hay ý đẹp",
+      "slug": "quote",
+      "emotion_number": 3,
+      "duration": "0",
+      "views": 0,
+      "type": "Lời hay",
+      "img": "/image/Relax/sunset.png",
+      "text": "Không quan trọng việc bạn đi chậm thế nào, miễn là đừng bao giờ dừng lại",
+      "author": "Khổng Tử"
+    },
+    {
+      "id": "q2",
+      "title": "Lời hay ý đẹp",
+      "slug": "quote",
+      "emotion_number": 3,
+      "duration": "0",
+      "views": 0,
+      "type": "Lời hay",
+      "img": "/image/Relax/lake.png",
+      "text": "Đừng để ngày hôm qua ảnh hưởng quá nhiều đến ngày hôm nay",
+      "author": "Will Rogers"
+    },
+    {
+      "id": "q3",
+      "title": "Lời hay ý đẹp",
+      "slug": "quote",
+      "emotion_number": 3,
+      "duration": "0",
+      "views": 0,
+      "type": "Lời hay",
+      "img": "/image/Relax/sky.png",
+      "text": "Vấn đề không phải là bạn có bị hạ gục hay không, mà là bạn có đứng dậy hay không",
+      "author": "Vince Lombardi"
+    },
+    {
+      "id": "q4",
+      "title": "Lời hay ý đẹp",
+      "slug": "quote",
+      "emotion_number": 3,
+      "duration": "0",
+      "views": 0,
+      "type": "Lời hay",
+      "img": "/image/Relax/sea.png",
+      "text": "Bạn không bao giờ quá già để đặt một mục tiêu mới hoặc mơ một giấc mơ mới",
+      "author": "C.S. Lewis"
+    }
+  ],
   "user_relax_history": [],
   "mood_hashtag": [
     {
-      "id": "4d0d",
-      "mood_log_id": 1756150533855,
+      "id": "7c3e",
+      "mood_log_id": "3049",
       "hashtag_id": 7
     },
     {
-      "id": "6d68",
-      "mood_log_id": 1756150533855,
+      "id": "0042",
+      "mood_log_id": "3049",
       "hashtag_id": 8
+    },
+    {
+      "id": "62cd",
+      "mood_log_id": "7d2b",
+      "hashtag_id": 5
     }
   ]
 }

@@ -9,14 +9,12 @@
   align-items: flex-start;
   
 }
-.diary-box fixed-size{
-  /* margin-left: -100px; */
-}
+
 .diary-box {
   background: #d3f5d3;
   border-radius: 15px;
   padding: 20px;
-  width: 900px;
+  width: 700px;
   height: 200x;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   margin-left: 10px;
@@ -81,7 +79,7 @@
   cursor: pointer;
 }
 
-.diary-container .save-btn {
+.save-btn-diary {
   background: #4caf50;
   color: white;
   border: none;
@@ -101,7 +99,7 @@
   /* background: url("/src/assets/images/imgLayout01.jpg") no-repeat center; */
   background-size: contain;
   padding: 20px 0;
-  margin-left: 150px;
+  margin-left: 100px;
   margin-top: 50px;
 }
 
@@ -151,48 +149,70 @@
   background-position: center;
 }
 
-/* Mũi tên custom để đồng nhất giữa trình duyệt */
-.select-field::after{
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-  pointer-events: none;
-  border-width: 6px 5px 0 5px;
-  border-style: solid;
-  border-color: #fff transparent transparent transparent;
-  opacity: 0.95;
-}
 
-.day-select{
+
+
+.day-select {
   appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
+  -webkit-appearance: none; /* Safari, Chrome */
+  -moz-appearance: none;    /* Firefox */
 
   width: 100%;
   height: 100%;
   margin: 0;
   border: 1px solid rgba(255,255,255,0.45);
   border-radius: var(--radius);
-  background: transparent;           /* GIỮ ẢNH ở wrapper, không ở select */
+  background: transparent;
   color: #fff;
   font-size: 14px;
 
-  /* KHÔNG padding dọc -> tránh lệch option; canh giữa bằng line-height */
   line-height: calc(var(--select-h) - 2px);
-  padding: 0 calc(var(--pad-x) + 18px) 0 var(--pad-x);  /* chừa chỗ cho mũi tên */
+  padding: 0 var(--pad-x) 0 var(--pad-x);
+  padding-right: 30px; /* chừa chỗ cho mũi tên custom */
 
   box-sizing: border-box;
   text-align: left;
-  text-align-last: left;              /* đồng nhất Chromium/Edge */
+  text-align-last: left;
   cursor: pointer;
 }
+#year.day-select {
+  padding: 1px 12px; /* padding vừa đủ */
+  width: auto;       /* hoặc set rộng hơn */
+  min-width: 120px;  /* giữ độ rộng ổn định */
+}
+
+/* Mũi tên custom để đồng nhất giữa trình duyệt */
+.select-field::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+
+  /* ép không còn khung rộng */
+  display: block;
+  width: 0;
+  height: 0;
+
+  /* chỉ còn tam giác */
+  border-width: 6px 5px 0 5px;
+  border-style: solid;
+  border-color: #fff transparent transparent transparent;
+  opacity: 0.95;
+}
+
+/* Ẩn arrow mặc định trong IE/Edge */
+.day-select::-ms-expand {
+  display: none;
+}
+
 
 .day-select:focus{
   outline: 2px solid rgba(255,255,255,0.85);
   outline-offset: 2px;
 }
+
 
 /* Màu của item trong dropdown list */
 .day-select option{
