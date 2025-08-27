@@ -46,12 +46,8 @@ function AppRoutes() {
           <Route path="relax" element={<UserRelax />} />
           <Route path="/userlayout/relax/:slug" element={<UserRelaxSeeAll />} />
           <Route path="*" element={<NotFound/>}/>
-          {/* <Route path="consulting" element={<UserConsulting />} /> */}
-          <Route path='consulting' element={<AdminHome />} />
-          <Route path="consulting/:id" element={<AdminUserProfile />} />
+          <Route path='consulting' element={<UserConsulting />} />
         </Route>
-        {/* <Route path='/adminlayout/user' element={<AdminUser />} />
-        <Route path="/adminlayout/user/:id" element={<AdminUserProfile />} /> */}
       </Route>
       
     </Routes>
