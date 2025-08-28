@@ -5,6 +5,8 @@ import UserMenu from "../UserMenu/UserMenu";
 import "./Header.css";
 import { getCurrentUser } from "../../../services/services";
 import { useNavigate } from "react-router-dom";
+import Logo from "../../../assets/images/Logo.png"
+import { useAuth } from "../../../contexts/AuthContext";
 const Header = ({
   title = "Hôm nay bạn thế nào?",
   onSettingClick,
@@ -13,7 +15,7 @@ const Header = ({
 }) => {
   const [isNotiOpen, setIsNotiOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-  const [currentUser, setCurrentUser] = useState(null);
+  const { user: currentUser } = useAuth();
 
   const notiRef = useRef(null);
   const userRef = useRef(null);
@@ -39,21 +41,7 @@ const Header = ({
       onNotificationRead(index);
     }
   };
-
-  useEffect(() => {
-    const savedUser = getCurrentUser();
-    if (savedUser) setCurrentUser(savedUser);
-
-    const handleStorageChange = () => {
-      const updatedUser = getCurrentUser();
-      setCurrentUser(updatedUser);
-    };
-    window.addEventListener("storage", handleStorageChange);
-
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-    };
-  }, []);
+  
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -75,6 +63,7 @@ const Header = ({
   return (
     <header className="header-container">
       <div className="header-left">
+        <img src={Logo} alt="logo" className="header-logo"/>
         <span>Trạm Stress</span>
       </div>
 
@@ -83,74 +72,67 @@ const Header = ({
       </div>
       {currentUser ? (
         <div className="header-right">
-        {/* <button
-          className="header-action-btn"
-          title="Cài đặt"
-          onClick={onSettingClick}
-        >
-          <FiSettings className="icon" />
-        </button> */}
-        <div ref={notiRef} style={{ display: "inline-block" }}>
-          <button
-            className={`header-action-btn header-action-btn-bell ${isNotiOpen ? "active" : ""
-              }`}
-            title="Thông báo"
-            onClick={toggleNoti}
-          >
-            <div style={{ position: "relative" }}>
-              <FiBell className="icon" />
-              {unreadCount > 0 && !isNotiOpen && (
-                <span className="noti-badge">{unreadCount}</span>
+          <div ref={notiRef} style={{ display: "inline-block" }}>
+            <button
+              className={`header-action-btn header-action-btn-bell ${isNotiOpen ? "active" : ""
+                }`}
+              title="Thông báo"
+              onClick={toggleNoti}
+            >
+              <div style={{ position: "relative", backgroundColor : "none" }}>
+                <FiBell className="bell-icon" />
+                {unreadCount > 0 && !isNotiOpen && (
+                  <span className="noti-badge">{unreadCount}</span>
+                )}
+              </div>
+            </button>
+            <NotificationPanel
+              isOpen={isNotiOpen}
+              notifications={notifications}
+              onNotificationClick={handleNotificationClick}
+              onClose={() => setIsNotiOpen(false)}
+            />
+          </div>
+
+          <div ref={userRef} style={{ display: "inline-block" }}>
+            <button
+              className={`header-action-btn header-action-btn-user ${isUserMenuOpen ? "active" : ""
+                }`}
+              title="Tài khoản"
+              onClick={toggleUserMenu}
+            >
+              {currentUser?.avatar ? (
+                <img
+                  src={currentUser.avatar}
+                  alt="avatar"
+                  className="header-avatar"
+                />
+              ) : (
+                <FiUser className="bell-icon" />
               )}
-            </div>
-          </button>
-          <NotificationPanel
-            isOpen={isNotiOpen}
-            notifications={notifications}
-            onNotificationClick={handleNotificationClick}
-            onClose={() => setIsNotiOpen(false)}
-          />
-        </div>
+            </button>
+            <UserMenu
+              isOpen={isUserMenuOpen}
+              currentUser={currentUser}
+              onClick={() => onSettingClick()
+              }
+            />
 
-        <div ref={userRef} style={{ display: "inline-block" }}>
-          <button
-            className={`header-action-btn header-action-btn-user ${isUserMenuOpen ? "active" : ""
-              }`}
-            title="Tài khoản"
-            onClick={toggleUserMenu}
-          >
-            {currentUser?.avatar ? (
-              <img
-                src={currentUser.avatar}
-                alt="avatar"
-                className="header-avatar"
-              />
-            ) : (
-              <FiUser className="icon" />
-            )}
-          </button>
-          <UserMenu
-            isOpen={isUserMenuOpen}
-            currentUser={currentUser}
-            onClick={() => onSettingClick()
-            }
-          />
-
+          </div>
         </div>
-      </div>
       ) : (
-      <div className="io-class">
-        <button
-          className="io-btn"
-          onClick={() => navigate("/")}
-        >Đăng nhập</button>
-        <button
-          className="io-btn"
-          onClick={() => navigate("/signin")}
-        >Đăng ký <span>&rarr;</span></button>
-      </div>
+        <div className="io-class">
+          <button
+            className="io-btn"
+            onClick={() => navigate("/")}
+          >Đăng nhập</button>
+          <button
+            className="io-btn"
+            onClick={() => navigate("/signin")}
+          >Đăng ký <span>&rarr;</span></button>
+        </div>
       )}
-      
+
     </header>
   );
 };

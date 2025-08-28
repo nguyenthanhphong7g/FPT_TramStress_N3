@@ -12,7 +12,7 @@ const UserMenu = ({ isOpen, currentUser, onClick }) => {
 
   const handleLogout = () => {
     logout();
-    logoutUser(); 
+    logoutUser();
     navigate('/');
   };
 

@@ -21,7 +21,10 @@
   height: 150%;
   /* box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25); */
 }
-
+.header-left .header-logo {
+  height: 30px;
+  width: 30px;
+}
 .header-left span {
   font-family: 'Playball', cursive;
   font-size: 30px;
@@ -46,11 +49,6 @@
   background: #f0f0f0;
   border: none;
   border-radius: 50%;
-  /* padding: 10px;
-  cursor: pointer;
-  font-size: 16px;
-  width: 35px;
-  height: 35px; */
   transform: scale(1);
 
 }
@@ -74,7 +72,7 @@
 
 
 
-.header-action-btn .icon {
+.header-action-btn .bell-icon {
   padding: 10px;
   cursor: pointer;
   width: 40px;
@@ -93,14 +91,7 @@
   padding: 2px 8px;
   border-radius: 50%;
 }
-.bell-active {
-  color: #007bff; /* xanh highlight */
-}
 
-.header-action-btn .bell-active {
-  background-color: rgba(0, 123, 255, 0.1);
-  border-radius: 50%;
-}
 
 .io-class {
   display: flex;
@@ -166,7 +157,7 @@
     font-size: 26px;
   }
 
-  .header-action-btn .icon {
+  .header-action-btn .bell-icon {
     padding: 8px;
     width: 30px;
     height: 30px;

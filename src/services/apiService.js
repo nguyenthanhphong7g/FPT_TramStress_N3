@@ -8,6 +8,7 @@ export const getData = async (endpoint, id = null) => {
   return res.json();
 };
 
+
 // Hàm POST (thêm mới)
 export const addData = async (endpoint, data) => {
   const res = await fetch(`${API_URL}/${endpoint}`, {

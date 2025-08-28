@@ -10,7 +10,7 @@ const TotalInteractions = ({totalInteraction}) => {
             </div>
             <div className="stat-info">
                 <h5>Số nội dung tương tác</h5>
-                <h4>{totalInteraction}</h4>
+                <h4>{totalInteraction ?? 0}</h4>
             </div>
         </div>
     )

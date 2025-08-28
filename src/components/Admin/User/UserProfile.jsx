@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './UserProfile.css'
 import arrow from '../../../assets/images/admin/arrow.png'
-import avatar from '../../../assets/images/admin/avar.png'
+import avatar_default from '../../../assets/images/admin/profile2.png'
 import profile from '../../../assets/images/admin/profile.png'
 import activities from '../../../assets/images/admin/activities.png'
 import ActiContent from './ActiContent'
@@ -29,8 +29,8 @@ const UserProfile = () => {
             <div className="user-profile-content">
                 <div className="overview">
                     <div className="overview-header">
-                        <img src={avatar} alt="" />
-                        <p>{user.name}</p>
+                        <img src={user.avatar ? user.avatar : avatar_default} alt="" />
+                        <p>{user.user_name}</p>
                     </div>
                     <div className="overview-stats">
                         <TotalConsults totalConsult={user.totalConsults} />

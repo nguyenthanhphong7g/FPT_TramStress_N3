@@ -5,28 +5,28 @@ import './NotificationPanel.css';
 const NotificationPanel = ({ isOpen, notifications, onNotificationClick, onClose }) => {
   if (!isOpen) return null;
 
-const seedNotifications = () => {
-  const sampleNotifications = [
-    {
-      text: "Bạn có tin nhắn mới từ Admin",
-      time: "3 phút trước",
-      read: false,
-    },
-    {
-      text: "Hệ thống sẽ bảo trì lúc 22h tối nay",
-      time: "1 giờ trước",
-      read: true,
-    },
-    {
-      text: "Bạn vừa đăng nhập từ thiết bị mới",
-      time: "1 ngày trước",
-      read: false,
-    },
-  ];
+  const seedNotifications = () => {
+    const sampleNotifications = [
+      {
+        text: "Bạn có tin nhắn mới từ Admin",
+        time: "3 phút trước",
+        read: false,
+      },
+      {
+        text: "Hệ thống sẽ bảo trì lúc 22h tối nay",
+        time: "1 giờ trước",
+        read: true,
+      },
+      {
+        text: "Bạn vừa đăng nhập từ thiết bị mới",
+        time: "1 ngày trước",
+        read: false,
+      },
+    ];
 
-  localStorage.setItem("notifications", JSON.stringify(sampleNotifications));
-};
-seedNotifications();
+    localStorage.setItem("notifications", JSON.stringify(sampleNotifications));
+  };
+  seedNotifications();
 
   return (
     <div className="notification-card">

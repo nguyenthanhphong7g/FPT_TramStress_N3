@@ -2,13 +2,11 @@ import { getData } from "../apiService";
 
 export const getDailyMoodEntry = async (userId, date = null) => {
   try {
-    // 1. Lấy dữ liệu
     const allActivities = await getData("daily_activity");
     const allMoodLogs = await getData("mood_log");
     const allMoodHashtags = await getData("mood_hashtag");
     const allHashtags = await getData("hashtag");
 
-    // 2. Lọc hoạt động theo user (và ngày nếu có)
     let userActivities = allActivities.filter((a) => a.user_id === userId);
     if (date) {
       userActivities = userActivities.filter((a) => a.date === date);
@@ -28,7 +26,7 @@ export const getDailyMoodEntry = async (userId, date = null) => {
 
       const tagNames = relatedTags.map((t) => {
         const tag = allHashtags.find((h) => h.hashtag_id === t.hashtag_id);
-        return tag ? `#${tag.name}` : null;
+        return tag ? `${tag.name}` : null;
       }).filter(Boolean);
 
       results.push({
@@ -42,7 +40,6 @@ export const getDailyMoodEntry = async (userId, date = null) => {
     return date ? results[0] || null : results;
 
   } catch (err) {
-    console.error("❌ Lỗi khi lấy mood entry:", err);
     return date ? null : [];
   }
 };

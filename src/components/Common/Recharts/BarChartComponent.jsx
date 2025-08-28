@@ -12,6 +12,7 @@ import dayjs from 'dayjs';
 import isoWeek from 'dayjs/plugin/isoWeek';
 import weekOfYear from 'dayjs/plugin/weekOfYear';
 import './BarChartEmoji.css';
+import { getData } from '../../../services/apiService';
 
 dayjs.extend(isoWeek);
 dayjs.extend(weekOfYear);
@@ -22,11 +23,17 @@ const BarChartEmoji = ({ weekData, isCustomWeek, setIsCustomWeek, dailyMoods, se
     const [moodMap, setMoodMap] = useState([])
 
     useEffect(() => {
-        fetch("http://localhost:3001/mood")
-        .then((res) => res.json())
-        .then((data) => setMoodMap(data))
-        .catch((err) => console.error(err));
-      }, []);
+        const fetchMoods = async () => {
+            try {
+                const data = await getData("mood");
+                setMoodMap(data);
+            } catch (err) {
+                console.error("Error fetching mood:", err);
+            }
+        };
+
+        fetchMoods();
+    }, []);
 
     useEffect(() => {
         if (!dailyMoods || dailyMoods.length === 0) return;
@@ -38,9 +45,9 @@ const BarChartEmoji = ({ weekData, isCustomWeek, setIsCustomWeek, dailyMoods, se
     }, [timeRange, weekData, isCustomWeek, dailyMoods, selectedMonth]);
 
     const groupData = (data, range, baseDate) => {
-        
+
         const now = baseDate || dayjs();
-        
+
         if (range === 'week') {
             const startOfWeek = now.startOf('isoWeek');
             const result = Array(7).fill(null).map((_, i) => ({
@@ -153,20 +160,22 @@ const BarChartEmoji = ({ weekData, isCustomWeek, setIsCustomWeek, dailyMoods, se
     return (
         <div className="barchart-container">
             <div className="barchart-buttons">
-                <button className={`${timeRange === 'week'? 'active' : ""}`} onClick={() => { setTimeRange('week'); setIsCustomWeek(false); }}>Tuần</button>
-                <button className={`${timeRange === 'month'? 'active' : ""}`} onClick={() => { setTimeRange('month'); setIsCustomWeek(false); }}>Tháng</button>
-                <button className={`${timeRange === 'year'? 'active' : ""}`} onClick={() => { setTimeRange('year'); setIsCustomWeek(false); }}>Năm</button>
+                <button className={`${timeRange === 'week' ? 'active' : ""}`} onClick={() => { setTimeRange('week'); setIsCustomWeek(false); }}>Tuần</button>
+                <button className={`${timeRange === 'month' ? 'active' : ""}`} onClick={() => { setTimeRange('month'); setIsCustomWeek(false); }}>Tháng</button>
+                <button className={`${timeRange === 'year' ? 'active' : ""}`} onClick={() => { setTimeRange('year'); setIsCustomWeek(false); }}>Năm</button>
             </div>
 
             <ResponsiveContainer className="my-barchart-container" width="100%" height="85%" >
                 <BarChart data={chartData} margin={{ top: 35, bottom: 10 }} >
                     <XAxis dataKey="name" />
+
                     <YAxis
                         type="number"
                         domain={[1, 5]}
                         ticks={[1, 2, 3, 4, 5]}
                         tick={renderCustomYAxis}
                         axisLine={false} tickLine={false}
+                        allowDataOverflow={true}
                     />
                     <Tooltip
                         content={({ payload }) => {

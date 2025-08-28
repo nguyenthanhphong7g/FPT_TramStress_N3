@@ -14,14 +14,23 @@
   padding: 40px;
   position: relative;
 }
-.form-login-form h1 {
+
+.form-login-header {
+  display: flex;
   position: absolute;
   top: 20px;
   left: 40px;
   margin: 0;
+  gap: 10px;
+}
+.form-login-header h1 {
   font-family: 'Playball', cursive;
   font-size: 30px;
   font-weight: 600;
+}
+.form-login-header .logo {
+  height: 30px;
+  width: 30px;
 }
 
 .form-login-image {
@@ -45,7 +54,6 @@
   top: 10%;
   width: 100%;
   background: rgba(255, 255, 255, 0.3);
-  /* mờ trắng */
   padding: 20px;
   backdrop-filter: blur(8px);
   color: white;
@@ -53,18 +61,19 @@
 
 }
 
-.form-login-image .quote {
+.form-login-image .login-quote {
   font-family: 'Playball', cursive;
   font-size: 40px;
 
 }
 
-.form-login-image .author {
+.form-login-image .login-author {
   display: block;
   margin-top: 10px;
   font-weight: bold;
   float: right;
   font-family: 'Playball', cursive;
+  font-size: 40px;
 }
 
 @media (max-width: 768px) {

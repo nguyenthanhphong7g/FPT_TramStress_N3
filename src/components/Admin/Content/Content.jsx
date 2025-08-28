@@ -18,7 +18,6 @@ function ContentAdmin() {
   const [filter, setFilter] = useState("Tất cả");
   const [showAddModal, setShowAddModal] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
@@ -31,7 +30,7 @@ function ContentAdmin() {
     ngaythem: new Date().toLocaleDateString("vi-VN"),
   });
 
-  // 📌 Lấy dữ liệu từ API khi load trang
+  // fetch dữ liệu
   useEffect(() => {
     fetch("http://localhost:3001/content")
       .then((res) => res.json())
@@ -39,7 +38,7 @@ function ContentAdmin() {
       .catch((err) => console.error("Lỗi khi fetch content:", err));
   }, []);
 
-  // 📌 Lọc dữ liệu
+  // filter + search
   const filteredItems = data.filter((item) => {
     const matchFilter = filter === "Tất cả" || item.loaihinh === filter;
     const matchSearch = item.noidung
@@ -51,10 +50,9 @@ function ContentAdmin() {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredItems.slice(indexOfFirstItem, indexOfLastItem);
-
   const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
 
-  // 📌 CRUD
+  // CRUD
   const handleAdd = () => {
     fetch("http://localhost:3001/content", {
       method: "POST",
@@ -101,7 +99,6 @@ function ContentAdmin() {
     }
   };
 
-  // 📌 Cập nhật form
   const handleChange = (e) => {
     const { name, value } = e.target;
     setEditItem((prev) => ({ ...prev, [name]: value }));
@@ -114,7 +111,7 @@ function ContentAdmin() {
 
   return (
     <div>
-      {/* --- Header --- */}
+      {/* Header */}
       <div className="top-container-Admin">
         <div className="left-title">
           <h2>Nội dung thư giãn</h2>
@@ -128,7 +125,7 @@ function ContentAdmin() {
         </button>
       </div>
 
-      {/* --- Search + Filter --- */}
+      {/* Search + Filter */}
       <div className="bottom-container-Admin">
         <div className="header-content-center">
           <div className="search-wrapper">
@@ -155,7 +152,7 @@ function ContentAdmin() {
           </div>
         </div>
 
-        {/* --- Table --- */}
+        {/* Table */}
         <div className="content-main">
           <div className="title-contain">
             <h4>Danh sách nội dung</h4>
@@ -222,7 +219,7 @@ function ContentAdmin() {
         </div>
       </div>
 
-      {/* --- Modal Add --- */}
+      {/* Modal Add */}
       {showAddModal && (
         <div className="modal-overlay">
           <div className="modal-content modal-add-content">
@@ -260,7 +257,7 @@ function ContentAdmin() {
         </div>
       )}
 
-      {/* --- Modal Edit --- */}
+      {/* Modal Edit */}
       {editItem && (
         <div className="modal-overlay">
           <div className="modal-content">
@@ -289,7 +286,7 @@ function ContentAdmin() {
         </div>
       )}
 
-      {/* --- Pagination --- */}
+      {/* Pagination */}
       <div className="pagination-container-Content">
         <div className="pagination-info-content">
           {`Showing ${(currentPage - 1) * itemsPerPage + 1}–${Math.min(
@@ -322,6 +319,22 @@ function ContentAdmin() {
           </button>
         </div>
       </div>
+
+      {/* Modal View chi tiết */}
+      {selectedItem && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h3>Chi tiết nội dung</h3>
+            <p><strong>Nội dung:</strong> {selectedItem.noidung}</p>
+            <p><strong>Cảm xúc:</strong> {selectedItem.camxuc}</p>
+            <p><strong>Loại hình:</strong> {selectedItem.loaihinh}</p>
+            <p><strong>Thời lượng:</strong> {selectedItem.thoiluong}</p>
+            <p><strong>Lượt tương tác:</strong> {selectedItem.luottuongtac}</p>
+            <p><strong>Ngày thêm:</strong> {selectedItem.ngaythem}</p>
+            <button onClick={() => setSelectedItem(null)}>Đóng</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
