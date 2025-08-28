@@ -1,50 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   FaPlus,
+  FaSearch,
+  FaCalendarAlt,
+  FaEye,
+  FaEdit,
+  FaTrash,
+  FaSlidersH,
   FaTimes,
 } from "react-icons/fa";
 import "./Content.css";
-import TatCa from "../../Common/Button/Admin/TatCa";
-import BaiTap from "../../Common/Button/Admin/BaiTap";
-import GiaiDieu from "../../Common/Button/Admin/GiaiDieu";
-import LoiHay from "../../Common/Button/Admin/LoiHay";
-import Pagination from "../../Common/Pagination/Admin/Pagination";
-import { getData } from "../../../services/apiService";
-import Search_Admin from "../../Common/Search/Search_Admin";
-import Loc from "../../Common/Button/Admin/Loc";
-import ChonNgay from "../../Common/Button/Admin/ChonNgay";
-import eye from '../../../assets/images/admin/eye.png'
-import pencil from '../../../assets/images/admin/pencil.png'
-import trash from '../../../assets/images/admin/trash.png'
 
 function ContentAdmin() {
-  const [selected, setSelected] = useState('tatca');
   const [data, setData] = useState([]);
-  const [selectedItem, setSelectedItem] = useState(null); // item đang xem
-  const [editItem, setEditItem] = useState(null); // item đang chỉnh sửa
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [editItem, setEditItem] = useState(null);
   const [filter, setFilter] = useState("Tất cả");
   const [showAddModal, setShowAddModal] = useState(false);
-  const [searchTerm, setSearchTerm] = useState(""); // tìm kiếm
-  const [allData, setAllData] = useState([]);
-  //const [selected, setSelected] = useState('tatca');
+  const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const pagesize = 10;
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getData('relax_content');
-        setAllData(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
+  const itemsPerPage = 10;
 
   const [newItem, setNewItem] = useState({
     noidung: "",
@@ -75,7 +50,6 @@ function ContentAdmin() {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredItems.slice(indexOfFirstItem, indexOfLastItem);
-
   const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
 
   // 📌 CRUD
@@ -98,11 +72,6 @@ function ContentAdmin() {
           ngaythem: new Date().toLocaleDateString("vi-VN"),
         });
       });
-    ngaythem: new Date().toLocaleDateString("vi-VN"), // auto ngày hiện tại 
-  });
-  // Xem chi tiết
-  const handleView = (item) => {
-    setSelectedItem(item);
   };
 
   const handleSaveEdit = () => {
@@ -141,61 +110,21 @@ function ContentAdmin() {
     setNewItem((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Lưu chỉnh sửa
-  const handleSaveEdit = () => {
-    setData((prev) => prev.map((d) => (d.id === editItem.id ? editItem : d)));
-    setEditItem(null); // đóng modal
-  };
-
-  const handleCloseEdit = () => {
-    setEditItem(null);
-  };
-
-  const handleDelete = (item) => {
-    if (window.confirm(`Bạn có chắc chắn muốn xóa: ${item.noidung}?`)) {
-      setData((prev) => prev.filter((d) => d.id !== item.id));
-    }
-  };
-  const getFilteredContent = () => {
-    let filtered = allData;
-
-    // Lọc theo loại
-    switch (selected) {
-      case 'baitap':
-        filtered = filtered.filter(item => item.slug === 'exercise');
-        break;
-      case 'giaidieu':
-        filtered = filtered.filter(item => item.slug === 'music');
-        break;
-      case 'loihay':
-        filtered = filtered.filter(item => item.slug === 'quote');
-        break;
-      default:
-        break;
-    }
-    if (searchTerm.trim() !== '') {
-      filtered = filtered.filter(item =>
-        (item.title || '').toLowerCase().includes(searchTerm.toLowerCase())
-      );
-    }
-
-    return filtered;
-  };
-  const totalPages = Math.ceil(getFilteredContent().length / pagesize);
-  const startIdx = (currentPage - 1) * pagesize;
-  const endIdx = startIdx + pagesize;
-  const currentContent = getFilteredContent().slice(startIdx, endIdx);
-
-  const handlePageChange = (page) => setCurrentPage(page);
-
-  const handleSearch = (term) => {
-    setSearchTerm(term);
-    setCurrentPage(1); // Reset về trang đầu
-  };
-
   return (
-    <>
-      {
+    <div>
+      {/* --- Header --- */}
+      <div className="top-container-Admin">
+        <div className="left-title">
+          <h2>Nội dung thư giãn</h2>
+          <p>
+            <a href="">Nội dung thư giãn</a>
+          </p>
+        </div>
+        <button className="btn-add" onClick={() => setShowAddModal(true)}>
+          <FaPlus className="icon-plus" />
+          Thêm nội dung
+        </button>
+      </div>
 
       {/* --- Search + Filter --- */}
       <div className="bottom-container-Admin">
@@ -743,9 +672,8 @@ function ContentAdmin() {
             </div>
           </div>
         </div>
-
       </div>
-    </>
+    </div>
   );
 }
 
