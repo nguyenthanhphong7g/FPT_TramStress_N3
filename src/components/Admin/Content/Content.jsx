@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  FaPlus,
-  FaTimes,
-} from "react-icons/fa";
+import { FaPlus, FaTimes } from "react-icons/fa";
 import "./Content.css";
 import TatCa from "../../Common/Button/Admin/TatCa";
 import BaiTap from "../../Common/Button/Admin/BaiTap";
@@ -13,19 +10,19 @@ import { getData } from "../../../services/apiService";
 import Search_Admin from "../../Common/Search/Search_Admin";
 import Loc from "../../Common/Button/Admin/Loc";
 import ChonNgay from "../../Common/Button/Admin/ChonNgay";
-import eye from '../../../assets/images/admin/eye.png'
-import pencil from '../../../assets/images/admin/pencil.png'
-import trash from '../../../assets/images/admin/trash.png'
+import eye from "../../../assets/images/admin/eye.png";
+import pencil from "../../../assets/images/admin/pencil.png";
+import trash from "../../../assets/images/admin/trash.png";
 
 function ContentAdmin() {
-  const [selected, setSelected] = useState('tatca');
+  const [selected, setSelected] = useState("tatca");
   const [data, setData] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null); // item đang xem
   const [editItem, setEditItem] = useState(null); // item đang chỉnh sửa
-  const [filter, setFilter] = useState("Tất cả");
+  const [allData, setAllData] = useState([]);
+  const [deleteItem, setDeleteItem] = useState(null);
   const [showAddModal, setShowAddModal] = useState(false);
   const [searchTerm, setSearchTerm] = useState(""); // tìm kiếm
-  const [allData, setAllData] = useState([]);
   //const [selected, setSelected] = useState('tatca');
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -35,7 +32,7 @@ function ContentAdmin() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await getData('relax_content');
+        const data = await getData("relax_content");
         setAllData(data);
       } catch (err) {
         setError(err.message);
@@ -47,14 +44,15 @@ function ContentAdmin() {
   }, []);
 
   const [newItem, setNewItem] = useState({
-    id: data.length + 1,
+    id: 1, // hoặc 0, khi thêm sẽ +1
     noidung: "",
     camxuc: 1,
     loaihinh: "Bài tập",
     thoiluong: "",
     luottuongtac: 0,
-    ngaythem: new Date().toLocaleDateString("vi-VN"), // auto ngày hiện tại 
+    ngaythem: new Date().toLocaleDateString("vi-VN"),
   });
+
   // Xem chi tiết
   const handleView = (item) => {
     setSelectedItem(item);
@@ -91,8 +89,9 @@ function ContentAdmin() {
   };
 
   const handleDelete = (item) => {
-    if (window.confirm(`Bạn có chắc chắn muốn xóa: ${item.noidung}?`)) {
-      setData((prev) => prev.filter((d) => d.id !== item.id));
+    if (window.confirm(`Bạn có chắc chắn muốn xóa: ${item.title}?`)) {
+      setAllData((prev) => prev.filter((d) => d.id !== item.id));
+      setDeleteItem(null);
     }
   };
   const getFilteredContent = () => {
@@ -100,21 +99,21 @@ function ContentAdmin() {
 
     // Lọc theo loại
     switch (selected) {
-      case 'baitap':
-        filtered = filtered.filter(item => item.slug === 'exercise');
+      case "baitap":
+        filtered = filtered.filter((item) => item.slug === "exercise");
         break;
-      case 'giaidieu':
-        filtered = filtered.filter(item => item.slug === 'music');
+      case "giaidieu":
+        filtered = filtered.filter((item) => item.slug === "music");
         break;
-      case 'loihay':
-        filtered = filtered.filter(item => item.slug === 'quote');
+      case "loihay":
+        filtered = filtered.filter((item) => item.slug === "quote");
         break;
       default:
         break;
     }
-    if (searchTerm.trim() !== '') {
-      filtered = filtered.filter(item =>
-        (item.title || '').toLowerCase().includes(searchTerm.toLowerCase())
+    if (searchTerm.trim() !== "") {
+      filtered = filtered.filter((item) =>
+        (item.title || "").toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
 
@@ -132,121 +131,142 @@ function ContentAdmin() {
     setCurrentPage(1); // Reset về trang đầu
   };
 
-
   return (
     <>
-      {
+      {selectedItem && (
+        <div className="modal-overlay-content">
+          <div className="modal-content">
+            <h3>Chi tiết nội dung</h3>
+            <p>
+              <strong>Nội dung:</strong> {selectedItem.text}
+            </p>
+            <p>
+              <strong>Cảm xúc:</strong> {selectedItem.emotion_number}
+            </p>
+            <p>
+              <strong>Loại hình:</strong> {selectedItem.type}
+            </p>
+            <p>
+              <strong>Thời lượng:</strong> {selectedItem.duration}
+            </p>
+            <p>
+              <strong>Lượt tương tác:</strong> {selectedItem.views}
+            </p>
+            <p>
+              <strong>Ngày thêm:</strong> {selectedItem.date}
+            </p>
+            <button className="btn-close-Content" onClick={handleCloseView}>
+              Đóng
+            </button>
+          </div>
+        </div>
+      )}
 
-
-        selectedItem && (
-          <div className="modal-overlay">
-            <div className="modal-content">
-              <h3>Chi tiết nội dung</h3>
-              <p>
-                <strong>Nội dung:</strong> {selectedItem.text}
-              </p>
-              <p>
-                <strong>Cảm xúc:</strong> {selectedItem.emotion_number}
-              </p>
-              <p>
-                <strong>Loại hình:</strong> {selectedItem.type}
-              </p>
-              <p>
-                <strong>Thời lượng:</strong> {selectedItem.duration}
-              </p>
-              <p>
-                <strong>Lượt tương tác:</strong> {selectedItem.views}
-              </p>
-              <p>
-                <strong>Ngày thêm:</strong> {selectedItem.date}
-              </p>
-              <button className="btn-close-Content" onClick={handleCloseView}>
-                Đóng
+      {/* Sửa nội dung --- */}
+      {editItem && (
+        <div className="modal-overlay-content">
+          <div className="modal-content">
+            <h3>Chỉnh sửa nội dung</h3>
+            <label>
+              Nội dung:
+              <input
+                type="text"
+                name="noidung"
+                value={editItem.noidung}
+                onChange={handleChange}
+              />
+            </label>
+            <label>
+              Cảm xúc:
+              <input
+                type="number"
+                name="camxuc"
+                value={editItem.camxuc}
+                onChange={handleChange}
+              />
+            </label>
+            <label>
+              Loại hình:
+              <input
+                type="text"
+                name="loaihinh"
+                value={editItem.loaihinh}
+                onChange={handleChange}
+              />
+            </label>
+            <label>
+              Thời lượng:
+              <input
+                type="text"
+                name="thoiluong"
+                value={editItem.thoiluong}
+                onChange={handleChange}
+              />
+            </label>
+            <label>
+              Lượt tương tác:
+              <input
+                type="number"
+                name="luottuongtac"
+                value={editItem.luottuongtac}
+                onChange={handleChange}
+              />
+            </label>
+            <label>
+              Ngày thêm:
+              <input
+                type="text"
+                name="ngaythem"
+                value={editItem.ngaythem}
+                onChange={handleChange}
+              />
+            </label>
+            <div style={{ marginTop: "15px" }}>
+              <button className="btn-close-Content" onClick={handleSaveEdit}>
+                Lưu
+              </button>
+              <button
+                className="btn-close-Content"
+                style={{ background: "gray" }}
+                onClick={handleCloseEdit}
+              >
+                Hủy
               </button>
             </div>
           </div>
-        )
-      }
-
-      {/* --- Modal Sửa nội dung --- */}
-      {
-        editItem && (
-          <div className="modal-overlay">
-            <div className="modal-content">
-              <h3>Chỉnh sửa nội dung</h3>
-              <label>
-                Nội dung:
-                <input
-                  type="text"
-                  name="noidung"
-                  value={editItem.noidung}
-                  onChange={handleChange}
-                />
-              </label>
-              <label>
-                Cảm xúc:
-                <input
-                  type="number"
-                  name="camxuc"
-                  value={editItem.camxuc}
-                  onChange={handleChange}
-                />
-              </label>
-              <label>
-                Loại hình:
-                <input
-                  type="text"
-                  name="loaihinh"
-                  value={editItem.loaihinh}
-                  onChange={handleChange}
-                />
-              </label>
-              <label>
-                Thời lượng:
-                <input
-                  type="text"
-                  name="thoiluong"
-                  value={editItem.thoiluong}
-                  onChange={handleChange}
-                />
-              </label>
-              <label>
-                Lượt tương tác:
-                <input
-                  type="number"
-                  name="luottuongtac"
-                  value={editItem.luottuongtac}
-                  onChange={handleChange}
-                />
-              </label>
-              <label>
-                Ngày thêm:
-                <input
-                  type="text"
-                  name="ngaythem"
-                  value={editItem.ngaythem}
-                  onChange={handleChange}
-                />
-              </label>
-              <div style={{ marginTop: "15px" }}>
-                <button className="btn-close-Content" onClick={handleSaveEdit}>
-                  Lưu
-                </button>
-                <button
-                  className="btn-close-Content"
-                  style={{ background: "gray" }}
-                  onClick={handleCloseEdit}
-                >
-                  Hủy
-                </button>
-              </div>
+        </div>
+      )}
+      {/* Xóa nội dung */}
+      {deleteItem && (
+        <div className="modal-overlay-content">
+          <div className="modal-content">
+            <h3>Xác nhận xóa</h3>
+            <p>
+              Bạn có chắc chắn muốn xóa <strong>{deleteItem.title}</strong>?
+            </p>
+            <div style={{ marginTop: "15px" }}>
+              <button
+                className="btn-close-Content"
+                onClick={() => handleDelete(deleteItem)}
+              >
+                Xóa
+              </button>
+              <button
+                className="btn-close-Content"
+                style={{ background: "gray" }}
+                onClick={() => setDeleteItem(null)}
+              >
+                Hủy
+              </button>
             </div>
           </div>
-        )
-      }
+        </div>
+      )}
+
       {
+        // Thêm nội dung
         showAddModal && (
-          <div className="modal-overlay">
+          <div className="modal-overlay-content">
             <div className="modal-content modal-add-content">
               <div className="modal-content-header">
                 <h3>Thêm nội dung thư giãn</h3>
@@ -365,16 +385,27 @@ function ContentAdmin() {
                 </div>
               </div>
               <div className="add-actions">
-                <button className="btn-close-Content-add-action">Quay lại</button>
+                <button className="btn-close-Content-add-action">
+                  Quay lại
+                </button>
                 <button
                   className="btn-save-Content-add-action"
                   onClick={() => {
-                    setData((prev) => [
+                    setAllData((prev) => [
                       ...prev,
-                      { ...newItem, id: prev.length + 1 },
+                      {
+                        id: prev.length + 1,
+                        title: newItem.noidung,
+                        emotion_number: newItem.camxuc,
+                        type: newItem.loaihinh,
+                        duration: newItem.thoiluong,
+                        views: newItem.luottuongtac,
+                        date: newItem.ngaythem,
+                      },
                     ]);
+
                     setNewItem({
-                      id: data.length + 2,
+                      id: allData.length + 1,
                       noidung: "",
                       camxuc: 1,
                       loaihinh: "Bài tập",
@@ -382,6 +413,7 @@ function ContentAdmin() {
                       luottuongtac: 0,
                       ngaythem: new Date().toLocaleDateString("vi-VN"),
                     });
+
                     setShowAddModal(false);
                   }}
                 >
@@ -392,13 +424,13 @@ function ContentAdmin() {
           </div>
         )
       }
-      <div className='admin-user'>
+      <div className="admin-user">
         <div className="admin-user-header">
           <div className="admin-user-title">
             <h4>Nội dung thư giãn</h4>
             <h5>Nội dung thư giãn</h5>
           </div>
-          <div className='trending-content-btn'>
+          <div className="trending-content-btn">
             <button onClick={() => setShowAddModal(true)}>
               <FaPlus className="icon-plus" />
               Thêm nội dung
@@ -417,23 +449,50 @@ function ContentAdmin() {
           <div className="trending-content-header">
             <h5>Nội dung thịnh hành</h5>
             <div className="filter-bar">
-              <TatCa isActive={selected === 'tatca'} onClick={() => { setSelected('tatca'); setCurrentPage(1); }} />
-              <BaiTap isActive={selected === 'baitap'} onClick={() => { setSelected('baitap'); setCurrentPage(1); }} />
-              <GiaiDieu isActive={selected === 'giaidieu'} onClick={() => { setSelected('giaidieu'); setCurrentPage(1); }} />
-              <LoiHay isActive={selected === 'loihay'} onClick={() => { setSelected('loihay'); setCurrentPage(1); }} />
+              <TatCa
+                isActive={selected === "tatca"}
+                onClick={() => {
+                  setSelected("tatca");
+                  setCurrentPage(1);
+                }}
+              />
+              <BaiTap
+                isActive={selected === "baitap"}
+                onClick={() => {
+                  setSelected("baitap");
+                  setCurrentPage(1);
+                }}
+              />
+              <GiaiDieu
+                isActive={selected === "giaidieu"}
+                onClick={() => {
+                  setSelected("giaidieu");
+                  setCurrentPage(1);
+                }}
+              />
+              <LoiHay
+                isActive={selected === "loihay"}
+                onClick={() => {
+                  setSelected("loihay");
+                  setCurrentPage(1);
+                }}
+              />
             </div>
           </div>
-          <div className="admin-user-table" style={{ minHeight: `${pagesize * 60 + 125}px` }}>
+          <div
+            className="admin-user-table"
+            style={{ minHeight: `${pagesize * 60 + 125}px` }}
+          >
             <div className="table-wrapper">
               <table>
                 <colgroup>
-                  <col style={{ width: '250px' }} />
-                  <col style={{ width: '150px' }} />
-                  <col style={{ width: '150px' }} />
-                  <col style={{ width: '150px' }} />
-                  <col style={{ width: '150px' }} />
-                  <col style={{ width: '150px' }} />
-                  <col style={{ width: '150px' }} />
+                  <col style={{ width: "250px" }} />
+                  <col style={{ width: "150px" }} />
+                  <col style={{ width: "150px" }} />
+                  <col style={{ width: "150px" }} />
+                  <col style={{ width: "150px" }} />
+                  <col style={{ width: "150px" }} />
+                  <col style={{ width: "150px" }} />
                 </colgroup>
                 <thead>
                   <tr>
@@ -447,7 +506,7 @@ function ContentAdmin() {
                   </tr>
                 </thead>
                 <tbody>
-                  {getFilteredContent().map(item => (
+                  {getFilteredContent().map((item) => (
                     <tr key={item.id}>
                       <td>{item.title}</td>
                       <td>{item.emotion_number}</td>
@@ -455,7 +514,7 @@ function ContentAdmin() {
                       <td>{item.duration}</td>
                       <td>{item.views}</td>
                       <td>{item.date}</td>
-                      <td className='admin-table-action'>
+                      <td className="admin-table-action">
                         <button
                           className="btn-table"
                           onClick={() => handleView(item)}
@@ -470,7 +529,7 @@ function ContentAdmin() {
                         </button>
                         <button
                           className="btn-table"
-                          onClick={() => handleDelete(item)}
+                          onClick={() => setDeleteItem(item)}
                         >
                           <img src={trash} alt="" />
                         </button>
@@ -491,7 +550,6 @@ function ContentAdmin() {
             </div>
           </div>
         </div>
-
       </div>
     </>
   );

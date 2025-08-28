@@ -79,6 +79,7 @@
     width: fit-content;
     margin-top: 8px;
     color: #2a567a;
+    cursor: pointer;
 }
 
 .login-form .login-button {
