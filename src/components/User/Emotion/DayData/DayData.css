@@ -35,11 +35,11 @@
 }
 
 .hashtag-list {
-    display: flex;        /* hoặc display: grid */
-  flex-wrap: wrap;      /* cho phép xuống dòng */
-  gap: 10px; 
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
   padding: 8px 12px;
-  gap:10px;
+  gap: 10px;
 }
 
 .hashtag-list span {
@@ -66,25 +66,29 @@
   font-size: 20px;
   color: #444;
   min-height: 100px;
-  white-space: pre-wrap; /* Giữ xuống dòng gốc và tự xuống khi dài quá */
-  word-break: break-word; /* Cắt từ khi quá dài */
-  overflow-wrap: break-word; /* Tương thích trình duyệt cũ */
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
-@media (max-width: 1024px){
-      .content {
-  width: 400px;
-}
-.header p {
-  font-size: 20px;
-  margin-bottom: 5px;
 
-}
-.hashtag-list span {
-  font-weight: 500;
-  width: 80px;
-  font-size: 12px;
-}
-.modal-note {
+@media (max-width: 1024px) {
+  .content {
+    width: 400px;
+  }
+
+  .header p {
+    font-size: 20px;
+    margin-bottom: 5px;
+
+  }
+
+  .hashtag-list span {
+    font-weight: 500;
+    width: 80px;
+    font-size: 12px;
+  }
+
+  .modal-note {
     font-size: 16px;
-}
+  }
 }

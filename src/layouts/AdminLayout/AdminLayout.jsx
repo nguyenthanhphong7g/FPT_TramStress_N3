@@ -1,5 +1,5 @@
 import SidebarFormLayout from '../../components/Common/Sidebar/SidebarFormLayout';
-import { FaHome, FaHeart, FaUserFriends, FaUser, FaCalendar } from 'react-icons/fa';
+import { FaHome, FaHeart, FaUserFriends, FaUser, FaCalendar, FaCalendarAlt } from 'react-icons/fa';
 import Header from '../../components/Common/Header/Header';
 import { Outlet, useNavigate } from 'react-router-dom';
 import Footer from '../../components/Common/Footer/Footer';
@@ -26,9 +26,8 @@ function AdminLayout() {
     { icon: <FaHome />, label: "Home", path: "/adminlayout/home" },
     { icon: <FaHeart />, label: "Nội dung", path: "/adminlayout/content" },
     { icon: <FaUser />, label: "Chuyên gia", path: "/#" },
-    { icon: <FaUsers />, label: "Người dùng", path: "/adminlayout/user" },
+    { icon: <FaUserFriends />, label: "Người dùng", path: "/adminlayout/user" },
     { icon: <FaCalendarAlt />, label: "Lịch tư vấn", path: "/adminlayout/advise" },
-    { icon: <FaCalendar />, label: "Lịch tư vấn", path: "/adminlayout/a" },
   ];
 
   const menuItems = [
@@ -43,7 +42,7 @@ function AdminLayout() {
     <div>
       <Header
       title="Hôm nay bạn thế nào ?"
-      onSettingClick={() => navigate("/userlayout/setting")}
+      onSettingClick={() => navigate("/adminlayout/setting")}
       notifications={notifications}
       onNotificationRead={handleNotificationRead}
     />

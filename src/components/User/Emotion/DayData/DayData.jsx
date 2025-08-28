@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import "./DayData.css";
+import { getData } from "../../../../services/apiService";
 
 
 
 function DayData({ date, onClose, dailyMoods }) {
     const [hashtag, setHashtag] = useState([])
     useEffect(() => {
-        fetch("http://localhost:3001/hashtag")
-        .then((res) => res.json())
-        .then((data) => setHashtag(data))
-        .catch((err) => console.error(err));
+        const fetchMoods = async () => {
+          try {
+            const data = await getData("hashtag"); 
+            setHashtag(data);
+          } catch (err) {
+            console.error("Error fetching mood:", err);
+          }
+        };
+    
+        fetchMoods();
       }, []);
     const entry = dailyMoods.find((m) => dayjs(m.date).isSame(date, "day"));
 
@@ -21,7 +28,6 @@ function DayData({ date, onClose, dailyMoods }) {
                     <button className="close-button" onClick={onClose}>×</button>
                     <p>{dayjs(date).format("D/M/YYYY")}</p>
                 </div>
-
                 {entry?.hashtags?.length > 0 && (
                     <div className="hashtag-list">
                         {entry.hashtags.map((tag, i) => {

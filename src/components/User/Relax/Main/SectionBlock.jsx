@@ -15,7 +15,7 @@ const SectionBlock = ({ title, slug, data, refProp }) => (
     </div>
     <div className='noidung-bottom'>
       {data.slice(0, 4).map((item, itemIdx) => (
-        <Item item={item} itemIdx={itemIdx} />
+        <Item key={item.id} item={item} itemIdx={itemIdx} />
       ))}
     </div>
   </div>

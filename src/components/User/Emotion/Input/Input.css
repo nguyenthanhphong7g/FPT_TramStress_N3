@@ -122,28 +122,6 @@
   max-width: 120px;
 }
 
-/* .speech-bubble::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: -8px;
-  border-width: 8px;
-  border-style: solid;
-  border-color: transparent #333 transparent transparent;
-  transform: translateY(-50%);
-}
-
-.speech-bubble::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: -6px;
-  border-width: 6px;
-  border-style: solid;
-  border-color: transparent #fff transparent transparent;
-  transform: translateY(-50%);
-} */
-
 
 
 
