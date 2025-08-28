@@ -54,7 +54,7 @@ const TableUser = ({ arr_user, pagesize }) => {
                                 </td>
                                 <td>{user.phone}</td>
                                 <td>{user.gender}</td>
-                                <td>{user.emotion}</td>
+                                <td>{user.mood}</td>
                                 <td>{user.status}</td>
                                 <td>{user.created_at}</td>
                                 <td className='admin-table-action'>

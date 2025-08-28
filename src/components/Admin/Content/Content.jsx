@@ -143,22 +143,22 @@ function ContentAdmin() {
             <div className="modal-content">
               <h3>Chi tiết nội dung</h3>
               <p>
-                <strong>Nội dung:</strong> {selectedItem.noidung}
+                <strong>Nội dung:</strong> {selectedItem.text}
               </p>
               <p>
-                <strong>Cảm xúc:</strong> {selectedItem.camxuc}
+                <strong>Cảm xúc:</strong> {selectedItem.emotion_number}
               </p>
               <p>
-                <strong>Loại hình:</strong> {selectedItem.loaihinh}
+                <strong>Loại hình:</strong> {selectedItem.type}
               </p>
               <p>
-                <strong>Thời lượng:</strong> {selectedItem.thoiluong}
+                <strong>Thời lượng:</strong> {selectedItem.duration}
               </p>
               <p>
-                <strong>Lượt tương tác:</strong> {selectedItem.luottuongtac}
+                <strong>Lượt tương tác:</strong> {selectedItem.views}
               </p>
               <p>
-                <strong>Ngày thêm:</strong> {selectedItem.ngaythem}
+                <strong>Ngày thêm:</strong> {selectedItem.date}
               </p>
               <button className="btn-close-Content" onClick={handleCloseView}>
                 Đóng

@@ -22,7 +22,7 @@ const InfoContent = () => {
 
             <div className="info-content-information">
                 <h5>Họ và tên</h5>
-                <h4>{user.name}</h4>
+                <h4>{user.user_name}</h4>
             </div>
             <div className="content-row">
                 <div className="info-content-information">
