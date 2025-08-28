@@ -18,8 +18,8 @@
   font-size: 12px;
   border-radius: 2.5px;
   border: none;
-  background-color: rgba(179, 219, 255, 0.2);
-  padding: 0 18px 0 50px;
+  background-color: rgba(179, 219, 255, 0.2) !important;
+  padding: 0 18px 0 50px !important;
   transition: 0.2s ease;
 }
 

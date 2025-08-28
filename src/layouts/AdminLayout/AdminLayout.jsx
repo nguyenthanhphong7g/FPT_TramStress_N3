@@ -25,7 +25,6 @@ function AdminLayout() {
   const sidebarItems = [
     { icon: <FaHome />, label: "Home", path: "/adminlayout/home" },
     { icon: <FaHeart />, label: "Nội dung", path: "/adminlayout/content" },
-    { icon: <FaUser />, label: "Chuyên gia", path: "/#" },
     { icon: <FaUserFriends />, label: "Người dùng", path: "/adminlayout/user" },
     { icon: <FaCalendarAlt />, label: "Lịch tư vấn", path: "/adminlayout/advise" },
   ];
@@ -33,7 +32,6 @@ function AdminLayout() {
   const menuItems = [
     { label: 'Home', href: '/adminlayout/home' },
     { label: 'Nội dung', path: '/adminlayout/content' },
-    { label: 'Chuyên gia', path: '/#' },
     { label: 'Người dùng', path: '/adminlayout/user' },
     { label: 'Lịch tư vấn', path: '/adminlayout/advise' },
   ];
