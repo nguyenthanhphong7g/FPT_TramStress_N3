@@ -7,7 +7,7 @@ import Pagination from '../../../Common/Pagination/Pagination';
 import Item from '../Main/Item';
 import { getData } from '../../../../services/apiService';
 
-const XemTatCa = () => {
+const XemTatCa = ({ searchTerm }) => {
   const { slug } = useParams();
 
   const [data, setData] = useState([]);
@@ -17,9 +17,6 @@ const XemTatCa = () => {
   const itemsPerPage = 9;
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const currentItems = data.slice(startIndex, endIndex);
-  const totalPages = Math.ceil(data.length / itemsPerPage);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -42,6 +39,16 @@ const XemTatCa = () => {
     if (itemType !== 'quote') return;
     setActiveIndex(activeIndex === itemIdx ? null : itemIdx);
   };
+  const filterBySearchTerm = (data) => {
+    if (!searchTerm || !searchTerm.trim()) return data;
+    return data.filter(item =>
+      item.text.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  };
+
+  const filteredData = filterBySearchTerm(data);
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+  const currentItems = filteredData.slice(startIndex, endIndex);
 
   return (
     <div className='see-all'>
