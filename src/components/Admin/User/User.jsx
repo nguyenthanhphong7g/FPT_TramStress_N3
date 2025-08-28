@@ -1,27 +1,46 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Pagination from '../../Common/Pagination/Admin/Pagination'
-import users from './UserData'
 import Search_Admin from '../../Common/Search/Search_Admin'
 import ChonNgay from '../../Common/Button/Admin/ChonNgay'
 import Loc from '../../Common/Button/Admin/Loc'
 import './User.css'
 import TableUser from '../table/TableUser'
+import { getData } from '../../../services/apiService'
 
 const User = () => {
     const itemsPerPage = 10;
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState("");
+    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchRelaxContent = async () => {
+            try {
+                const json = await getData('users');
+                setData(json);
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchRelaxContent();
+    }, []);
     const handleSearch = (term) => {
         setSearchTerm(term);
         setCurrentPage(1);
     };
     const getFilteredUser = () => {
-        let filtered = users;
+        let filtered = data;
+        filtered = filtered.filter(user => user.role === 'user' || user.role === 'expert');
         if (searchTerm.trim() !== '') {
             filtered = filtered.filter(user =>
                 (user.name || '').toLowerCase().includes(searchTerm.toLowerCase())
             );
         }
+
 
         return filtered;
     };

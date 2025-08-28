@@ -1,11 +1,14 @@
 import React from 'react'
 import './InfoContent.css'
 import icon_profile from '../../../assets/images/admin/icon_profile.png'
+import { useLocation } from 'react-router-dom';
 
 const InfoContent = () => {
+    const location = useLocation();
+    const user = location.state;
     return (
         <div className="info-content">
-            <div className='info-content-information' style={{padding:0}}>
+            <div className='info-content-information' style={{ padding: 0 }}>
                 <div className="info-content-header ">
                     <div className='img'>
                         <img src={icon_profile} alt="" />
@@ -19,26 +22,26 @@ const InfoContent = () => {
 
             <div className="info-content-information">
                 <h5>Họ và tên</h5>
-                <h4>Nguyễn Thanh Phong</h4>
+                <h4>{user.name}</h4>
             </div>
             <div className="content-row">
                 <div className="info-content-information">
                     <h5>Số điện thoại</h5>
-                    <h4>0123456789</h4>
+                    <h4>{user.phone}</h4>
                 </div>
                 <div className="info-content-information">
                     <h5>Email</h5>
-                    <h4>phong@gmail.com</h4>
+                    <h4>{user.email}</h4>
                 </div>
             </div>
             <div className="content-row">
                 <div className="info-content-information">
-                    <h5>Ngày sinh</h5>
-                    <h4>19/06/2004</h4>
+                    <h5>Tuổi</h5>
+                    <h4>{user.age}</h4>
                 </div>
                 <div className="info-content-information">
                     <h5>Giới tính</h5>
-                    <h4>Nam</h4>
+                    <h4>{user.gender}</h4>
                 </div>
             </div>
         </div>
