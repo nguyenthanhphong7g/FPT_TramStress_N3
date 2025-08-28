@@ -24,6 +24,7 @@ function Diary() {
   const [isViewingOldDiary, setIsViewingOldDiary] = useState(false);
 
   const todayKey = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+  const [isViewingOldDiary, setIsViewingOldDiary] = useState(false);
   const selectedKey = `${year}-${month}-${day}`;
   const isToday = todayKey === selectedKey;
 
@@ -109,7 +110,6 @@ function Diary() {
       toast.error("❌ Lỗi khi xóa nhật ký");
     }
   };
-
   const checkDiary = async (y, m, d) => {
     const key = `${y}-${m}-${d}`;
     setModalKey(key);
@@ -288,15 +288,23 @@ function Diary() {
           <div className="modal-box" onClick={(e) => e.stopPropagation()}>
             <h3>📅 Nhật ký ngày {modalDate}</h3>
             <p>{modalContent}</p>
-
             {hasDiary && modalPreview && (
               <div className="modal-preview">
+                style={{
+                  marginTop: "10px",
+                  padding: "10px",
+                  background: "#f8f8f8",
+                  borderRadius: "5px",
+                  fontStyle: "italic",
+                }}
+              >
                 {modalPreview}
               </div>
             )}
 
             <div style={{ marginTop: "10px" }}>
               <button onClick={() => setModalOpen(false)}>Đóng</button>
+              {/* Nếu có nhật ký thì thêm nút Xem ngay */}
               {hasDiary && (
                 <button onClick={viewInEditor} style={{ marginLeft: "10px" }}>
                   Xem ngay

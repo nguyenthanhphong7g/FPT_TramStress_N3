@@ -1,8 +1,7 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./Advise.css";
 import { FaCalendarAlt, FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import WorkArea from '../ConsultingSchedule/WorkArea'
-import adviseTable from './Datadvise'
+import WorkArea from "../ConsultingSchedule/WorkArea";
 // Demo dữ liệu sự kiện
 const events = [
   { id: 1, title: "Tư vấn A", start: "08:00", end: "09:00" },
@@ -20,7 +19,7 @@ const Advise = () => {
   const today = new Date().toISOString().split("T")[0];
   const [selectedDate, setSelectedDate] = useState(today);
   const inputRef = useRef(null);
-
+  const [advices, setAdvices] = useState([]);
 
   // Pagination
   const [currentPage, setCurrentPage] = useState(1);
@@ -40,14 +39,19 @@ const Advise = () => {
   };
 
   const hours = Array.from({ length: 12 }, (_, i) => 8 + i); // từ 8h → 20h
+  // lấy dữ liệu từ db
+  useEffect(() => {
+    fetch("http://localhost:3001/advices")
+      .then((res) => res.json())
+      .then((data) => setAdvices(data));
+  }, []);
 
-  // Dữ liệu demo bảng
-  
   // Lọc dữ liệu theo filterStatus
+  // Lọc dữ liệu theo filterStatus từ advices (lấy từ db.json)
   const filteredData =
     filterStatus === "all"
-      ? adviseTable
-      : adviseTable.filter((row) => row.status === filterStatus);
+      ? advices
+      : advices.filter((row) => row.status === filterStatus);
 
   // Tính tổng số trang
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
@@ -59,7 +63,7 @@ const Advise = () => {
   return (
     <div className="Admin-container-box">
       {/* --- Lịch tư vấn bên trái --- */}
-      <WorkArea/>
+      <WorkArea />
 
       {/* --- Bảng bên phải --- */}
       <div className="Admin-container-right">
