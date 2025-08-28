@@ -24,16 +24,16 @@ const BarChartEmoji = ({ weekData, isCustomWeek, setIsCustomWeek, dailyMoods, se
 
     useEffect(() => {
         const fetchMoods = async () => {
-          try {
-            const data = await getData("mood"); 
-            setMoodMap(data);
-          } catch (err) {
-            console.error("Error fetching mood:", err);
-          }
+            try {
+                const data = await getData("mood");
+                setMoodMap(data);
+            } catch (err) {
+                console.error("Error fetching mood:", err);
+            }
         };
-    
+
         fetchMoods();
-      }, []);
+    }, []);
 
     useEffect(() => {
         if (!dailyMoods || dailyMoods.length === 0) return;
@@ -168,12 +168,14 @@ const BarChartEmoji = ({ weekData, isCustomWeek, setIsCustomWeek, dailyMoods, se
             <ResponsiveContainer className="my-barchart-container" width="100%" height="85%" >
                 <BarChart data={chartData} margin={{ top: 35, bottom: 10 }} >
                     <XAxis dataKey="name" />
+
                     <YAxis
                         type="number"
                         domain={[1, 5]}
                         ticks={[1, 2, 3, 4, 5]}
                         tick={renderCustomYAxis}
                         axisLine={false} tickLine={false}
+                        allowDataOverflow={true}
                     />
                     <Tooltip
                         content={({ payload }) => {

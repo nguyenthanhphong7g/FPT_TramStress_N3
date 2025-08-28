@@ -7,7 +7,6 @@ import SectionBlock from "../Relax/Main/SectionBlock";
 import { getRelaxContent } from "../../../services/activity/getRelaxContent";
 import icon_search from '../../../assets/images/Relax/icon_search.png'
 import Item from "../Relax/Main/Item";
-import { useNavigate } from "react-router-dom";
 import { getData } from "../../../services/apiService";
 const getRandomMessages = (arr, num) => {
   const shuffled = [...arr];
