@@ -11,6 +11,10 @@
     gap: 24px;
     
 }
+.admin-user-header{
+    display: flex;
+    justify-content: space-between;
+}
 
 .admin-user-title {
     display: flex;

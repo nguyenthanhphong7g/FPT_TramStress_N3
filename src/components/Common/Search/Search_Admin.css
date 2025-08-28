@@ -20,6 +20,8 @@
 .search-bar input{
     border:none;
     cursor: text;
+    display: flex;
+    flex:1;
 }
 .search-input::placeholder {
   color: #858d9d; 

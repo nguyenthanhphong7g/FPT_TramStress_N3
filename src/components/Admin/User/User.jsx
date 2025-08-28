@@ -9,6 +9,22 @@ import TableUser from '../table/TableUser'
 
 const User = () => {
     const itemsPerPage = 10;
+    const [currentPage, setCurrentPage] = useState(1);
+    const [searchTerm, setSearchTerm] = useState("");
+    const handleSearch = (term) => {
+        setSearchTerm(term);
+        setCurrentPage(1);
+    };
+    const getFilteredUser = () => {
+        let filtered = users;
+        if (searchTerm.trim() !== '') {
+            filtered = filtered.filter(user =>
+                (user.name || '').toLowerCase().includes(searchTerm.toLowerCase())
+            );
+        }
+
+        return filtered;
+    };
     return (
         <div className='admin-user'>
             <div className="admin-user-title">
@@ -16,13 +32,13 @@ const User = () => {
                 <h5>Người dùng</h5>
             </div>
             <div className="admin-user-filter-bar">
-                <Search_Admin />
+                <Search_Admin onSearch={handleSearch} />
                 <div className="admin-filter">
                     <ChonNgay />
                     <Loc />
                 </div>
             </div>
-            <TableUser arr_user={users} pagesize={itemsPerPage} />
+            <TableUser arr_user={getFilteredUser()} pagesize={itemsPerPage} />
         </div>
     )
 }

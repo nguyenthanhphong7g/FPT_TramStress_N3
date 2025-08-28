@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './NoiDungThuGian.css';
 import { Link } from 'react-router-dom';
 import SectionBlock from './SectionBlock';
-import { getRelaxContent } from '../../../../services/activity/getRelaxContent';
+import { getData } from '../../../../services/apiService';
 
 const NoiDung = ({ refs }) => {
   const [data, setData] = useState([]);
@@ -12,7 +12,7 @@ const NoiDung = ({ refs }) => {
   useEffect(() => {
     const fetchRelaxContent = async () => {
       try {
-        const json = await getRelaxContent();
+        const json = await getData('relax_content');
         setData(json);
       } catch (err) {
         setError(err.message);

@@ -2,7 +2,7 @@ import avatar from '../../../assets/images/admin/avar.png'
 const users = [
   {
     id: 1,
-    name: 'Nguyễn Thanh Phong',
+    name: 'Nguyễn Thanh Dương',
     email: 'phong@gmail.com',
     phone: '0123456789',
     gender: 'Nam',
