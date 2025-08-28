@@ -7,7 +7,12 @@
 }
 
 .footer-left {
+  display: flex;
   width: 26vh;
+}
+.footer-left .footer-logo {
+  height: 30px;
+  width: 30px;
 }
 
 .footer-left h2 {

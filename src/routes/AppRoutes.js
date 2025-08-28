@@ -48,6 +48,7 @@ function AppRoutes() {
           <Route path="user" element={<AdminUser />} />
           <Route path="content" element={<AdminContent />} />
           <Route path="advise" element={<AdminAdvise />} />
+          <Route path="setting" element={<UserSetting />} />
           <Route path="*" element={<NotFound />}/>
           {/* <Route path="consulting" element={<UserConsulting />} /> */}
           <Route path="user/:id" element={<AdminUserProfile />} />

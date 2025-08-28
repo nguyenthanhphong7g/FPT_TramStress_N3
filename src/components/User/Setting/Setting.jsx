@@ -5,16 +5,18 @@ import InputFeild from "../../../components/Common/FormLogin/InputFeild";
 import { profileSchema, passwordSchema } from "../../Common/Schema/Schema";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { updateUserStorages, getCurrentUser, compareCurrentPassword } from "../../../services/services";
+import { updateUserStorages, getCurrentUser, compareCurrentPassword, setCurrentUser } from "../../../services/services";
+import { useAuth } from "../../../contexts/AuthContext";
 
 
 const Setting = () => {
-    const [user, setUser] = useState(null);
+    // const [user, setUser] = useState(null);
     const [errorsProfile, setErrorsProfile] = useState({});
     const [errorsPassword, setErrorsPassword] = useState({});
     const [activeSection, setActiveSection] = useState("profile");
     const [activeTab, setActiveTab] = useState("info");
     const [newPassword, setNewPassword] = useState({ current: "", new: "", confirm: "" });
+    const {user, setUser } = useAuth();
 
     useEffect(() => {
         const savedUser = getCurrentUser();
@@ -78,6 +80,7 @@ const Setting = () => {
     };
 
     const updateUserStorage = (updatedUser) => {
+        setUser(updatedUser)
         updateUserStorages(updatedUser);
     };
 

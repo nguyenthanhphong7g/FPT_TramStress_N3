@@ -173,16 +173,6 @@
 .tab-content .group {
     width: 100%;
 }
-.success-box {
-  margin-top: 10px;
-  padding: 10px 15px;
-  background: #e6ffed;
-  border: 1px solid #2ecc71;
-  color: #27ae60;
-  border-radius: 6px;
-  font-weight: 500;
-  animation: fadeIn 0.5s ease-in-out;
-}
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-5px); }
