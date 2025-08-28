@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react'
 import './Home.css'
 import TotalConsults from '../User/OverviewStatItems/TotalConsults'
 import Frequency from '../User/OverviewStatItems/Frequency'
@@ -10,6 +9,7 @@ import AppointmentTable from '../table/AppointmentTable'
 import WorkArea from '../ConsultingSchedule/WorkArea'
 import TableExpert from '../table/TableExpert'
 import { getData } from '../../../services/apiService'
+import React, { useEffect, useState } from 'react'
 
 const Home = () => {
     const [data, setData] = useState([]);
@@ -29,15 +29,20 @@ const Home = () => {
         };
         fetchRelaxContent();
     }, []);
-    const totalConsultAvg = Math.round(
-        data.reduce((sum, data) => sum + data.totalConsults, 0) / data.length
-    );
-    const frequencyAvg = Math.round(
-        data.reduce((sum, data) => sum + data.frequency, 0) /data.length
-    );
-    const totalInteractionAvg = Math.round(
-        data.reduce((sum, data) => sum + data.totalInteractions, 0) / data.length
-    );
+
+    if (loading) return <div>Đang tải dữ liệu...</div>;
+    if (error) return <div>Lỗi: {error}</div>;
+
+    const totalConsultAvg = data.length > 0
+        ? Math.round(data.reduce((sum, item) => sum + (item.totalConsults || 0), 0) / data.length)
+        : 0;
+    const frequencyAvg = data.length > 0
+        ? Math.round(data.reduce((sum, item) => sum + (item.frequency || 0), 0) / data.length)
+        : 0;
+    const totalInteractionAvg = data.length > 0
+        ? Math.round(data.reduce((sum, item) => sum + (item.totalInteractions || 0), 0) / data.length)
+        : 0;
+
     return (
         <div className='admin-home'>
             <div className="admin-home-title">
@@ -48,7 +53,6 @@ const Home = () => {
                 <AverageRating />
                 <TotalInteractions totalInteraction={totalInteractionAvg} />
                 <Frequency frequency={frequencyAvg} />
-
             </div>
             <div className="admin-section-row">
                 <EmotionTest />
@@ -65,10 +69,8 @@ const Home = () => {
                     <h5>Chuyên gia nổi bật</h5>
                 </div>
                 <TableExpert />
-
             </div>
         </div>
-    )
-}
-
-export default Home
+    );
+};
+export default Home;
