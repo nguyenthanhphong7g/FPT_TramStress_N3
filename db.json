@@ -1,7 +1,6 @@
 {
   "users": [
     {
-
       "user_id": "u1",
       "user_name": "Phong",
       "email": "phong1@gmail.com",
@@ -228,6 +227,17 @@
       "mood": 3,
       "regularity": 0,
       "interaction_count": 0
+    },
+    {
+      "id": "8391",
+      "email": "lethingoctram9@gmail.com",
+      "password": "$2b$10$AyzJzj7EcK355WZCTcydSOK4FexVsDXSy8vPKYGJYXpuXxQrurcIy",
+      "role": "user",
+      "created_at": "2025-08-28",
+      "status": "Đang hoạt động",
+      "mood": 3,
+      "regularity": 0,
+      "interaction_count": 0
     }
   ],
   "daily_activity": [
@@ -259,6 +269,18 @@
       "userId": "1972",
       "date": "2025-8-28",
       "content": "Hehee"
+    },
+    {
+      "id": "4538",
+      "userId": "8391",
+      "date": "2025-8-28",
+      "content": "Hôm nay là một ngày đẹp ..."
+    },
+    {
+      "id": "25bd",
+      "userId": "8c02",
+      "date": "2025-8-29",
+      "content": ""
     }
   ],
   "hashtag": [
@@ -323,7 +345,6 @@
       "image": "/image/Emoji/Cam.png",
       "color": "#FF981E",
       "id": "b933"
-
     },
     {
       "mood_id": 3,
@@ -346,12 +367,8 @@
   ],
   "mood_log": [
     {
-      "id": "118f",
-      "mood_log_id": 1756150533855,
-      "activity_id": 1756150534261,
-      "content": "",
-      "mood_id": null,
       "id": "7d2b",
+      "mood_log_id": 1756150533855,
       "activity_id": "4fcd",
       "content": "",
       "mood_id": 3
@@ -520,7 +537,7 @@
       "hashtag_id": 8
     },
     {
-      "id": "62cd",   
+      "id": "62cd",
       "mood_log_id": "7d2b",
       "hashtag_id": 5
     },
@@ -938,6 +955,24 @@
       "ngay": "06/04/2025",
       "danhGia": "Tốt",
       "status": "done"
+    }
+  ],
+  "testResults": [
+    {
+      "id": "2ffb",
+      "userId": "1972",
+      "date": "2025-08-28",
+      "answers": {
+        "1": "Buồn",
+        "2": "Công việc",
+        "3": "Nghe nhạc",
+        "4": "Gia đình",
+        "5": "Sẵn sàng"
+      },
+      "conclusion": {
+        "mood": "Bạn đang buồn 😢",
+        "advice": "Hãy thử tâm sự cùng ai đó, hoặc nghe nhạc thư giãn."
+      }
     }
   ]
 }
