@@ -7,12 +7,37 @@ import SectionBlock from "../Relax/Main/SectionBlock";
 import { getRelaxContent } from "../../../services/activity/getRelaxContent";
 import icon_search from '../../../assets/images/Relax/icon_search.png'
 import Item from "../Relax/Main/Item";
+import { useNavigate } from "react-router-dom";
+import { getData } from "../../../services/apiService";
+const getRandomMessages = (arr, num) => {
+  const shuffled = [...arr];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled.slice(0, num);
+};
+
+
+
 const HomeMain = () => {
   const navigate = useNavigate();
+  const [messages, setMessages] = useState([])
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  useEffect(() => {
+      const fetchMoods = async () => {
+        try {
+          const data = await getData("diary-messages"); 
+          setMessages(data);
+        } catch (err) {
+          console.error("Error fetching mood:", err);
+        }
+      };
+  
+      fetchMoods();
+    }, []);
   useEffect(() => {
     const fetchRelaxContent = async () => {
       try {
@@ -49,7 +74,6 @@ const HomeMain = () => {
           <BarChart />
         </div>
       </div>
-
       <div className='home-relax'>
         <div className="noidung">
           <div className="noidung-top">
@@ -66,7 +90,33 @@ const HomeMain = () => {
           </div>
         </div>
       </div>
-      <div className="home-action"></div>
+      <div className="home-diary-container">
+      {/* Card nhật ký */}
+      <div className="diary-form">
+        <div className="diary-form-write">
+          <h3>Nhật ký hôm nay!!!</h3>
+        <div className="lined-paper">
+          <p className="diary-placeholder">Bạn chưa ghi gì hôm nay.Hãy bắt đầu vài dòng nhé!</p>
+        </div>
+        
+        </div>
+        <button className="diary-btn-submit" onClick={() => navigate("/userlayout/diary")}>
+          Viết ngay →
+        </button>
+      </div>
+
+      {/* Lời nhắn */}
+      <div className="diary-messages">
+        <h3>Lời nhắn dành cho bạn</h3>
+        <ul>
+          {getRandomMessages(messages, 3).map((msg, i) => (
+            <li key={i}>
+              <span className="icon">{msg.icon}</span> {msg.text}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
     </div>
   );
 };

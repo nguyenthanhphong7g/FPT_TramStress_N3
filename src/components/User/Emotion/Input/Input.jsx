@@ -6,6 +6,7 @@ import { useAuth } from "../../../../contexts/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { saveMoodFlow } from "../../../../services/activity/moodFlowService";
+import { getData } from "../../../../services/apiService";
 
 
 function Input() {
@@ -14,14 +15,20 @@ function Input() {
   const [showTooltip, setShowTooltip] = useState(false);
   const { user } = useAuth();
   const [hashtag, setHashtag] = useState([])
-      useEffect(() => {
-          fetch("http://localhost:3001/hashtag")
-          .then((res) => res.json())
-          .then((data) => setHashtag(data))
-          .catch((err) => console.error(err));
-        }, []);
+  useEffect(() => {
+      const fetchMoods = async () => {
+        try {
+          const data = await getData("hashtag"); 
+          setHashtag(data);
+        } catch (err) {
+          console.error("Error fetching mood:", err);
+        }
+      };
+  
+      fetchMoods();
+    }, []);
   const firstRow = hashtag.slice(0, 4);
-const secondRow = hashtag.slice(4, 8);
+  const secondRow = hashtag.slice(4, 8);
 
   const toggleTag = (tag) => {
     setSelectedTags((prev) =>
@@ -30,45 +37,43 @@ const secondRow = hashtag.slice(4, 8);
         : [...prev, tag]
     );
   };
-const saveMood = async () => {
-  if (!user) {
-    toast.error("Bạn cần đăng nhập để tiếp tục!!!");
-    return;
-  }
+  const saveMood = async () => {
+    if (!user) {
+      toast.error("Bạn cần đăng nhập để tiếp tục!!!");
+      return;
+    }
 
-  if (!selectedTags.length) {
-    setShowTooltip(true);
-    setTimeout(() => setShowTooltip(false), 2000);
-    return;
-  }
+    if (!selectedTags.length) {
+      setShowTooltip(true);
+      setTimeout(() => setShowTooltip(false), 2000);
+      return;
+    }
 
-  const avgValue = (() => {
-    if (!selectedTags.length) return 1;
+    const avgValue = (() => {
+      if (!selectedTags.length) return 1;
 
-    const avgOriginal =
-      selectedTags.reduce((sum, tag) => sum + tag.hashtag_id, 0) / selectedTags.length;
+      const avgOriginal =
+        selectedTags.reduce((sum, tag) => sum + tag.hashtag_id, 0) / selectedTags.length;
 
-    const scaled = 1 + (avgOriginal - 1) * (4 / 7);
+      const scaled = 1 + (avgOriginal - 1) * (4 / 7);
 
-    return Math.min(5, Math.max(1, Math.round(scaled)));
-  })();
-  try {
-    await saveMoodFlow({
-      currentUser: user,
-      moodData: {
-        content: note.trim(),
-        mood_id: avgValue,
-      },
-      hashtagIds: selectedTags.map((tag) => tag.hashtag_id),
-    });
-
-    toast.success("Lưu thành công!");
-    setTimeout(() => window.location.reload(), 1000);
-  } catch (err) {
-    toast.error("Đã có lỗi xảy ra khi lưu dữ liệu!");
-    console.error(err);
-  }
-};
+      return Math.min(5, Math.max(1, Math.round(scaled)));
+    })();
+    try {
+      await saveMoodFlow({
+        currentUser: user,
+        moodData: {
+          content: note.trim(),
+          mood_id: avgValue,
+        },
+        hashtagIds: selectedTags.map((tag) => tag.hashtag_id),
+      });
+      setTimeout(() => window.location.reload(), 100);
+    } catch (err) {
+      // toast.error("Đã có lỗi xảy ra khi lưu dữ liệu!");
+      console.error(err);
+    }
+  };
 
 
   return (

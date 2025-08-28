@@ -42,7 +42,7 @@ function AdminLayout() {
     <div>
       <Header
       title="Hôm nay bạn thế nào ?"
-      onSettingClick={() => navigate("/userlayout/setting")}
+      onSettingClick={() => navigate("/adminlayout/setting")}
       notifications={notifications}
       onNotificationRead={handleNotificationRead}
     />
