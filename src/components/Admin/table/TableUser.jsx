@@ -48,7 +48,7 @@ const TableUser = ({ arr_user, pagesize }) => {
                             <tr key={user.id}>
                                 <td className='td-name'>
                                     <div>
-                                        {user.name}
+                                        {user.user_name}
                                         <h6>{user.email}</h6>
                                     </div>
                                 </td>
@@ -56,7 +56,7 @@ const TableUser = ({ arr_user, pagesize }) => {
                                 <td>{user.gender}</td>
                                 <td>{user.emotion}</td>
                                 <td>{user.status}</td>
-                                <td>{user.date}</td>
+                                <td>{user.created_at}</td>
                                 <td className='admin-table-action'>
                                     <button onClick={() => handleViewUser(user)}>
                                         <img src={eye} alt="view" />

@@ -49,7 +49,12 @@ const XemTatCa = () => {
         <Link to="/userlayout/relax">
           <img src={return_relax} alt="Quay lại" />
         </Link>
-        <h4>{data.length > 0 ? data[0].type : 'Đang tải...'}</h4>
+        <h4>
+          {slug === "popular"
+            ? "Phổ biến"
+            : (data.length > 0 ? data[0].type : "Đang tải...")}
+        </h4>
+
       </div>
 
       <div className="see-all-content">
