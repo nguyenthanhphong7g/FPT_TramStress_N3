@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 
-const USER_KEY = "users";
+
 
 export const compareCurrentPassword = (password) => {
   const currentUser = getCurrentUser();
@@ -51,6 +51,12 @@ export async function registerUser(newUser) {
 
   newUser.password = hashPassword(newUser.password);
   newUser.role = newUser.role || "user";
+
+  newUser.created_at = new Date().toISOString().split("T")[0]; 
+  newUser.status = "Đang hoạt động";   
+  newUser.mood = 3;            
+  newUser.regularity = 0;  
+  newUser.interaction_count = 0;
 
   await fetch(API_URL, {
     method: "POST",

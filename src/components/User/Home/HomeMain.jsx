@@ -5,7 +5,6 @@ import Cat from "../../../assets/images/Home/Home_Emotion_Cat.png";
 import { Link, useNavigate } from "react-router-dom";
 import icon_search from '../../../assets/images/Relax/icon_search.png'
 import Item from "../Relax/Main/Item";
-import { useNavigate } from "react-router-dom";
 import { getData } from "../../../services/apiService";
 const getRandomMessages = (arr, num) => {
   const shuffled = [...arr];

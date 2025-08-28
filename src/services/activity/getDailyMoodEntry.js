@@ -2,13 +2,11 @@ import { getData } from "../apiService";
 
 export const getDailyMoodEntry = async (userId, date = null) => {
   try {
-    // 1. Lấy dữ liệu
     const allActivities = await getData("daily_activity");
     const allMoodLogs = await getData("mood_log");
     const allMoodHashtags = await getData("mood_hashtag");
     const allHashtags = await getData("hashtag");
 
-    // 2. Lọc hoạt động theo user (và ngày nếu có)
     let userActivities = allActivities.filter((a) => a.user_id === userId);
     if (date) {
       userActivities = userActivities.filter((a) => a.date === date);
