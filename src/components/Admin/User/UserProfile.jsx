@@ -30,7 +30,7 @@ const UserProfile = () => {
                 <div className="overview">
                     <div className="overview-header">
                         <img src={user.avatar ? user.avatar : avatar_default} alt="" />
-                        <p>{user.name}</p>
+                        <p>{user.user_name}</p>
                     </div>
                     <div className="overview-stats">
                         <TotalConsults totalConsult={user.totalConsults} />

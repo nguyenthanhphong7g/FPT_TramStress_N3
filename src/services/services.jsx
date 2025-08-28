@@ -89,14 +89,19 @@ export async function updateUserStorages(updatedUser) {
   if (updatedUser.password && !updatedUser.password.startsWith("$2b$")) {
     updatedUser.password = hashPassword(updatedUser.password);
   }
+  const updatedCurrentUser = {
+  ...updatedUser,
+  user_name: updatedUser.name, 
+  };
+  delete updatedCurrentUser.name; 
 
   await fetch(`${API_URL}/${updatedUser.id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(updatedUser),
+    body: JSON.stringify(updatedCurrentUser),
   });
 
-  setCurrentUser(updatedUser)
+  setCurrentUser(updatedCurrentUser)
 
   return { success: true, message: "Cập nhật thành công" };
 }

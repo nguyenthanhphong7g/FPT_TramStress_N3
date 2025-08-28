@@ -21,7 +21,6 @@ function Diary() {
   const [modalContent, setModalContent] = useState("");
   const [hasDiary, setHasDiary] = useState(false);
   const [modalKey, setModalKey] = useState("");
-  const [isViewingOldDiary, setIsViewingOldDiary] = useState(false);
 
   const todayKey = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
   const [isViewingOldDiary, setIsViewingOldDiary] = useState(false);
@@ -289,7 +288,7 @@ function Diary() {
             <h3>📅 Nhật ký ngày {modalDate}</h3>
             <p>{modalContent}</p>
             {hasDiary && modalPreview && (
-              <div className="modal-preview">
+              <div className="modal-preview"
                 style={{
                   marginTop: "10px",
                   padding: "10px",
