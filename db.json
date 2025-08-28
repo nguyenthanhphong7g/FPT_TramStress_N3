@@ -1,7 +1,7 @@
 {
   "users": [
     {
-<<<<<<< HEAD
+
       "user_id": "u1",
       "user_name": "Phong",
       "email": "phong1@gmail.com",
@@ -16,8 +16,6 @@
       "id": "9645"
     },
     {
-=======
->>>>>>> ee204d530d0ef90f2270ab71526b3c97577a6e39
       "id": "dfb5",
       "email": "Admin@tramstress.com",
       "password": "$2b$10$CckLcrSxtw97E84m3BDeXO5lddAmDQY1S.9HAT5wjMHsbpIiTd9aG",
@@ -268,81 +266,49 @@
       "hashtag_id": 1,
       "name": "#MệtMỏi",
       "color": "#002241",
-<<<<<<< HEAD
       "id": "9dd3"
-=======
-      "id": "2ff2"
->>>>>>> ee204d530d0ef90f2270ab71526b3c97577a6e39
     },
     {
       "hashtag_id": 2,
       "name": "#LoLắng",
       "color": "#38aadc",
-<<<<<<< HEAD
       "id": "a15f"
-=======
-      "id": "3ae6"
->>>>>>> ee204d530d0ef90f2270ab71526b3c97577a6e39
     },
     {
       "hashtag_id": 3,
       "name": "#CăngThẳng",
       "color": "#a14747",
-<<<<<<< HEAD
       "id": "bb8a"
-=======
-      "id": "cd2d"
->>>>>>> ee204d530d0ef90f2270ab71526b3c97577a6e39
     },
     {
       "hashtag_id": 4,
       "name": "#Buồn",
       "color": "#5c6bc0",
-<<<<<<< HEAD
       "id": "86af"
-=======
-      "id": "0c43"
->>>>>>> ee204d530d0ef90f2270ab71526b3c97577a6e39
     },
     {
       "hashtag_id": 5,
       "name": "#HàoHứng",
       "color": "#cc4f35",
-<<<<<<< HEAD
       "id": "db74"
-=======
-      "id": "0e72"
->>>>>>> ee204d530d0ef90f2270ab71526b3c97577a6e39
     },
     {
       "hashtag_id": 6,
       "name": "#ThưGiãn",
       "color": "#81c784",
-<<<<<<< HEAD
       "id": "3f94"
-=======
-      "id": "adb0"
->>>>>>> ee204d530d0ef90f2270ab71526b3c97577a6e39
     },
     {
       "hashtag_id": 7,
       "name": "#VuiVẻ",
       "color": "#dbc255",
-<<<<<<< HEAD
       "id": "306f"
-=======
-      "id": "4cfd"
->>>>>>> ee204d530d0ef90f2270ab71526b3c97577a6e39
     },
     {
       "hashtag_id": 8,
       "name": "#BìnhYên",
       "color": "#f48fb1",
-<<<<<<< HEAD
       "id": "29fc"
-=======
-      "id": "e261"
->>>>>>> ee204d530d0ef90f2270ab71526b3c97577a6e39
     }
   ],
   "mood": [
@@ -350,62 +316,41 @@
       "mood_id": 1,
       "image": "/image/Emoji/Do.png",
       "color": "#F54334",
-<<<<<<< HEAD
       "id": "7683"
-=======
-      "id": "7703"
->>>>>>> ee204d530d0ef90f2270ab71526b3c97577a6e39
     },
     {
       "mood_id": 2,
       "image": "/image/Emoji/Cam.png",
       "color": "#FF981E",
-<<<<<<< HEAD
       "id": "b933"
-=======
-      "id": "bd7c"
->>>>>>> ee204d530d0ef90f2270ab71526b3c97577a6e39
+
     },
     {
       "mood_id": 3,
       "image": "/image/Emoji/Vang.png",
       "color": "#FFC12D",
-<<<<<<< HEAD
       "id": "df0d"
-=======
-      "id": "9915"
->>>>>>> ee204d530d0ef90f2270ab71526b3c97577a6e39
     },
     {
       "mood_id": 4,
       "image": "/image/Emoji/XanhLa.png",
       "color": "#8CC255",
-<<<<<<< HEAD
       "id": "5f5e"
-=======
-      "id": "c003"
->>>>>>> ee204d530d0ef90f2270ab71526b3c97577a6e39
     },
     {
       "mood_id": 5,
       "image": "/image/Emoji/XanhNhat.png",
       "color": "#4AAF57",
-<<<<<<< HEAD
       "id": "ccff"
-=======
-      "id": "d980"
->>>>>>> ee204d530d0ef90f2270ab71526b3c97577a6e39
     }
   ],
   "mood_log": [
     {
-<<<<<<< HEAD
       "id": "118f",
       "mood_log_id": 1756150533855,
       "activity_id": 1756150534261,
       "content": "",
-      "mood_id": null
-=======
+      "mood_id": null,
       "id": "7d2b",
       "activity_id": "4fcd",
       "content": "",
@@ -560,13 +505,11 @@
       "img": "/image/Relax/sea.png",
       "text": "Bạn không bao giờ quá già để đặt một mục tiêu mới hoặc mơ một giấc mơ mới",
       "author": "C.S. Lewis"
->>>>>>> ee204d530d0ef90f2270ab71526b3c97577a6e39
     }
   ],
   "user_relax_history": [],
   "mood_hashtag": [
     {
-<<<<<<< HEAD
       "id": "4d0d",
       "mood_log_id": 1756150533855,
       "hashtag_id": 7
@@ -575,8 +518,9 @@
       "id": "6d68",
       "mood_log_id": 1756150533855,
       "hashtag_id": 8
-=======
-      "id": "62cd",
+    },
+    {
+      "id": "62cd",   
       "mood_log_id": "7d2b",
       "hashtag_id": 5
     },
@@ -686,7 +630,6 @@
       "icon": "🎵",
       "text": "Âm nhạc, một tách trà ấm hay điều gì đó bạn yêu thích cũng có thể chữa lành.",
       "id": "040a"
->>>>>>> ee204d530d0ef90f2270ab71526b3c97577a6e39
     }
   ],
   "advices": [
