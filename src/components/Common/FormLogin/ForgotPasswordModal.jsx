@@ -44,14 +44,14 @@ const ForgotPasswordModal = ({ onClose }) => {
 };
 
 
-    const sendCode = () => {
+    const sendCode = async () => {
         const emailValue = getValues("email"); 
         if (!emailValue) {
             setError('Bạn cần nhập email để nhận mã xác nhận!');
             return;
         }
-    const currentUser = getUser(email)
-
+    const currentUser = await getUser(emailValue)
+    
     if (!currentUser) {
         setError('Email chưa được đăng ký!');
         return;
