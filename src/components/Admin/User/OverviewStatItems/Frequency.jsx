@@ -10,7 +10,7 @@ const Frequency = ({frequency}) => {
             </div>
             <div className="stat-info">
                 <h5>Mức độ thường xuyên</h5>
-                <h4>{frequency}h/tuần</h4>
+                <h4>{frequency ?? 0}h/tuần</h4>
             </div>
         </div>
     )

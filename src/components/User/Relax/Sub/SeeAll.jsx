@@ -5,7 +5,7 @@ import return_relax from '../../../../assets/images/Relax/return_relax.png';
 import { Link, useParams } from 'react-router-dom';
 import Pagination from '../../../Common/Pagination/Pagination';
 import Item from '../Main/Item';
-import { getRelaxContent } from '../../../../services/activity/getRelaxContent';
+import { getData } from '../../../../services/apiService';
 
 const XemTatCa = () => {
   const { slug } = useParams();
@@ -23,7 +23,7 @@ const XemTatCa = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const allContent = await getRelaxContent();
+        const allContent = await getData('relax_content');
         const filtered = slug === "popular"
           ? allContent
           : allContent.filter(item => item.slug === slug);
