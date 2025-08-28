@@ -1,17 +1,15 @@
 import SidebarFormLayout from '../../components/Common/Sidebar/SidebarFormLayout';
-import { FaHome, FaHeart, FaUser, FaUsers, FaCalendarAlt, FaChartLine} from 'react-icons/fa';
+import { FaHome, FaHeart, FaUserFriends, FaUser, FaCalendar } from 'react-icons/fa';
 import Header from '../../components/Common/Header/Header';
 import { Outlet, useNavigate } from 'react-router-dom';
 import Footer from '../../components/Common/Footer/Footer';
 import '../layout.css';
 import { useEffect, useState } from 'react';
 
-
-function UserLayout() {
+function AdminLayout() {
   const navigate = useNavigate();
   const [notifications, setNotifications] = useState([]);
 
-  // Lấy dữ liệu từ localStorage khi load app
   useEffect(() => {
     const stored = JSON.parse(localStorage.getItem("notifications")) || [];
     setNotifications(stored);
@@ -30,7 +28,7 @@ function UserLayout() {
     { icon: <FaUser />, label: "Chuyên gia", path: "/#" },
     { icon: <FaUsers />, label: "Người dùng", path: "/adminlayout/user" },
     { icon: <FaCalendarAlt />, label: "Lịch tư vấn", path: "/adminlayout/advise" },
-    { icon: <FaChartLine />, label: "Thống kê", path: "/#" },
+    { icon: <FaCalendar />, label: "Lịch tư vấn", path: "/adminlayout/a" },
   ];
 
   const menuItems = [
@@ -39,7 +37,6 @@ function UserLayout() {
     { label: 'Chuyên gia', path: '/#' },
     { label: 'Người dùng', path: '/adminlayout/user' },
     { label: 'Lịch tư vấn', path: '/adminlayout/advise' },
-    { label: 'Thống kê', path: '/#' },
   ];
 
   return (
@@ -61,4 +58,4 @@ function UserLayout() {
   );
 }
 
-export default UserLayout;
+export default AdminLayout;

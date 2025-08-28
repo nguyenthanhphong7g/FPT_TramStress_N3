@@ -5,6 +5,7 @@ import Cat from '../../../../assets/images/Emotion_Cat.png';
 import { useAuth } from "../../../../contexts/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { saveMoodFlow } from "../../../../services/activity/moodFlowService";
 
 
 function Input() {
@@ -29,46 +30,46 @@ const secondRow = hashtag.slice(4, 8);
         : [...prev, tag]
     );
   };
+const saveMood = async () => {
+  if (!user) {
+    toast.error("Bạn cần đăng nhập để tiếp tục!!!");
+    return;
+  }
 
-  const saveMood = () => {
-    if (!user) {
-      toast.error("Bạn cần đăng nhập để tiếp tục!!!")
-      return;
-    }
-    if (!selectedTags.length) {
-      setShowTooltip(true);
-      setTimeout(() => setShowTooltip(false), 2000);
-      return;
-    }
+  if (!selectedTags.length) {
+    setShowTooltip(true);
+    setTimeout(() => setShowTooltip(false), 2000);
+    return;
+  }
 
-    const avgValue = (() => {
-      if (!selectedTags.length) return 1;
+  const avgValue = (() => {
+    if (!selectedTags.length) return 1;
 
-      const avgOriginal =
-        selectedTags.reduce((sum, tag) => sum + tag.hashtag_id, 0) /
-        selectedTags.length;
+    const avgOriginal =
+      selectedTags.reduce((sum, tag) => sum + tag.hashtag_id, 0) / selectedTags.length;
 
-      const scaled = 1 + (avgOriginal - 1) * (4 / 7);
+    const scaled = 1 + (avgOriginal - 1) * (4 / 7);
 
-      return Math.min(5, Math.max(1, Math.round(scaled)));
-    })();
+    return Math.min(5, Math.max(1, Math.round(scaled)));
+  })();
+  try {
+    await saveMoodFlow({
+      currentUser: user,
+      moodData: {
+        content: note.trim(),
+        mood_id: avgValue,
+      },
+      hashtagIds: selectedTags.map((tag) => tag.hashtag_id),
+    });
 
-    const newEntry = {
-      date: dayjs().format("YYYY-MM-DD"),
-      value: avgValue,
-      note: note.trim(),
-      hashtags: selectedTags.map((tag) => tag.name),
-    };
+    toast.success("Lưu thành công!");
+    setTimeout(() => window.location.reload(), 1000);
+  } catch (err) {
+    toast.error("Đã có lỗi xảy ra khi lưu dữ liệu!");
+    console.error(err);
+  }
+};
 
-    const existing = JSON.parse(localStorage.getItem("dailyMoods") || "[]");
-    const updated = [
-      ...existing.filter((e) => e.date !== newEntry.date),
-      newEntry,
-    ];
-    localStorage.setItem("dailyMoods", JSON.stringify(updated));
-
-    window.location.reload();
-  };
 
   return (
     <div className="mood-container">
