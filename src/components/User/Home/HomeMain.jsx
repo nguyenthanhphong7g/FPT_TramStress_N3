@@ -2,6 +2,11 @@ import react, { useEffect, useState } from "react";
 import BarChart from "../Recharts/BarChart";
 import "./HomeMain.css";
 import Cat from "../../../assets/images/Home/Home_Emotion_Cat.png";
+import { Link, useNavigate } from "react-router-dom";
+import SectionBlock from "../Relax/Main/SectionBlock";
+import { getRelaxContent } from "../../../services/activity/getRelaxContent";
+import icon_search from '../../../assets/images/Relax/icon_search.png'
+import Item from "../Relax/Main/Item";
 import { useNavigate } from "react-router-dom";
 import { getData } from "../../../services/apiService";
 const getRandomMessages = (arr, num) => {
@@ -18,6 +23,9 @@ const getRandomMessages = (arr, num) => {
 const HomeMain = () => {
   const navigate = useNavigate();
   const [messages, setMessages] = useState([])
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   useEffect(() => {
       const fetchMoods = async () => {
         try {
@@ -30,6 +38,19 @@ const HomeMain = () => {
   
       fetchMoods();
     }, []);
+  useEffect(() => {
+    const fetchRelaxContent = async () => {
+      try {
+        const json = await getRelaxContent();
+        setData(json);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchRelaxContent();
+  }, []);
   return (
     <div className="home-container">
       <div className="home-emotion">
@@ -53,7 +74,22 @@ const HomeMain = () => {
           <BarChart />
         </div>
       </div>
-      <div className="home-action"></div>
+      <div className='home-relax'>
+        <div className="noidung">
+          <div className="noidung-top">
+            <h4>Nội dung thư giãn hôm nay!!!</h4>
+            <Link to={`/userlayout/relax`} className="noidung-top-right">
+              <h5>Xem tất cả</h5>
+              <img src={icon_search} alt="" />
+            </Link>
+          </div>
+          <div className='noidung-bottom'>
+            {data.slice(0, 4).map((item, itemIdx) => (
+              <Item key={item.id} item={item} itemIdx={itemIdx} />
+            ))}
+          </div>
+        </div>
+      </div>
       <div className="home-diary-container">
       {/* Card nhật ký */}
       <div className="diary-form">
