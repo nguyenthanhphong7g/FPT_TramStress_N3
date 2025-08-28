@@ -24,7 +24,6 @@ const Item = ({ item, itemIdx }) => {
                 && activeIndex === itemIdx ? 'show' : ''}`
             }
             onClick={() => {
-                console.log(itemIdx)
                 if (itemIdx !== 0 && !user) {
                     toast.error("Bạn cần đăng nhập để tiếp tục!!!");
                     return;

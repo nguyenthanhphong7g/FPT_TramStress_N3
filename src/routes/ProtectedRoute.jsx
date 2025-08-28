@@ -3,7 +3,6 @@ import { getCurrentUser } from "../services/services";
 
 const ProtectedRoute = ({ allowedRoles = [], redirectPath = '/'}) => {
     const user = getCurrentUser();
-    console.log(user)
     
     const isAllowed = user && (allowedRoles.length === 0 || allowedRoles.includes(user.role));
 

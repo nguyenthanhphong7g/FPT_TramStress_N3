@@ -7,7 +7,7 @@
   height: 35px;
   width: 100%;
   position: relative;
-  margin-bottom: 0.8rem;
+  margin-bottom: 12px;
   background-color: #f0f8ff;
 }
 
@@ -15,11 +15,11 @@
   height: 100%;
   width: 100%;
   /* outline: none; */
-  font-size: 0.8rem;
-  border-radius: 0.31rem;
+  font-size: 12px;
+  border-radius: 2.5px;
   border: none;
   background-color: rgba(179, 219, 255, 0.2);
-  padding: 0 1.25rem 0 3.12rem;
+  padding: 0 18px 0 50px;
   transition: 0.2s ease;
 }
 
@@ -37,12 +37,12 @@
   top: 50%;
   transform: translateY(-50%);
   transition: 0.2s ease;
-  font-size: 1.2rem;
+  font-size: 18px;
 
 }
 
 .input-wrapper i:not(.eye-icon) {
-  left: 0.9rem;
+  left: 15px;
   pointer-events: none;
 }
 
@@ -51,9 +51,9 @@
 }
 
 .input-wrapper i.eye-icon {
-  font-size: 1.25rem;
+  font-size: 18px;
   cursor: pointer;
-  right: 0.9rem;
+  right: 15px;
   display: none;
 }
 
@@ -79,7 +79,7 @@
 
 .error-message {
     color: red;
-    font-size: 0.8rem;
+    font-size: 12px;
     margin-top: 4px;
 }
 
@@ -91,12 +91,12 @@
 
 .input-feild {
   width: 100%;
-  padding: 10px 40px 10px 40px; /* chừa chỗ cho icon bên trái + mũi tên bên phải */
+  padding: 10px 40px 10px 40px; 
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: white;
   font-size: 14px;
-  appearance: none; /* bỏ mũi tên mặc định */
+  appearance: none;
 }
 
 .input-icon {

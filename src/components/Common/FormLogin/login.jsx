@@ -31,16 +31,16 @@ const Login = () => {
     } = useForm({
         resolver: yupResolver(schema)
     });
-    useEffect(() => {
-        const Admin = {
-            email: "Admin@tramstress.com",
-            password: "12345678",
-            role: "admin",
-        };
-        (async () => {
-            await registerAdmin(Admin);
-        })();
-    }, []);
+    // useEffect(() => {
+    //     const Admin = {
+    //         email: "Admin@tramstress.com",
+    //         password: "12345678",
+    //         role: "admin",
+    //     };
+    //     (async () => {
+    //         await registerAdmin(Admin);
+    //     })();
+    // }, []);
     const onSubmit = async (data) => {
         const result = await loginUser(data.email, data.password);
         if (result.success) {
