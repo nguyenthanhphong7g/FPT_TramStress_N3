@@ -16,26 +16,22 @@ function Diary() {
   const [modalPreview, setModalPreview] = useState("");
   const { user } = useAuth();
 
-  // State cho modal
   const [modalDate, setModalDate] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState("");
   const [hasDiary, setHasDiary] = useState(false);
   const [modalKey, setModalKey] = useState("");
-
   const [isViewingOldDiary, setIsViewingOldDiary] = useState(false);
-  const todayKey = `${today.getFullYear()}-${
-    today.getMonth() + 1
-  }-${today.getDate()}`;
+
+  const todayKey = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+  const [isViewingOldDiary, setIsViewingOldDiary] = useState(false);
   const selectedKey = `${year}-${month}-${day}`;
   const isToday = todayKey === selectedKey;
 
-  // Load dữ liệu lần đầu
   useEffect(() => {
     loadDiary(year, month, day);
   }, []);
 
-  // Hàm load nhật ký từ db.json
   const loadDiary = async (y, m, d) => {
     setYear(y);
     setMonth(m);
@@ -43,9 +39,7 @@ function Diary() {
     const key = `${y}-${m}-${d}`;
 
     try {
-      const res = await fetch(
-        `http://localhost:3001/diary?userId=${user?.id || "guest"}&date=${key}`
-      );
+      const res = await fetch(`http://localhost:3001/diary?userId=${user?.id || "guest"}&date=${key}`);
       const data = await res.json();
       setContent(data.length > 0 ? data[0].content : "");
     } catch {
@@ -53,8 +47,6 @@ function Diary() {
     }
   };
 
-  // Lưu nhật ký vào db.json
-  // Lưu nhật ký vào db.json
   const saveDiary = async () => {
     if (!user) {
       toast.error("Bạn cần đăng nhập để tiếp tục!!!");
@@ -69,17 +61,13 @@ function Diary() {
     };
 
     try {
-      const res = await fetch(
-        `http://localhost:3001/diary?userId=${entry.userId}&date=${entry.date}`
-      );
+      const res = await fetch(`http://localhost:3001/diary?userId=${entry.userId}&date=${entry.date}`);
       const data = await res.json();
 
       if (data.length > 0) {
-        // Đã có nhật ký → không cho lưu thêm
         toast.warning("⚠️ Mỗi ngày chỉ được ghi nhật ký một lần!");
         return;
       } else {
-        // Thêm mới nếu chưa có
         await fetch("http://localhost:3001/diary", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -97,14 +85,11 @@ function Diary() {
     }
   };
 
-  // Xóa nhật ký
   const deleteDiary = async () => {
     const key = `${year}-${month}-${day}`;
 
     try {
-      const res = await fetch(
-        `http://localhost:3001/diary?userId=${user?.id || "guest"}&date=${key}`
-      );
+      const res = await fetch(`http://localhost:3001/diary?userId=${user?.id || "guest"}&date=${key}`);
       const data = await res.json();
 
       if (data.length > 0) {
@@ -125,16 +110,12 @@ function Diary() {
       toast.error("❌ Lỗi khi xóa nhật ký");
     }
   };
-
-  // Kiểm tra có nhật ký không
   const checkDiary = async (y, m, d) => {
     const key = `${y}-${m}-${d}`;
     setModalKey(key);
 
     try {
-      const res = await fetch(
-        `http://localhost:3001/diary?userId=${user?.id || "guest"}&date=${key}`
-      );
+      const res = await fetch(`http://localhost:3001/diary?userId=${user?.id || "guest"}&date=${key}`);
       const data = await res.json();
 
       if (data.length > 0) {
@@ -156,12 +137,14 @@ function Diary() {
     }
   };
 
-  // Khi chọn ngày trong MiniCalendar
   const handleSelectDate = async (y, m, d) => {
     const todayDate = new Date();
     todayDate.setHours(0, 0, 0, 0);
     const selectedDate = new Date(y, m - 1, d);
 
+    setYear(y);
+    setMonth(m);
+    setDay(d);
     setModalDate(`${d}/${m}/${y}`);
 
     if (selectedDate > todayDate) {
@@ -185,7 +168,6 @@ function Diary() {
     setModalOpen(true);
   };
 
-  // Xem / ghi nhật ký trong editor
   const viewInEditor = () => {
     if (!modalKey) return;
     const [y, m, d] = modalKey.split("-").map(Number);
@@ -194,7 +176,6 @@ function Diary() {
     setModalOpen(false);
   };
 
-  // Quay lại hôm nay
   const goBackToToday = () => {
     const y = today.getFullYear();
     const m = today.getMonth() + 1;
@@ -208,7 +189,6 @@ function Diary() {
 
   return (
     <div className="diary-container">
-      {/* Khung nhật ký */}
       <div className="diary-box">
         <h2 className="diary-title">📖 Nhật ký</h2>
         <div className="text-area-box">
@@ -224,7 +204,6 @@ function Diary() {
             Xóa nhật ký
           </button>
 
-          {/* Nếu ngày đã có nhật ký thì KHÔNG hiển thị nút Lưu */}
           {!hasDiary && (
             <button
               type="button"
@@ -235,7 +214,6 @@ function Diary() {
             </button>
           )}
 
-          {/* Nếu đang xem nhật ký cũ (không phải hôm nay) thì cho nút Quay lại */}
           {isViewingOldDiary && !isToday && (
             <button
               type="button"
@@ -248,13 +226,10 @@ function Diary() {
         </div>
       </div>
 
-      {/* Panel bên phải */}
       <div className="right-panel">
         <div className="right-panel-day">
           <div className="select-field">
-            <label htmlFor="day" className="sr-only">
-              Ngày
-            </label>
+            <label htmlFor="day" className="sr-only">Ngày</label>
             <select
               id="day"
               className="day-select"
@@ -270,9 +245,7 @@ function Diary() {
           </div>
 
           <div className="select-field">
-            <label htmlFor="month" className="sr-only">
-              Tháng
-            </label>
+            <label htmlFor="month" className="sr-only">Tháng</label>
             <select
               id="month"
               className="day-select"
@@ -288,9 +261,7 @@ function Diary() {
           </div>
 
           <div className="select-field">
-            <label htmlFor="year" className="sr-only">
-              Năm
-            </label>
+            <label htmlFor="year" className="sr-only">Năm</label>
             <select
               id="year"
               className="day-select"
@@ -312,16 +283,13 @@ function Diary() {
         <img src={imgCat01} alt="Mèo" className="cat-img" />
       </div>
 
-      {/* Modal */}
       {modalOpen && (
         <div className="modal-overlay" onClick={() => setModalOpen(false)}>
           <div className="modal-box" onClick={(e) => e.stopPropagation()}>
             <h3>📅 Nhật ký ngày {modalDate}</h3>
             <p>{modalContent}</p>
-
-            {/* Nếu có nhật ký thì hiển thị thêm preview */}
             {hasDiary && modalPreview && (
-              <div
+              <div className="modal-preview">
                 style={{
                   marginTop: "10px",
                   padding: "10px",
@@ -336,7 +304,6 @@ function Diary() {
 
             <div style={{ marginTop: "10px" }}>
               <button onClick={() => setModalOpen(false)}>Đóng</button>
-
               {/* Nếu có nhật ký thì thêm nút Xem ngay */}
               {hasDiary && (
                 <button onClick={viewInEditor} style={{ marginLeft: "10px" }}>
