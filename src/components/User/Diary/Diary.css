@@ -271,3 +271,16 @@
   border-radius: 8px;
   cursor: pointer;
 }
+.save-btn-diary-select{
+  margin-left: 10px;
+}
+.modal-preview-has-diary{
+   margin-top: 10px;
+   padding: 10px;
+  background: #f8f8f8;
+  border-radius: 5px;
+  font-style: italic;
+}
+.Buttons-modal-Preview{
+  margin-top: 10px;
+}

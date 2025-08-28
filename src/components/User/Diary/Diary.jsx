@@ -13,32 +13,40 @@ function Diary() {
   const [month, setMonth] = useState(today.getMonth() + 1);
   const [day, setDay] = useState(today.getDate());
   const [content, setContent] = useState("");
-  const [modalPreview, setModalPreview] = useState("");
-  const { user } = useAuth();
 
+  // State cho modal
   const [modalDate, setModalDate] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState("");
-  const [hasDiary, setHasDiary] = useState(false);
+  const [modalPreview, setModalPreview] = useState("");
   const [modalKey, setModalKey] = useState("");
-
-  const todayKey = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+  const [hasDiary, setHasDiary] = useState(false);
   const [isViewingOldDiary, setIsViewingOldDiary] = useState(false);
+  const [isTodaySelected, setIsTodaySelected] = useState(true);
+
+  const { user } = useAuth();
+
+  // Xác định ngày
+  const todayKey = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
   const selectedKey = `${year}-${month}-${day}`;
   const isToday = todayKey === selectedKey;
 
+  // Load dữ liệu khi mở component
   useEffect(() => {
     loadDiary(year, month, day);
   }, []);
 
+  // Hàm load nhật ký
   const loadDiary = async (y, m, d) => {
     setYear(y);
     setMonth(m);
     setDay(d);
-    const key = `${y}-${m}-${d}`;
 
+    const key = `${y}-${m}-${d}`;
     try {
-      const res = await fetch(`http://localhost:3001/diary?userId=${user?.id || "guest"}&date=${key}`);
+      const res = await fetch(
+        `http://localhost:3001/diary?userId=${user?.id || "guest"}&date=${key}`
+      );
       const data = await res.json();
       setContent(data.length > 0 ? data[0].content : "");
     } catch {
@@ -46,6 +54,7 @@ function Diary() {
     }
   };
 
+  // Hàm lưu nhật ký
   const saveDiary = async () => {
     if (!user) {
       toast.error("Bạn cần đăng nhập để tiếp tục!!!");
@@ -60,7 +69,9 @@ function Diary() {
     };
 
     try {
-      const res = await fetch(`http://localhost:3001/diary?userId=${entry.userId}&date=${entry.date}`);
+      const res = await fetch(
+        `http://localhost:3001/diary?userId=${entry.userId}&date=${entry.date}`
+      );
       const data = await res.json();
 
       if (data.length > 0) {
@@ -75,8 +86,13 @@ function Diary() {
 
         setModalDate(`${day}/${month}/${year}`);
         setModalContent(`✅ Đã lưu nhật ký ngày ${day}/${month}/${year}`);
-        setContent("");
+        setModalKey(key);
+        setModalPreview(
+          entry.content.slice(0, 50) + (entry.content.length > 50 ? "..." : "")
+        );
         setHasDiary(true);
+
+        setContent("");
         setModalOpen(true);
       }
     } catch {
@@ -84,11 +100,13 @@ function Diary() {
     }
   };
 
+  // Hàm xóa nhật ký
   const deleteDiary = async () => {
     const key = `${year}-${month}-${day}`;
-
     try {
-      const res = await fetch(`http://localhost:3001/diary?userId=${user?.id || "guest"}&date=${key}`);
+      const res = await fetch(
+        `http://localhost:3001/diary?userId=${user?.id || "guest"}&date=${key}`
+      );
       const data = await res.json();
 
       if (data.length > 0) {
@@ -109,12 +127,16 @@ function Diary() {
       toast.error("❌ Lỗi khi xóa nhật ký");
     }
   };
+
+  // Kiểm tra có nhật ký không
   const checkDiary = async (y, m, d) => {
     const key = `${y}-${m}-${d}`;
     setModalKey(key);
 
     try {
-      const res = await fetch(`http://localhost:3001/diary?userId=${user?.id || "guest"}&date=${key}`);
+      const res = await fetch(
+        `http://localhost:3001/diary?userId=${user?.id || "guest"}&date=${key}`
+      );
       const data = await res.json();
 
       if (data.length > 0) {
@@ -136,84 +158,118 @@ function Diary() {
     }
   };
 
+  // Khi chọn ngày trên calendar
   const handleSelectDate = async (y, m, d) => {
     const todayDate = new Date();
     todayDate.setHours(0, 0, 0, 0);
     const selectedDate = new Date(y, m - 1, d);
 
-    setYear(y);
-    setMonth(m);
-    setDay(d);
     setModalDate(`${d}/${m}/${y}`);
+    setIsTodaySelected(
+      selectedDate.toDateString() === todayDate.toDateString()
+    );
 
     if (selectedDate > todayDate) {
       setModalContent("🚫 Bạn không thể ghi nhật ký cho ngày trong tương lai!");
       setHasDiary(false);
-    } else if (selectedDate.toDateString() === todayDate.toDateString()) {
-      setModalContent("✍️ Bạn có thể viết nhật ký cho ngày hôm nay.");
-      setHasDiary(true);
-      setModalKey(`${y}-${m}-${d}`);
     } else {
       const diaryExists = await checkDiary(y, m, d);
-      if (diaryExists) {
-        setModalContent("📖 Bạn đã có nhật ký ngày này. Muốn xem lại không?");
-        setHasDiary(true);
-      } else {
-        setModalContent("📌 Chưa có nhật ký ngày này.");
-        setHasDiary(false);
-      }
+      setHasDiary(diaryExists);
     }
 
     setModalOpen(true);
   };
 
+  // Xem nhật ký trong editor
   const viewInEditor = () => {
     if (!modalKey) return;
     const [y, m, d] = modalKey.split("-").map(Number);
     loadDiary(y, m, d);
-    setIsViewingOldDiary(true);
+    setIsViewingOldDiary(true); // Chế độ chỉ xem
     setModalOpen(false);
   };
 
-  const goBackToToday = () => {
+  // Quay lại hôm nay
+  const goBackToToday = async () => {
     const y = today.getFullYear();
     const m = today.getMonth() + 1;
     const d = today.getDate();
-    loadDiary(y, m, d);
+
+    await loadDiary(y, m, d);
     setYear(y);
     setMonth(m);
     setDay(d);
-    setIsViewingOldDiary(false);
+
+    const res = await fetch(
+      `http://localhost:3001/diary?userId=${user?.id || "guest"}&date=${y}-${m}-${d}`
+    );
+    const data = await res.json();
+    if (data.length > 0) {
+      setIsViewingOldDiary(true);
+    } else {
+      setIsViewingOldDiary(false);
+    }
+  };
+
+  // Hàm render nút trong Modal
+  const renderModalButtons = () => {
+    const buttons = [
+      <button key="close" onClick={() => setModalOpen(false)}>
+        Đóng
+      </button>,
+    ];
+
+    if (hasDiary) {
+      buttons.push(
+        <button
+          key="view"
+          onClick={viewInEditor}
+          className="save-btn-diary-select"
+        >
+          Xem ngay
+        </button>
+      );
+    }
+
+    if (isTodaySelected && !hasDiary) {
+      buttons.push(
+        <button
+          className="save-btn-diary-select"
+          key="write"
+          onClick={() => {
+            setModalOpen(false);
+            setIsViewingOldDiary(false);
+          }}
+        >
+          Ghi ngay
+        </button>
+      );
+    }
+
+    return buttons;
   };
 
   return (
     <div className="diary-container">
       <div className="diary-box">
         <h2 className="diary-title">📖 Nhật ký</h2>
+
         <div className="text-area-box">
           <textarea
             className="text-area"
             placeholder="Viết gì đó..."
             value={content}
             onChange={(e) => setContent(e.target.value)}
+            readOnly={isViewingOldDiary}
           />
         </div>
+
         <div className="button-group">
           <button className="prev-btn" onClick={deleteDiary}>
-            Xóa nhật ký
+            🗑️ Xóa nhật ký
           </button>
 
-          {!hasDiary && (
-            <button
-              type="button"
-              className="save-btn-diary"
-              onClick={saveDiary}
-            >
-              <FaSave /> Lưu
-            </button>
-          )}
-
-          {isViewingOldDiary && !isToday && (
+          {isViewingOldDiary && !isToday ? (
             <button
               type="button"
               className="save-btn-diary"
@@ -221,12 +277,21 @@ function Diary() {
             >
               ⬅ Quay lại
             </button>
-          )}
+          ) : !hasDiary && isToday ? (
+            <button
+              type="button"
+              className="save-btn-diary"
+              onClick={saveDiary}
+            >
+              <FaSave /> Lưu
+            </button>
+          ) : null}
         </div>
       </div>
 
       <div className="right-panel">
         <div className="right-panel-day">
+          {/* Ngày */}
           <div className="select-field">
             <label htmlFor="day" className="sr-only">Ngày</label>
             <select
@@ -243,6 +308,7 @@ function Diary() {
             </select>
           </div>
 
+          {/* Tháng */}
           <div className="select-field">
             <label htmlFor="month" className="sr-only">Tháng</label>
             <select
@@ -259,6 +325,7 @@ function Diary() {
             </select>
           </div>
 
+          {/* Năm */}
           <div className="select-field">
             <label htmlFor="year" className="sr-only">Năm</label>
             <select
@@ -269,6 +336,16 @@ function Diary() {
             >
               <option value={2025}>Năm 2025</option>
               <option value={2024}>Năm 2024</option>
+              <option value={2023}>Năm 2023</option>
+              <option value={2022}>Năm 2022</option>
+              <option value={2021}>Năm 2021</option>
+              <option value={2020}>Năm 2020</option>
+              <option value={2019}>Năm 2019</option>
+              <option value={2018}>Năm 2018</option>
+              <option value={2017}>Năm 2017</option>
+              <option value={2016}>Năm 2016</option>
+              <option value={2015}>Năm 2015</option>
+              <option value={2014}>Năm 2014</option>
             </select>
           </div>
         </div>
@@ -279,6 +356,7 @@ function Diary() {
           day={day}
           onSelectDate={handleSelectDate}
         />
+
         <img src={imgCat01} alt="Mèo" className="cat-img" />
       </div>
 
@@ -287,29 +365,14 @@ function Diary() {
           <div className="modal-box" onClick={(e) => e.stopPropagation()}>
             <h3>📅 Nhật ký ngày {modalDate}</h3>
             <p>{modalContent}</p>
+
             {hasDiary && modalPreview && (
-              <div className="modal-preview"
-                style={{
-                  marginTop: "10px",
-                  padding: "10px",
-                  background: "#f8f8f8",
-                  borderRadius: "5px",
-                  fontStyle: "italic",
-                }}
-              >
+              <div className="modal-preview-has-diary">
                 {modalPreview}
               </div>
             )}
 
-            <div style={{ marginTop: "10px" }}>
-              <button onClick={() => setModalOpen(false)}>Đóng</button>
-              {/* Nếu có nhật ký thì thêm nút Xem ngay */}
-              {hasDiary && (
-                <button onClick={viewInEditor} style={{ marginLeft: "10px" }}>
-                  Xem ngay
-                </button>
-              )}
-            </div>
+            <div className="Buttons-modal-Preview">{renderModalButtons()}</div>
           </div>
         </div>
       )}
