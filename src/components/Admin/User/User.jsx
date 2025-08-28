@@ -37,7 +37,7 @@ const User = () => {
         filtered = filtered.filter(user => user.role === 'user' || user.role === 'expert');
         if (searchTerm.trim() !== '') {
             filtered = filtered.filter(user =>
-                (user.name || '').toLowerCase().includes(searchTerm.toLowerCase())
+                (user.user_name || '').toLowerCase().includes(searchTerm.toLowerCase())
             );
         }
 
