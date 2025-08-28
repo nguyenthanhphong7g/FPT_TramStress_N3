@@ -4,7 +4,7 @@ import BaiTap from '../../Common/Button/Admin/BaiTap';
 import GiaiDieu from '../../Common/Button/Admin/GiaiDieu';
 import LoiHay from '../../Common/Button/Admin/LoiHay';
 import Pagination from '../../Common/Pagination/Admin/Pagination';
-import { getRelaxContent } from '../../../services/activity/getRelaxContent';
+import { getData } from '../../../services/apiService';
 
 const TrendingContent = () => {
     const [allData, setAllData] = useState([]);
@@ -17,7 +17,7 @@ const TrendingContent = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const data = await getRelaxContent();
+                const data = await getData('relax_content');
                 setAllData(data);
             } catch (err) {
                 setError(err.message);

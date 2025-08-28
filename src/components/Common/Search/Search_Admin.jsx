@@ -4,9 +4,10 @@ import search_icon from '../../../assets/images/admin/search.png'
 
 const Search_Admin = ({ onSearch }) => {
     const [query, setQuery] = useState('');
-
+    const [currentPage, setCurrentPage] = useState(1);
     const handleInputChange = (e) => {
         setQuery(e.target.value);
+        setCurrentPage(1);
     };
 
     const handleSubmit = (e) => {

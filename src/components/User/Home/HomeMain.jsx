@@ -3,8 +3,6 @@ import BarChart from "../Recharts/BarChart";
 import "./HomeMain.css";
 import Cat from "../../../assets/images/Home/Home_Emotion_Cat.png";
 import { Link, useNavigate } from "react-router-dom";
-import SectionBlock from "../Relax/Main/SectionBlock";
-import { getRelaxContent } from "../../../services/activity/getRelaxContent";
 import icon_search from '../../../assets/images/Relax/icon_search.png'
 import Item from "../Relax/Main/Item";
 import { getData } from "../../../services/apiService";
@@ -40,7 +38,7 @@ const HomeMain = () => {
   useEffect(() => {
     const fetchRelaxContent = async () => {
       try {
-        const json = await getRelaxContent();
+        const json = await getData('relax_content');
         setData(json);
       } catch (err) {
         setError(err.message);
