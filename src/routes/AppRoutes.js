@@ -40,6 +40,7 @@ function AppRoutes() {
           <Route path="/userlayout/relax/:slug" element={<UserRelaxSeeAll />} />
         </Route>
 
+
       </Route>
       <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
         <Route path="/adminlayout" element={<AdminLayout />}>
