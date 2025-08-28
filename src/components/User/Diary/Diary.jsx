@@ -13,7 +13,7 @@ function Diary() {
   const [month, setMonth] = useState(today.getMonth() + 1);
   const [day, setDay] = useState(today.getDate());
   const [content, setContent] = useState("");
-
+  const [modalPreview, setModalPreview] = useState("");
   const { user } = useAuth();
 
   // State cho modal
@@ -23,7 +23,7 @@ function Diary() {
   const [hasDiary, setHasDiary] = useState(false);
   const [modalKey, setModalKey] = useState("");
 
-  const [isViewingOldDiary, setIsViewingOldDiary] = useState(false); // 🔥 kiểm soát nút quay lại
+  const [isViewingOldDiary, setIsViewingOldDiary] = useState(false);
   const todayKey = `${today.getFullYear()}-${
     today.getMonth() + 1
   }-${today.getDate()}`;
@@ -35,65 +35,129 @@ function Diary() {
     loadDiary(year, month, day);
   }, []);
 
-  // Hàm load nhật ký theo ngày
-  const loadDiary = (y, m, d) => {
+  // Hàm load nhật ký từ db.json
+  const loadDiary = async (y, m, d) => {
     setYear(y);
     setMonth(m);
     setDay(d);
-    const saved = JSON.parse(localStorage.getItem("myDiarys") || "{}");
     const key = `${y}-${m}-${d}`;
-    setContent(saved[key] || "");
+
+    try {
+      const res = await fetch(
+        `http://localhost:3001/diary?userId=${user?.id || "guest"}&date=${key}`
+      );
+      const data = await res.json();
+      setContent(data.length > 0 ? data[0].content : "");
+    } catch {
+      setContent("");
+    }
   };
 
-  // Lưu nhật ký
-  const saveDiary = () => {
+  // Lưu nhật ký vào db.json
+  // Lưu nhật ký vào db.json
+  const saveDiary = async () => {
     if (!user) {
-      toast.error("Bạn cần đăng nhập để tiếp tục!!!")
+      toast.error("Bạn cần đăng nhập để tiếp tục!!!");
       return;
     }
-    const saved = JSON.parse(localStorage.getItem("myDiarys") || "{}");
-    const key = `${year}-${month}-${day}`;
-    saved[key] = content;
-    localStorage.setItem("myDiarys", JSON.stringify(saved));
 
-    // hiện modal thay vì alert
-    setModalDate(`${day}/${month}/${year}`);
-    setModalContent(`✅ Đã lưu nhật ký ngày ${day}/${month}/${year}`);
-    setHasDiary(true);
-    setModalOpen(true);
+    const key = `${year}-${month}-${day}`;
+    const entry = {
+      userId: user?.id || "guest",
+      date: key,
+      content,
+    };
+
+    try {
+      const res = await fetch(
+        `http://localhost:3001/diary?userId=${entry.userId}&date=${entry.date}`
+      );
+      const data = await res.json();
+
+      if (data.length > 0) {
+        // Đã có nhật ký → không cho lưu thêm
+        toast.warning("⚠️ Mỗi ngày chỉ được ghi nhật ký một lần!");
+        return;
+      } else {
+        // Thêm mới nếu chưa có
+        await fetch("http://localhost:3001/diary", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(entry),
+        });
+
+        setModalDate(`${day}/${month}/${year}`);
+        setModalContent(`✅ Đã lưu nhật ký ngày ${day}/${month}/${year}`);
+        setContent("");
+        setHasDiary(true);
+        setModalOpen(true);
+      }
+    } catch {
+      toast.error("❌ Lỗi khi lưu nhật ký");
+    }
   };
 
   // Xóa nhật ký
-  const deleteDiary = () => {
-    const saved = JSON.parse(localStorage.getItem("myDiarys") || "{}");
+  const deleteDiary = async () => {
     const key = `${year}-${month}-${day}`;
-    if (saved[key]) {
-      delete saved[key];
-      localStorage.setItem("myDiarys", JSON.stringify(saved));
-      setContent("");
+
+    try {
+      const res = await fetch(
+        `http://localhost:3001/diary?userId=${user?.id || "guest"}&date=${key}`
+      );
+      const data = await res.json();
+
+      if (data.length > 0) {
+        await fetch(`http://localhost:3001/diary/${data[0].id}`, {
+          method: "DELETE",
+        });
+        setContent("");
+        setModalContent(`🗑️ Đã xóa nhật ký ngày ${day}/${month}/${year}`);
+        setHasDiary(false);
+      } else {
+        setModalContent("⚠️ Không có nhật ký để xóa!");
+        setHasDiary(false);
+      }
 
       setModalDate(`${day}/${month}/${year}`);
-      setModalContent(`🗑️ Đã xóa nhật ký ngày ${day}/${month}/${year}`);
-      setHasDiary(false);
       setModalOpen(true);
-    } else {
-      setModalDate(`${day}/${month}/${year}`);
-      setModalContent("⚠️ Không có nhật ký để xóa!");
-      setHasDiary(false);
-      setModalOpen(true);
+    } catch {
+      toast.error("❌ Lỗi khi xóa nhật ký");
     }
   };
 
-  // Hàm kiểm tra có nhật ký hay chưa
-  const checkDiary = (y, m, d) => {
-    const saved = JSON.parse(localStorage.getItem("myDiarys") || "{}");
+  // Kiểm tra có nhật ký không
+  const checkDiary = async (y, m, d) => {
     const key = `${y}-${m}-${d}`;
     setModalKey(key);
-    return !!saved[key];
+
+    try {
+      const res = await fetch(
+        `http://localhost:3001/diary?userId=${user?.id || "guest"}&date=${key}`
+      );
+      const data = await res.json();
+
+      if (data.length > 0) {
+        setModalContent("📖 Bạn đã có nhật ký ngày này.");
+        setModalPreview(
+          data[0].content.slice(0, 50) +
+            (data[0].content.length > 50 ? "..." : "")
+        );
+        setHasDiary(true);
+        return true;
+      } else {
+        setModalContent("⚠️ Không có nhật ký ngày này.");
+        setModalPreview("");
+        setHasDiary(false);
+        return false;
+      }
+    } catch {
+      return false;
+    }
   };
 
   // Khi chọn ngày trong MiniCalendar
-  const handleSelectDate = (y, m, d) => {
+  const handleSelectDate = async (y, m, d) => {
     const todayDate = new Date();
     todayDate.setHours(0, 0, 0, 0);
     const selectedDate = new Date(y, m - 1, d);
@@ -101,17 +165,14 @@ function Diary() {
     setModalDate(`${d}/${m}/${y}`);
 
     if (selectedDate > todayDate) {
-      // 🚫 Ngày tương lai
       setModalContent("🚫 Bạn không thể ghi nhật ký cho ngày trong tương lai!");
       setHasDiary(false);
     } else if (selectedDate.toDateString() === todayDate.toDateString()) {
-      // 📌 Ngày hôm nay
       setModalContent("✍️ Bạn có thể viết nhật ký cho ngày hôm nay.");
       setHasDiary(true);
       setModalKey(`${y}-${m}-${d}`);
     } else {
-      // 📌 Ngày quá khứ
-      const diaryExists = checkDiary(y, m, d);
+      const diaryExists = await checkDiary(y, m, d);
       if (diaryExists) {
         setModalContent("📖 Bạn đã có nhật ký ngày này. Muốn xem lại không?");
         setHasDiary(true);
@@ -124,7 +185,7 @@ function Diary() {
     setModalOpen(true);
   };
 
-  // 👉 Xem / ghi nhật ký trong editor
+  // Xem / ghi nhật ký trong editor
   const viewInEditor = () => {
     if (!modalKey) return;
     const [y, m, d] = modalKey.split("-").map(Number);
@@ -133,7 +194,7 @@ function Diary() {
     setModalOpen(false);
   };
 
-  // 🔥 Hàm quay lại hôm nay
+  // Quay lại hôm nay
   const goBackToToday = () => {
     const y = today.getFullYear();
     const m = today.getMonth() + 1;
@@ -163,34 +224,25 @@ function Diary() {
             Xóa nhật ký
           </button>
 
-          {isViewingOldDiary ? (
-            isToday ? (
-              // Nếu đang xem hôm nay → hiện nút Lưu
-              <button
-                type="button"
-                className="save-btn-diary"
-                onClick={saveDiary}
-              >
-                <FaSave /> Lưu
-              </button>
-            ) : (
-              // Nếu đang xem ngày cũ → hiện nút Quay lại
-              <button
-                type="button"
-                className="save-btn-diary"
-                onClick={goBackToToday}
-              >
-                ⬅ Quay lại
-              </button>
-            )
-          ) : (
-            // Nếu không ở chế độ xem → luôn cho phép Lưu
+          {/* Nếu ngày đã có nhật ký thì KHÔNG hiển thị nút Lưu */}
+          {!hasDiary && (
             <button
               type="button"
               className="save-btn-diary"
               onClick={saveDiary}
             >
               <FaSave /> Lưu
+            </button>
+          )}
+
+          {/* Nếu đang xem nhật ký cũ (không phải hôm nay) thì cho nút Quay lại */}
+          {isViewingOldDiary && !isToday && (
+            <button
+              type="button"
+              className="save-btn-diary"
+              onClick={goBackToToday}
+            >
+              ⬅ Quay lại
             </button>
           )}
         </div>
@@ -251,7 +303,6 @@ function Diary() {
           </div>
         </div>
 
-        {/* Lịch mini */}
         <MiniCalendar
           year={year}
           month={month}
@@ -267,19 +318,36 @@ function Diary() {
           <div className="modal-box" onClick={(e) => e.stopPropagation()}>
             <h3>📅 Nhật ký ngày {modalDate}</h3>
             <p>{modalContent}</p>
+
+            {/* Nếu có nhật ký thì hiển thị thêm preview */}
+            {hasDiary && modalPreview && (
+              <div
+                style={{
+                  marginTop: "10px",
+                  padding: "10px",
+                  background: "#f8f8f8",
+                  borderRadius: "5px",
+                  fontStyle: "italic",
+                }}
+              >
+                {modalPreview}
+              </div>
+            )}
+
             <div style={{ marginTop: "10px" }}>
               <button onClick={() => setModalOpen(false)}>Đóng</button>
-              {(hasDiary ||
-                modalContent.includes("hôm nay") ||
-                modalContent.includes("Chưa có")) && (
+
+              {/* Nếu có nhật ký thì thêm nút Xem ngay */}
+              {hasDiary && (
                 <button onClick={viewInEditor} style={{ marginLeft: "10px" }}>
-                  Ghi / Xem ngay
+                  Xem ngay
                 </button>
               )}
             </div>
           </div>
         </div>
       )}
+
       <ToastContainer position="top-right" autoClose={2000} />
     </div>
   );

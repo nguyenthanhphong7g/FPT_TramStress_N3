@@ -151,7 +151,25 @@
       "name": "Le Thi Tram 3",
       "email": "lethingoctram59009@gmail.com",
       "password": "$2b$10$zjk7h3D5uEK5NwDLBSfLCuTd25R41DXCVgP0OJqRscTTUD/rLyGFe",
-      "role": "user",
+      "role": "user"
+    },
+    {
+      "id": "8c02",
+      "email": "lethingoctram55@gmail.com",
+      "password": "$2b$10$G.3ZFFswWZsBolkkmfrPuOv7bHv1EyQdx70LIThG6EAR7gWcjOaKi",
+      "role": "user"
+    },
+    {
+      "id": "1b9c",
+      "email": "lengoctram59@gmail.com",
+      "password": "$2b$10$JsSPB.lmFUYnXhJqjGdB5Oqx14Z/zL/j6guMPkVDNXkY//44xP7q6",
+      "role": "user"
+    },
+    {
+      "id": "cf75",
+      "email": "lengoctram9@gmail.com",
+      "password": "$2b$10$Fy./wlkPjwHFPnj5bzBEauDKJq0F1BeIBwU6MP9IsATaBuisN7sEq",
+      "role": "user"
       "created_at": "2025-08-26",
       "status": "Đang hoạt động",
       "mood": 3,
@@ -229,7 +247,26 @@
       "date": "2025-08-28"
     }
   ],
-  "diary": [],
+  "diary": [
+    {
+      "id": "f574",
+      "userId": "26a2",
+      "date": "2025-8-27",
+      "content": ""
+    },
+    {
+      "id": "1ad0",
+      "userId": "1972",
+      "date": "2025-8-28",
+      "content": "Hehee"
+    },
+    {
+      "id": "471b",
+      "userId": "8c02",
+      "date": "2025-8-28",
+      "content": "Hôm này, tôi chưa học gì hết. Tôi lo sợ cho ngày mai qá, ..."
+    }
+  ],
   "hashtag": [
     {
       "hashtag_id": 1,
@@ -583,6 +620,577 @@
       "icon": "🎵",
       "text": "Âm nhạc, một tách trà ấm hay điều gì đó bạn yêu thích cũng có thể chữa lành.",
       "id": "040a"
+    }
+  ],
+  "advices": [
+    {
+      "id": "1",
+      "chuyenGia": "Nguyễn Văn An",
+      "nguoiDung": "Lê Thị Bình",
+      "thoiGian": "08:00 - 09:00",
+      "ngay": "01/01/2025",
+      "danhGia": "Tốt",
+      "status": "done"
+    },
+    {
+      "id": "2",
+      "chuyenGia": "Nguyễn Văn An",
+      "nguoiDung": "Trần Văn Cường",
+      "thoiGian": "09:30 - 10:30",
+      "ngay": "30/08/2025",
+      "danhGia": "Chưa đánh giá",
+      "status": "pending"
+    },
+    {
+      "id": "3",
+      "chuyenGia": "Nguyễn Văn C",
+      "nguoiDung": "Phạm Văn D",
+      "thoiGian": "15:00 - 16:00",
+      "ngay": "05/01/2025",
+      "danhGia": "Xuất sắc",
+      "status": "done"
+    },
+    {
+      "id": "4",
+      "chuyenGia": "Nguyễn Văn A",
+      "nguoiDung": "Lê Thị B",
+      "thoiGian": "08:00 - 09:00",
+      "ngay": "10/01/2025",
+      "danhGia": "Tốt",
+      "status": "done"
+    },
+    {
+      "id": "5",
+      "chuyenGia": "Nguyễn Văn B",
+      "nguoiDung": "Trần Văn C",
+      "thoiGian": "09:30 - 10:30",
+      "ngay": "01/09/2025",
+      "danhGia": "Chưa đánh giá",
+      "status": "pending"
+    },
+    {
+      "id": "6",
+      "chuyenGia": "Nguyễn Văn C",
+      "nguoiDung": "Phạm Văn D",
+      "thoiGian": "15:00 - 16:00",
+      "ngay": "13/01/2025",
+      "danhGia": "Xuất sắc",
+      "status": "done"
+    },
+    {
+      "id": "7",
+      "chuyenGia": "Nguyễn Văn A",
+      "nguoiDung": "Lê Thị B",
+      "thoiGian": "08:00 - 09:00",
+      "ngay": "14/01/2025",
+      "danhGia": "Tốt",
+      "status": "done"
+    },
+    {
+      "id": "8",
+      "chuyenGia": "Nguyễn Văn B",
+      "nguoiDung": "Trần Văn C",
+      "thoiGian": "09:30 - 10:30",
+      "ngay": "09/09/2025",
+      "danhGia": "Chưa đánh giá",
+      "status": "pending"
+    },
+    {
+      "id": "9",
+      "chuyenGia": "Nguyễn Văn C",
+      "nguoiDung": "Phạm Văn D",
+      "thoiGian": "15:00 - 16:00",
+      "ngay": "21/02/2025",
+      "danhGia": "Xuất sắc",
+      "status": "done"
+    },
+    {
+      "id": "10",
+      "chuyenGia": "Nguyễn Văn A",
+      "nguoiDung": "Lê Thị B",
+      "thoiGian": "08:00 - 09:00",
+      "ngay": "22/02/2025",
+      "danhGia": "Tốt",
+      "status": "done"
+    },
+    {
+      "id": "11",
+      "chuyenGia": "Nguyễn Văn B",
+      "nguoiDung": "Trần Văn C",
+      "thoiGian": "09:30 - 10:30",
+      "ngay": "28/09/2025",
+      "danhGia": "Chưa đánh giá",
+      "status": "pending"
+    },
+    {
+      "id": "12",
+      "chuyenGia": "Nguyễn Văn C",
+      "nguoiDung": "Phạm Văn D",
+      "thoiGian": "15:00 - 16:00",
+      "ngay": "25/02/2025",
+      "danhGia": "Xuất sắc",
+      "status": "done"
+    },
+    {
+      "id": "13",
+      "chuyenGia": "Nguyễn Văn A",
+      "nguoiDung": "Lê Thị B",
+      "thoiGian": "08:00 - 09:00",
+      "ngay": "27/02/2025",
+      "danhGia": "Tốt",
+      "status": "done"
+    },
+    {
+      "id": "14",
+      "chuyenGia": "Nguyễn Văn B",
+      "nguoiDung": "Trần Văn C",
+      "thoiGian": "09:30 - 10:30",
+      "ngay": "12/10/2025",
+      "danhGia": "Chưa đánh giá",
+      "status": "pending"
+    },
+    {
+      "id": "15",
+      "chuyenGia": "Nguyễn Văn C",
+      "nguoiDung": "Phạm Văn D",
+      "thoiGian": "15:00 - 16:00",
+      "ngay": "01/03/2025",
+      "danhGia": "Xuất sắc",
+      "status": "done"
+    },
+    {
+      "id": "16",
+      "chuyenGia": "Nguyễn Văn A",
+      "nguoiDung": "Lê Thị B",
+      "thoiGian": "08:00 - 09:00",
+      "ngay": "02/03/2025",
+      "danhGia": "Tốt",
+      "status": "done"
+    },
+    {
+      "id": "17",
+      "chuyenGia": "Nguyễn Văn B",
+      "nguoiDung": "Trần Văn C",
+      "thoiGian": "09:30 - 10:30",
+      "ngay": "18/10/2025",
+      "danhGia": "Chưa đánh giá",
+      "status": "pending"
+    },
+    {
+      "id": "18",
+      "chuyenGia": "Nguyễn Văn C",
+      "nguoiDung": "Phạm Văn D",
+      "thoiGian": "15:00 - 16:00",
+      "ngay": "10/03/2025",
+      "danhGia": "Xuất sắc",
+      "status": "done"
+    },
+    {
+      "id": "19",
+      "chuyenGia": "Nguyễn Văn A",
+      "nguoiDung": "Lê Thị B",
+      "thoiGian": "08:00 - 09:00",
+      "ngay": "11/03/2025",
+      "danhGia": "Tốt",
+      "status": "done"
+    },
+    {
+      "id": "20",
+      "chuyenGia": "Nguyễn Văn B",
+      "nguoiDung": "Trần Văn C",
+      "thoiGian": "09:30 - 10:30",
+      "ngay": "22/10/2025",
+      "danhGia": "Chưa đánh giá",
+      "status": "pending"
+    },
+    {
+      "id": "21",
+      "chuyenGia": "Nguyễn Văn C",
+      "nguoiDung": "Phạm Văn D",
+      "thoiGian": "15:00 - 16:00",
+      "ngay": "15/03/2025",
+      "danhGia": "Xuất sắc",
+      "status": "done"
+    },
+    {
+      "id": "22",
+      "chuyenGia": "Nguyễn Văn A",
+      "nguoiDung": "Lê Thị B",
+      "thoiGian": "08:00 - 09:00",
+      "ngay": "16/03/2025",
+      "danhGia": "Tốt",
+      "status": "done"
+    },
+    {
+      "id": "23",
+      "chuyenGia": "Nguyễn Văn B",
+      "nguoiDung": "Trần Văn C",
+      "thoiGian": "09:30 - 10:30",
+      "ngay": "05/11/2025",
+      "danhGia": "Chưa đánh giá",
+      "status": "pending"
+    },
+    {
+      "id": "24",
+      "chuyenGia": "Nguyễn Văn C",
+      "nguoiDung": "Phạm Văn D",
+      "thoiGian": "15:00 - 16:00",
+      "ngay": "20/03/2025",
+      "danhGia": "Xuất sắc",
+      "status": "done"
+    },
+    {
+      "id": "25",
+      "chuyenGia": "Nguyễn Văn A",
+      "nguoiDung": "Lê Thị B",
+      "thoiGian": "08:00 - 09:00",
+      "ngay": "21/03/2025",
+      "danhGia": "Tốt",
+      "status": "done"
+    },
+    {
+      "id": "26",
+      "chuyenGia": "Nguyễn Văn B",
+      "nguoiDung": "Trần Văn C",
+      "thoiGian": "09:30 - 10:30",
+      "ngay": "12/11/2025",
+      "danhGia": "Chưa đánh giá",
+      "status": "pending"
+    },
+    {
+      "id": "27",
+      "chuyenGia": "Nguyễn Văn C",
+      "nguoiDung": "Phạm Văn D",
+      "thoiGian": "15:00 - 16:00",
+      "ngay": "25/03/2025",
+      "danhGia": "Xuất sắc",
+      "status": "done"
+    },
+    {
+      "id": "28",
+      "chuyenGia": "Nguyễn Văn A",
+      "nguoiDung": "Lê Thị B",
+      "thoiGian": "08:00 - 09:00",
+      "ngay": "26/03/2025",
+      "danhGia": "Tốt",
+      "status": "done"
+    },
+    {
+      "id": "29",
+      "chuyenGia": "Nguyễn Văn B",
+      "nguoiDung": "Trần Văn C",
+      "thoiGian": "09:30 - 10:30",
+      "ngay": "19/11/2025",
+      "danhGia": "Chưa đánh giá",
+      "status": "pending"
+    },
+    {
+      "id": "30",
+      "chuyenGia": "Nguyễn Văn C",
+      "nguoiDung": "Phạm Văn D",
+      "thoiGian": "15:00 - 16:00",
+      "ngay": "30/03/2025",
+      "danhGia": "Xuất sắc",
+      "status": "done"
+    },
+    {
+      "id": "31",
+      "chuyenGia": "Nguyễn Văn A",
+      "nguoiDung": "Lê Thị B",
+      "thoiGian": "08:00 - 09:00",
+      "ngay": "31/03/2025",
+      "danhGia": "Tốt",
+      "status": "done"
+    },
+    {
+      "id": "32",
+      "chuyenGia": "Nguyễn Văn B",
+      "nguoiDung": "Trần Văn C",
+      "thoiGian": "09:30 - 10:30",
+      "ngay": "26/11/2025",
+      "danhGia": "Chưa đánh giá",
+      "status": "pending"
+    },
+    {
+      "id": "33",
+      "chuyenGia": "Nguyễn Văn C",
+      "nguoiDung": "Phạm Văn D",
+      "thoiGian": "15:00 - 16:00",
+      "ngay": "05/04/2025",
+      "danhGia": "Xuất sắc",
+      "status": "done"
+    },
+    {
+      "id": "34",
+      "chuyenGia": "Nguyễn Văn A",
+      "nguoiDung": "Lê Thị B",
+      "thoiGian": "08:00 - 09:00",
+      "ngay": "06/04/2025",
+      "danhGia": "Tốt",
+      "status": "done"
+    },
+    {
+      "id": "35",
+      "chuyenGia": "Nguyễn Văn B",
+      "nguoiDung": "Trần Văn C",
+      "thoiGian": "09:30 - 10:30",
+      "ngay": "03/12/2025",
+      "danhGia": "Chưa đánh giá",
+      "status": "pending"
+    }
+  ],
+  "content": [
+    {
+      "id": "1",
+      "noidung": "Bài tập Yoga",
+      "camxuc": 1,
+      "loaihinh": "Bài tập",
+      "thoiluong": "10p10s",
+      "luottuongtac": 1240,
+      "ngaythem": "24/08/2025"
+    },
+    {
+      "id": "2",
+      "noidung": "Bài tập Thiền-09",
+      "camxuc": 1,
+      "loaihinh": "Bài tập",
+      "thoiluong": "15p20s",
+      "luottuongtac": 2300,
+      "ngaythem": "22/08/2025"
+    },
+    {
+      "id": "3",
+      "noidung": "This Love - nhạc thư giãn",
+      "camxuc": 2,
+      "loaihinh": "Giai điệu",
+      "thoiluong": "15p20s",
+      "luottuongtac": 2200,
+      "ngaythem": "09/08/2025"
+    },
+    {
+      "id": "4",
+      "noidung": "Bài tập Thiền-09",
+      "camxuc": 1,
+      "loaihinh": "Bài tập",
+      "thoiluong": "15p20s",
+      "luottuongtac": 2300,
+      "ngaythem": "22/08/2025"
+    },
+    {
+      "id": "5",
+      "noidung": "Tiếng mưa thư giãn",
+      "camxuc": 2,
+      "loaihinh": "Giai điệu",
+      "thoiluong": "15p20s",
+      "luottuongtac": 4600,
+      "ngaythem": "19/08/2025"
+    },
+    {
+      "id": "6",
+      "noidung": "Bài tập Thiền-03",
+      "camxuc": 1,
+      "loaihinh": "Bài tập",
+      "thoiluong": "15p20s",
+      "luottuongtac": 2300,
+      "ngaythem": "01/08/2025"
+    },
+    {
+      "id": "7",
+      "noidung": "Cảm xúc của bạn...",
+      "camxuc": 3,
+      "loaihinh": "Lời hay",
+      "thoiluong": "1p10s",
+      "luottuongtac": 4010,
+      "ngaythem": "23/07/2025"
+    },
+    {
+      "id": "8",
+      "noidung": "Bài tập YoGa-03",
+      "camxuc": 1,
+      "loaihinh": "Bài tập",
+      "thoiluong": "10p20s",
+      "luottuongtac": 2800,
+      "ngaythem": "18/07/2025"
+    },
+    {
+      "id": "9",
+      "noidung": "Bài tập Thiền-02",
+      "camxuc": 1,
+      "loaihinh": "Bài tập",
+      "thoiluong": "15p20s",
+      "luottuongtac": 3900,
+      "ngaythem": "10/07/2025"
+    },
+    {
+      "id": "10",
+      "noidung": "Thời gian rất quý...",
+      "camxuc": 3,
+      "loaihinh": "Lời hay",
+      "thoiluong": "1p01s",
+      "luottuongtac": 9010,
+      "ngaythem": "07/07/2025"
+    },
+    {
+      "id": "11",
+      "noidung": "Phim thư giãn-02",
+      "camxuc": 2,
+      "loaihinh": "Giai điệu",
+      "thoiluong": "45p20s",
+      "luottuongtac": 19000,
+      "ngaythem": "02/06/2025"
+    },
+    {
+      "id": "12",
+      "noidung": "Xem phim thư giãn-01",
+      "camxuc": 2,
+      "loaihinh": "Giai điệu",
+      "thoiluong": "25p20s",
+      "luottuongtac": 19000,
+      "ngaythem": "01/05/2025"
+    },
+    {
+      "id": "13",
+      "noidung": "Bài tập Thiền-01",
+      "camxuc": 1,
+      "loaihinh": "Bài tập",
+      "thoiluong": "15p20s",
+      "luottuongtac": 9000,
+      "ngaythem": "01/05/2025"
+    },
+    {
+      "id": "14",
+      "noidung": "Đi 1 ngày đàng, học...",
+      "camxuc": 3,
+      "loaihinh": "Lời hay",
+      "thoiluong": "1p01s",
+      "luottuongtac": 10200,
+      "ngaythem": "27/04/2025"
+    },
+    {
+      "id": "15",
+      "noidung": "Sống chậm lại, để...",
+      "camxuc": 3,
+      "loaihinh": "Lời hay",
+      "thoiluong": "1p01s",
+      "luottuongtac": 9110,
+      "ngaythem": "24/04/2025"
+    },
+    {
+      "id": "16",
+      "noidung": "Tiếng gió thư giãn",
+      "camxuc": 2,
+      "loaihinh": "Giai điệu",
+      "thoiluong": "15p20s",
+      "luottuongtac": 2910,
+      "ngaythem": "10/04/2025"
+    },
+    {
+      "id": "17",
+      "noidung": "Không quan trọng bạn....",
+      "camxuc": 3,
+      "loaihinh": "Lời hay",
+      "thoiluong": "1p10s",
+      "luottuongtac": 4010,
+      "ngaythem": "08/04/2025"
+    },
+    {
+      "id": "18",
+      "noidung": "Bài tập Thiền-04",
+      "camxuc": 1,
+      "loaihinh": "Bài tập",
+      "thoiluong": "15p20s",
+      "luottuongtac": 2300,
+      "ngaythem": "04/08/2025"
+    },
+    {
+      "id": "19",
+      "noidung": "Bài tập Thiền-13",
+      "camxuc": 1,
+      "loaihinh": "Bài tập",
+      "thoiluong": "15p20s",
+      "luottuongtac": 3900,
+      "ngaythem": "01/04/2025"
+    },
+    {
+      "id": "20",
+      "noidung": "Thời gian rất quý...",
+      "camxuc": 3,
+      "loaihinh": "Lời hay",
+      "thoiluong": "1p01s",
+      "luottuongtac": 9010,
+      "ngaythem": "27/03/2025"
+    },
+    {
+      "id": "21",
+      "noidung": "Phim thư giãn-05",
+      "camxuc": 2,
+      "loaihinh": "Giai điệu",
+      "thoiluong": "45p20s",
+      "luottuongtac": 19000,
+      "ngaythem": "24/03/2025"
+    },
+    {
+      "id": "22",
+      "noidung": "Xem phim thư giãn-15",
+      "camxuc": 2,
+      "loaihinh": "Giai điệu",
+      "thoiluong": "25p20s",
+      "luottuongtac": 19000,
+      "ngaythem": "21/03/2025"
+    },
+    {
+      "id": "23",
+      "noidung": "Bài tập Thiền-16",
+      "camxuc": 1,
+      "loaihinh": "Bài tập",
+      "thoiluong": "15p20s",
+      "luottuongtac": 9000,
+      "ngaythem": "01/03/2025"
+    },
+    {
+      "id": "24",
+      "noidung": "Đi 1 ngày đàng, học...",
+      "camxuc": 3,
+      "loaihinh": "Lời hay",
+      "thoiluong": "1p01s",
+      "luottuongtac": 10200,
+      "ngaythem": "28/02/2025"
+    },
+    {
+      "id": "25",
+      "noidung": "Sống chậm lại, để...",
+      "camxuc": 3,
+      "loaihinh": "Lời hay",
+      "thoiluong": "1p01s",
+      "luottuongtac": 9110,
+      "ngaythem": "27/02/2025"
+    },
+    {
+      "id": "26",
+      "noidung": "Tiếng gió thư giãn",
+      "camxuc": 2,
+      "loaihinh": "Giai điệu",
+      "thoiluong": "15p20s",
+      "luottuongtac": 2910,
+      "ngaythem": "24/02/2025"
+    },
+    {
+      "id": "27",
+      "noidung": "Không quan trọng bạn....",
+      "camxuc": 3,
+      "loaihinh": "Lời hay",
+      "thoiluong": "1p10s",
+      "luottuongtac": 4010,
+      "ngaythem": "20/02/2025"
+    },
+    {
+      "id": "28",
+      "noidung": "Bài tập Thiền-04",
+      "camxuc": 1,
+      "loaihinh": "Bài tập",
+      "thoiluong": "15p20s",
+      "luottuongtac": 2300,
+      "ngaythem": "10/02/2025"
     }
   ]
 }
