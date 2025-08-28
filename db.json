@@ -1,6 +1,21 @@
 {
   "users": [
     {
+
+      "user_id": "u1",
+      "user_name": "Phong",
+      "email": "phong1@gmail.com",
+      "password": "123456",
+      "id": "d01c"
+    },
+    {
+      "user_id": "u2",
+      "user_name": "Lan",
+      "email": "lan@example.com",
+      "password": "abcdef",
+      "id": "9645"
+    },
+    {
       "id": "dfb5",
       "email": "Admin@tramstress.com",
       "password": "$2b$10$CckLcrSxtw97E84m3BDeXO5lddAmDQY1S.9HAT5wjMHsbpIiTd9aG",
@@ -232,13 +247,8 @@
   ],
   "daily_activity": [
     {
-      "id": "190e",
-      "user_id": "5dda",
-      "date": "2025-08-26"
-    },
-    {
-      "id": "4fcd",
-      "user_id": "4743",
+      "id": "f985",
+      "activity_id": 1756150534261,
       "date": "2025-08-26"
     },
     {
@@ -288,49 +298,49 @@
       "hashtag_id": 1,
       "name": "#MệtMỏi",
       "color": "#002241",
-      "id": "2ff2"
+      "id": "9dd3"
     },
     {
       "hashtag_id": 2,
       "name": "#LoLắng",
       "color": "#38aadc",
-      "id": "3ae6"
+      "id": "a15f"
     },
     {
       "hashtag_id": 3,
       "name": "#CăngThẳng",
       "color": "#a14747",
-      "id": "cd2d"
+      "id": "bb8a"
     },
     {
       "hashtag_id": 4,
       "name": "#Buồn",
       "color": "#5c6bc0",
-      "id": "0c43"
+      "id": "86af"
     },
     {
       "hashtag_id": 5,
       "name": "#HàoHứng",
       "color": "#cc4f35",
-      "id": "0e72"
+      "id": "db74"
     },
     {
       "hashtag_id": 6,
       "name": "#ThưGiãn",
       "color": "#81c784",
-      "id": "adb0"
+      "id": "3f94"
     },
     {
       "hashtag_id": 7,
       "name": "#VuiVẻ",
       "color": "#dbc255",
-      "id": "4cfd"
+      "id": "306f"
     },
     {
       "hashtag_id": 8,
       "name": "#BìnhYên",
       "color": "#f48fb1",
-      "id": "e261"
+      "id": "29fc"
     }
   ],
   "mood": [
@@ -338,35 +348,41 @@
       "mood_id": 1,
       "image": "/image/Emoji/Do.png",
       "color": "#F54334",
-      "id": "7703"
+      "id": "7683"
     },
     {
       "mood_id": 2,
       "image": "/image/Emoji/Cam.png",
       "color": "#FF981E",
-      "id": "bd7c"
+      "id": "b933"
+
     },
     {
       "mood_id": 3,
       "image": "/image/Emoji/Vang.png",
       "color": "#FFC12D",
-      "id": "9915"
+      "id": "df0d"
     },
     {
       "mood_id": 4,
       "image": "/image/Emoji/XanhLa.png",
       "color": "#8CC255",
-      "id": "c003"
+      "id": "5f5e"
     },
     {
       "mood_id": 5,
       "image": "/image/Emoji/XanhNhat.png",
       "color": "#4AAF57",
-      "id": "d980"
+      "id": "ccff"
     }
   ],
   "mood_log": [
     {
+      "id": "118f",
+      "mood_log_id": 1756150533855,
+      "activity_id": 1756150534261,
+      "content": "",
+      "mood_id": null,
       "id": "7d2b",
       "activity_id": "4fcd",
       "content": "",
@@ -532,7 +548,17 @@
   "user_relax_history": [],
   "mood_hashtag": [
     {
-      "id": "62cd",
+      "id": "4d0d",
+      "mood_log_id": 1756150533855,
+      "hashtag_id": 7
+    },
+    {
+      "id": "6d68",
+      "mood_log_id": 1756150533855,
+      "hashtag_id": 8
+    },
+    {
+      "id": "62cd",   
       "mood_log_id": "7d2b",
       "hashtag_id": 5
     },
@@ -960,269 +986,6 @@
       "ngay": "06/04/2025",
       "danhGia": "Tốt",
       "status": "done"
-    },
-    {
-      "id": "35",
-      "chuyenGia": "Nguyễn Văn B",
-      "nguoiDung": "Trần Văn C",
-      "thoiGian": "09:30 - 10:30",
-      "ngay": "03/12/2025",
-      "danhGia": "Chưa đánh giá",
-      "status": "pending"
-    }
-  ],
-  "content": [
-    {
-      "id": "1",
-      "noidung": "Bài tập Yoga",
-      "camxuc": 1,
-      "loaihinh": "Bài tập",
-      "thoiluong": "10p10s",
-      "luottuongtac": 1240,
-      "ngaythem": "24/08/2025"
-    },
-    {
-      "id": "2",
-      "noidung": "Bài tập Thiền-09",
-      "camxuc": 1,
-      "loaihinh": "Bài tập",
-      "thoiluong": "15p20s",
-      "luottuongtac": 2300,
-      "ngaythem": "22/08/2025"
-    },
-    {
-      "id": "3",
-      "noidung": "This Love - nhạc thư giãn",
-      "camxuc": 2,
-      "loaihinh": "Giai điệu",
-      "thoiluong": "15p20s",
-      "luottuongtac": 2200,
-      "ngaythem": "09/08/2025"
-    },
-    {
-      "id": "4",
-      "noidung": "Bài tập Thiền-09",
-      "camxuc": 1,
-      "loaihinh": "Bài tập",
-      "thoiluong": "15p20s",
-      "luottuongtac": 2300,
-      "ngaythem": "22/08/2025"
-    },
-    {
-      "id": "5",
-      "noidung": "Tiếng mưa thư giãn",
-      "camxuc": 2,
-      "loaihinh": "Giai điệu",
-      "thoiluong": "15p20s",
-      "luottuongtac": 4600,
-      "ngaythem": "19/08/2025"
-    },
-    {
-      "id": "6",
-      "noidung": "Bài tập Thiền-03",
-      "camxuc": 1,
-      "loaihinh": "Bài tập",
-      "thoiluong": "15p20s",
-      "luottuongtac": 2300,
-      "ngaythem": "01/08/2025"
-    },
-    {
-      "id": "7",
-      "noidung": "Cảm xúc của bạn...",
-      "camxuc": 3,
-      "loaihinh": "Lời hay",
-      "thoiluong": "1p10s",
-      "luottuongtac": 4010,
-      "ngaythem": "23/07/2025"
-    },
-    {
-      "id": "8",
-      "noidung": "Bài tập YoGa-03",
-      "camxuc": 1,
-      "loaihinh": "Bài tập",
-      "thoiluong": "10p20s",
-      "luottuongtac": 2800,
-      "ngaythem": "18/07/2025"
-    },
-    {
-      "id": "9",
-      "noidung": "Bài tập Thiền-02",
-      "camxuc": 1,
-      "loaihinh": "Bài tập",
-      "thoiluong": "15p20s",
-      "luottuongtac": 3900,
-      "ngaythem": "10/07/2025"
-    },
-    {
-      "id": "10",
-      "noidung": "Thời gian rất quý...",
-      "camxuc": 3,
-      "loaihinh": "Lời hay",
-      "thoiluong": "1p01s",
-      "luottuongtac": 9010,
-      "ngaythem": "07/07/2025"
-    },
-    {
-      "id": "11",
-      "noidung": "Phim thư giãn-02",
-      "camxuc": 2,
-      "loaihinh": "Giai điệu",
-      "thoiluong": "45p20s",
-      "luottuongtac": 19000,
-      "ngaythem": "02/06/2025"
-    },
-    {
-      "id": "12",
-      "noidung": "Xem phim thư giãn-01",
-      "camxuc": 2,
-      "loaihinh": "Giai điệu",
-      "thoiluong": "25p20s",
-      "luottuongtac": 19000,
-      "ngaythem": "01/05/2025"
-    },
-    {
-      "id": "13",
-      "noidung": "Bài tập Thiền-01",
-      "camxuc": 1,
-      "loaihinh": "Bài tập",
-      "thoiluong": "15p20s",
-      "luottuongtac": 9000,
-      "ngaythem": "01/05/2025"
-    },
-    {
-      "id": "14",
-      "noidung": "Đi 1 ngày đàng, học...",
-      "camxuc": 3,
-      "loaihinh": "Lời hay",
-      "thoiluong": "1p01s",
-      "luottuongtac": 10200,
-      "ngaythem": "27/04/2025"
-    },
-    {
-      "id": "15",
-      "noidung": "Sống chậm lại, để...",
-      "camxuc": 3,
-      "loaihinh": "Lời hay",
-      "thoiluong": "1p01s",
-      "luottuongtac": 9110,
-      "ngaythem": "24/04/2025"
-    },
-    {
-      "id": "16",
-      "noidung": "Tiếng gió thư giãn",
-      "camxuc": 2,
-      "loaihinh": "Giai điệu",
-      "thoiluong": "15p20s",
-      "luottuongtac": 2910,
-      "ngaythem": "10/04/2025"
-    },
-    {
-      "id": "17",
-      "noidung": "Không quan trọng bạn....",
-      "camxuc": 3,
-      "loaihinh": "Lời hay",
-      "thoiluong": "1p10s",
-      "luottuongtac": 4010,
-      "ngaythem": "08/04/2025"
-    },
-    {
-      "id": "18",
-      "noidung": "Bài tập Thiền-04",
-      "camxuc": 1,
-      "loaihinh": "Bài tập",
-      "thoiluong": "15p20s",
-      "luottuongtac": 2300,
-      "ngaythem": "04/08/2025"
-    },
-    {
-      "id": "19",
-      "noidung": "Bài tập Thiền-13",
-      "camxuc": 1,
-      "loaihinh": "Bài tập",
-      "thoiluong": "15p20s",
-      "luottuongtac": 3900,
-      "ngaythem": "01/04/2025"
-    },
-    {
-      "id": "20",
-      "noidung": "Thời gian rất quý...",
-      "camxuc": 3,
-      "loaihinh": "Lời hay",
-      "thoiluong": "1p01s",
-      "luottuongtac": 9010,
-      "ngaythem": "27/03/2025"
-    },
-    {
-      "id": "21",
-      "noidung": "Phim thư giãn-05",
-      "camxuc": 2,
-      "loaihinh": "Giai điệu",
-      "thoiluong": "45p20s",
-      "luottuongtac": 19000,
-      "ngaythem": "24/03/2025"
-    },
-    {
-      "id": "22",
-      "noidung": "Xem phim thư giãn-15",
-      "camxuc": 2,
-      "loaihinh": "Giai điệu",
-      "thoiluong": "25p20s",
-      "luottuongtac": 19000,
-      "ngaythem": "21/03/2025"
-    },
-    {
-      "id": "23",
-      "noidung": "Bài tập Thiền-16",
-      "camxuc": 1,
-      "loaihinh": "Bài tập",
-      "thoiluong": "15p20s",
-      "luottuongtac": 9000,
-      "ngaythem": "01/03/2025"
-    },
-    {
-      "id": "24",
-      "noidung": "Đi 1 ngày đàng, học...",
-      "camxuc": 3,
-      "loaihinh": "Lời hay",
-      "thoiluong": "1p01s",
-      "luottuongtac": 10200,
-      "ngaythem": "28/02/2025"
-    },
-    {
-      "id": "25",
-      "noidung": "Sống chậm lại, để...",
-      "camxuc": 3,
-      "loaihinh": "Lời hay",
-      "thoiluong": "1p01s",
-      "luottuongtac": 9110,
-      "ngaythem": "27/02/2025"
-    },
-    {
-      "id": "26",
-      "noidung": "Tiếng gió thư giãn",
-      "camxuc": 2,
-      "loaihinh": "Giai điệu",
-      "thoiluong": "15p20s",
-      "luottuongtac": 2910,
-      "ngaythem": "24/02/2025"
-    },
-    {
-      "id": "27",
-      "noidung": "Không quan trọng bạn....",
-      "camxuc": 3,
-      "loaihinh": "Lời hay",
-      "thoiluong": "1p10s",
-      "luottuongtac": 4010,
-      "ngaythem": "20/02/2025"
-    },
-    {
-      "id": "28",
-      "noidung": "Bài tập Thiền-04",
-      "camxuc": 1,
-      "loaihinh": "Bài tập",
-      "thoiluong": "15p20s",
-      "luottuongtac": 2300,
-      "ngaythem": "10/02/2025"
     }
   ]
 }
