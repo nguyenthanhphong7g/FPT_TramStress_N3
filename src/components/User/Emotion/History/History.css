@@ -5,6 +5,7 @@
     font-weight: 600;
     -webkit-text-stroke: 1px rgba(0, 0, 0, 0.2);
     text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.25);
+    margin-left: 20px;
 }
 
 .history-container {
@@ -12,8 +13,8 @@
     gap: 20px;
     padding: 20px;
     border-radius: 12px;
-    align-items: stretch; /* Đảm bảo 2 khối cao bằng nhau */
-    flex-wrap: wrap; /* Cho phép xuống dòng khi màn hình hẹp */
+    align-items: stretch; 
+    flex-wrap: wrap;
 }
 
 .history-chart,
@@ -24,8 +25,8 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     transition: box-shadow 0.3s ease-in-out;
     display: flex;
-    flex-direction: column; /* Nội dung xếp theo cột */
-    min-width: 320px; /* Đảm bảo khối không quá nhỏ */
+    flex-direction: column; 
+    min-width: 320px;
     background-color: white;
 }
 
@@ -61,7 +62,6 @@
 .save-btn:hover {
   background: #2a567a;
 }
-/* Tablet (dưới 1024px) */
 @media (max-width: 1024px) and (min-width : 768px){
     .history-container {
         gap: 15px;
@@ -74,10 +74,9 @@
     }
 }
 
-/* Mobile ngang (dưới 768px) */
 @media (max-width: 768px) {
     .history-container {
-        flex-direction: column; /* Chuyển 2 khối thành 1 cột */
+        flex-direction: column; 
         gap: 40px;
     }
 
@@ -86,6 +85,6 @@
         min-width: 100%;
     }
     .container, .container-sm {
-    max-width: 800px !important; /* giá trị bạn muốn */
+    max-width: 800px !important; 
   }
 }

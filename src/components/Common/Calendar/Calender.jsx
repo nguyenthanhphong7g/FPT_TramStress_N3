@@ -6,6 +6,7 @@ import isoWeek from "dayjs/plugin/isoWeek";
 import "./Calendar.css";
 import "dayjs/locale/vi";
 import DayData from "../../User/Emotion/DayData/DayData";
+import { getData } from "../../../services/apiService";
 
 dayjs.extend(weekday);
 dayjs.extend(weekOfYear);
@@ -17,10 +18,16 @@ function Calendar({ dailyMoods = [], onSelectWeek = () => { }, setIsCustomWeek, 
   const [moodMap, setMoodMap] = useState([])
 
   useEffect(() => {
-    fetch("http://localhost:3001/mood")
-    .then((res) => res.json())
-    .then((data) => setMoodMap(data))
-    .catch((err) => console.error(err));
+    const fetchMoods = async () => {
+      try {
+        const data = await getData("mood"); 
+        setMoodMap(data);
+      } catch (err) {
+        console.error("Error fetching mood:", err);
+      }
+    };
+
+    fetchMoods();
   }, []);
 
   useEffect(() => {
