@@ -18,10 +18,10 @@ const Setting = () => {
     const [newPassword, setNewPassword] = useState({ current: "", new: "", confirm: "" });
     const {user, setUser } = useAuth();
 
-    useEffect(() => {
-        const savedUser = getCurrentUser();
-        if (savedUser) setUser(savedUser);
-    }, []);
+    // useEffect(() => {
+    //     const savedUser = getCurrentUser();
+    //     if (savedUser) setUser(savedUser);
+    // }, []);
 
     const validateField = async (field, nextUser) => {
         try {
@@ -241,10 +241,10 @@ const Setting = () => {
                                             header="Họ và tên"
                                             type="text"
                                             placeholder="Nhập họ tên"
-                                            value={user.name || ""}
-                                            onChange={(e) => handleFieldChange("name", e.target.value)}
+                                            value={user.user_name || ""}
+                                            onChange={(e) => handleFieldChange("user_name", e.target.value)}
                                             icon="person"
-                                            error={errorsProfile.name}
+                                            error={errorsProfile.user_name}
                                         />
 
                                         <InputFeild

@@ -1,7 +1,6 @@
 {
   "users": [
     {
-
       "user_id": "u1",
       "user_name": "Phong",
       "email": "phong1@gmail.com",
@@ -54,7 +53,7 @@
     },
     {
       "id": "4743",
-      "user_name": "NT Phong",
+      "user_name": "NT Phong Nguyễn",
       "email": "phong3@gmail.com",
       "phone": "0987987654",
       "gender": "Nam",
@@ -343,7 +342,6 @@
       "image": "/image/Emoji/Cam.png",
       "color": "#FF981E",
       "id": "b933"
-
     },
     {
       "mood_id": 3,
@@ -366,12 +364,8 @@
   ],
   "mood_log": [
     {
-      "id": "118f",
-      "mood_log_id": 1756150533855,
-      "activity_id": 1756150534261,
-      "content": "",
-      "mood_id": null,
       "id": "7d2b",
+      "mood_log_id": 1756150533855,
       "activity_id": "4fcd",
       "content": "",
       "mood_id": 3
@@ -546,7 +540,7 @@
       "hashtag_id": 8
     },
     {
-      "id": "62cd",   
+      "id": "62cd",
       "mood_log_id": "7d2b",
       "hashtag_id": 5
     },

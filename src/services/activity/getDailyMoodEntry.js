@@ -31,7 +31,7 @@ export const getDailyMoodEntry = async (userId, date = null) => {
 
       results.push({
         date: activity.date,
-        value: moodLog.mood_id || 1,
+        value: moodLog.mood_id,
         note: moodLog.content || "",
         hashtags: tagNames,
       });
