@@ -111,19 +111,24 @@ function ContentAdmin() {
       default:
         break;
     }
-    if (searchTerm.trim() !== "") {
-      filtered = filtered.filter((item) =>
-        (item.title || "").toLowerCase().includes(searchTerm.toLowerCase())
-      );
+
+    // Lọc theo từ khóa tìm kiếm
+    switch (true) {
+      case searchTerm.trim() !== "":
+        filtered = filtered.filter((item) =>
+          (item.title || "").toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        break;
+      default:
+        break;
     }
 
     return filtered;
   };
+
   const totalPages = Math.ceil(getFilteredContent().length / pagesize);
   const startIdx = (currentPage - 1) * pagesize;
   const endIdx = startIdx + pagesize;
-  const currentContent = getFilteredContent().slice(startIdx, endIdx);
-
   const handlePageChange = (page) => setCurrentPage(page);
 
   const handleSearch = (term) => {
@@ -439,7 +444,11 @@ function ContentAdmin() {
         </div>
 
         <div className="admin-user-filter-bar">
-          <Search_Admin onSearch={handleSearch} />
+          <input
+            type="text"
+            placeholder="Tìm kiếm..."
+            onChange={(e) => handleSearch(e.target.value)}
+          />
           <div className="admin-filter">
             <ChonNgay />
             <Loc />
