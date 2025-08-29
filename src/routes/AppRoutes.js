@@ -55,7 +55,7 @@ function AppRoutes() {
           <Route path="user/:id" element={<AdminUserProfile />} />
         </Route>
         </Route>
-      
+      <Route path="*" element={<NotFound />}/>
     </Routes>
   );
 }

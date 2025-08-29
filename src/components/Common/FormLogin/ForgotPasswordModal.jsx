@@ -26,22 +26,22 @@ const ForgotPasswordModal = ({ onClose }) => {
     });
 
     const handleChangePassword = async (data) => {
-    if (!data.password || !data.confirmPassword) {
-        toast.error('Bạn cần nhập đầy đủ mật khẩu!');
-        return;
-    }
-    if (data.password !== data.confirmPassword) {
-        toast.error('Mật khẩu mới và xác nhận không khớp!');
-        return;
-    }
+        if (!data.password || !data.confirmPassword) {
+            toast.error('Bạn cần nhập đầy đủ mật khẩu!');
+            return;
+        }
+        if (data.password !== data.confirmPassword) {
+            toast.error('Mật khẩu mới và xác nhận không khớp!');
+            return;
+        }
 
-    const user = await getUser(email);
-    await updateUserStorages({ ...user, password: data.password });
-    
+        const user = await getUser(email);
+        await updateUserStorages({ ...user, password: data.password });
+        
 
-    toast.success('Mật khẩu đã được cập nhật thành công!');
-    onClose();
-};
+        toast.success('Mật khẩu đã được cập nhật thành công!');
+        onClose();
+    };
 
 
     const sendCode = async () => {

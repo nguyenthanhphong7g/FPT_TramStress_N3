@@ -2,7 +2,7 @@ import * as Yup from "yup";
 
 // schema cho profile
 export const profileSchema = Yup.object().shape({
-  name: Yup.string()
+  user_name: Yup.string()
     .required("Bạn chưa nhập tên")
     .min(2, "Tên cần ít nhất 2 ký tự")
     .max(50, "Tên không quá 50 ký tự"),

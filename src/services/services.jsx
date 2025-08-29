@@ -1,6 +1,9 @@
 import bcrypt from "bcryptjs";
 
-
+function hashPassword(password) {
+  const salt = bcrypt.genSaltSync(10);
+  return bcrypt.hashSync(password, salt);
+}
 
 export const compareCurrentPassword = (password) => {
   const currentUser = getCurrentUser();
@@ -45,7 +48,6 @@ export async function registerUser(newUser) {
   const exist = await getUser(newUser.email);
  
   if (exist) {
-     console.log(exist)
     return { success: false, message: "Email đã tồn tại" };
   }
 
@@ -89,27 +91,18 @@ export async function updateUserStorages(updatedUser) {
   if (updatedUser.password && !updatedUser.password.startsWith("$2b$")) {
     updatedUser.password = hashPassword(updatedUser.password);
   }
-  const updatedCurrentUser = {
-  ...updatedUser,
-  user_name: updatedUser.name, 
-  };
-  delete updatedCurrentUser.name; 
 
   await fetch(`${API_URL}/${updatedUser.id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(updatedCurrentUser),
+    body: JSON.stringify(updatedUser),
   });
 
-  setCurrentUser(updatedCurrentUser)
+  setCurrentUser(updatedUser)
 
   return { success: true, message: "Cập nhật thành công" };
 }
 
-function hashPassword(password) {
-  const salt = bcrypt.genSaltSync(10);
-  return bcrypt.hashSync(password, salt);
-}
 
 
 export function setCurrentUser(user) {
