@@ -5,13 +5,14 @@ import Search_GocThuGian from '../../components/Common/Search/Search_GocThuGian'
 
 const UserRelax = () => {
     const [isActive, setIsActive] = useState(0);
-
+    const [currentPage, setCurrentPage] = useState(1);
+    const [searchTerm, setSearchTerm] = useState("");
     const refs = [
-        useRef(null), 
-        useRef(null), 
-        useRef(null), 
-        useRef(null), 
-        useRef(null), 
+        useRef(null),
+        useRef(null),
+        useRef(null),
+        useRef(null),
+        useRef(null),
     ];
 
     const handleScrollToSection = (index) => {
@@ -31,12 +32,16 @@ const UserRelax = () => {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, [isActive]);
+    const handleSearch = (term) => {
+        setSearchTerm(term);
+        setCurrentPage(1);
+    };
 
     return (
         <div className='GocThuGian' style={{ background: '#fff' }}>
-            <Search_GocThuGian/>
+            <Search_GocThuGian onSearch={handleSearch} />
             <BoLoc onButtonClick={handleScrollToSection} isActive={isActive} />
-            <NoiDung refs={refs} />
+            <NoiDung refs={refs} searchTerm={searchTerm} />
         </div>
     );
 };

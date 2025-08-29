@@ -1,125 +1,132 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-.relax-content{
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    margin-bottom: 50px;
-    background-color: white;
+
+.relax-content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-bottom: 50px;
+  background-color: white;
 }
+
 .noidung-top {
-    display: flex;
-    width:100%;
-    justify-content: space-between;
-    color: #31793a;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  color: #31793a;
 }
 
 .noidung-top h4 {
-    font-size: 30px;
-    padding-left: 30px;
-    font-weight: 600;
+  font-size: 30px;
+  padding-left: 30px;
+  font-weight: 600;
 }
+
 .noidung-top-right {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-right: 30px;
-    cursor: pointer;
-    color: inherit;
-    text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 30px;
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
 }
 
 .noidung-top-right h5 {
-    font-size: 24px;
-    font-weight: 400;
-    margin-bottom: 0px;
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 0px;
 }
 
 .noidung-top-right img {
-    width: 22px;
-    height: 22px
+  width: 22px;
+  height: 22px
 }
 
 .noidung-bottom {
-    display: flex;
-    padding-left: 30px;
-    padding-right: 30px;
-    margin-top: 20px;
-    gap: 25px;
-    color: white;
-    height:max-content;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    
+  display: flex;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-top: 20px;
+  gap: 25px;
+  color: white;
+  height: max-content;
+  overflow-x: auto;
+  scroll-behavior: smooth;
 }
+
 .noidung-bottom::-webkit-scrollbar {
   display: none;
 }
+
 .exercise,
 .music,
 .quote {
-    border-radius: 20px;
-    /* border: solid 1px rgb(0, 0, 0); */
-    display: inline-block;
-    position: relative;
-    flex:0 0 auto;
-    background-color: black;
-    width: 360px;
-    height: 270px;
-    overflow: hidden;
-    cursor: pointer;
-    margin:0;
+  border-radius: 20px;
+  /* border: solid 1px rgb(0, 0, 0); */
+  display: inline-block;
+  position: relative;
+  flex: 0 0 auto;
+  background-color: black;
+  width: 360px;
+  height: 270px;
+  overflow: hidden;
+  cursor: pointer;
+  margin: 0;
 }
 
 .noidung-bottom img {
-    display: block;
-    width:100%;
-    height: 100%;
-    
+  display: block;
+  width: 100%;
+  height: 100%;
+
 }
 
 .noidung-bottom div .content-relax {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    background-color: none;
-    width:100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: none;
+  width: 100%;
 }
 
 .noidung-bottom .exercise img {
-    object-fit: contain;
+  object-fit: contain;
 }
 
-.noidung-bottom .exercise p, .noidung-bottom .music p {
-    font-size: 16px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width:100%;
-    padding-left:10px;
-    padding-right: 10px;
-    padding-top: 2px;
+.noidung-bottom .exercise p,
+.noidung-bottom .music p {
+  font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 2px;
 }
 
-.exercise::before, .music::before {
+.exercise::before,
+.music::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0); 
+  background: rgba(0, 0, 0, 0);
   transition: background 0.3s ease;
-  z-index: 1; 
+  z-index: 1;
   pointer-events: none;
 }
 
-.exercise::after, .music::after {
+.exercise::after,
+.music::after {
   content: "";
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 0; 
+  width: 0;
   height: 0;
   border-left: 60px solid white;
   border-top: 30px solid transparent;
@@ -132,19 +139,23 @@
 }
 
 
-.exercise:hover::before, .music:hover::before {
+.exercise:hover::before,
+.music:hover::before {
   background: rgba(0, 0, 0, 0.4);
 }
 
-.exercise:hover::after, .music:hover::after {
+.exercise:hover::after,
+.music:hover::after {
   opacity: 1;
 }
+
 .quote .content-relax {
   display: none;
 }
+
 .quote.show .content-relax {
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
   justify-content: space-between;
   position: absolute;
   top: 0;
@@ -153,18 +164,20 @@
   height: 100%;
   padding: 20px;
   box-sizing: border-box;
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   color: white;
 }
+
 .quote.show .content-relax p {
   font-size: 24px;
   font-weight: bolder;
   text-align: center;
-  margin: auto 0; 
+  margin: auto 0;
 }
+
 .quote.show .content-relax h4 {
   font-size: 20px;
   font-weight: 400;
-  align-self: flex-end; 
+  align-self: flex-end;
   margin: 0;
 }
