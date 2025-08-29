@@ -129,30 +129,34 @@ const Test = () => {
     };
   };
 
-  // Hàm lưu kết quả vào localStorage
-  const saveResultToLocalStorage = () => {
+  //  Hàm lưu kết quả vào db.json qua json-server
+  const saveResultToServer = async () => {
     if (!user) {
-      toast.error("Bạn cần đăng nhập để tiếp tục!!!")
+      toast.error("Bạn cần đăng nhập để tiếp tục!!!");
       return;
     }
+
     const resultData = {
-      date: new Date().toLocaleString("vi-VN"), // ngày giờ lưu
+      userId: user?.id || "guest",
+      date: new Date().toISOString().split("T")[0], // yyyy-mm-dd
       answers: answersRecord,
       conclusion: conclusion,
     };
 
-    // Lấy dữ liệu cũ
-    const savedResults = JSON.parse(
-      localStorage.getItem("emotionTestResults") || "[]"
-    );
+    try {
+      const res = await fetch("http://localhost:3001/testResults", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(resultData),
+      });
 
-    // Thêm kết quả mới
-    savedResults.push(resultData);
+      if (!res.ok) throw new Error("Lưu thất bại");
 
-    // Lưu lại vào localStorage
-    localStorage.setItem("emotionTestResults", JSON.stringify(savedResults));
-
-    setSaved(true);
+      toast.success("✅ Kết quả đã được lưu vào server!");
+      setSaved(true);
+    } catch (err) {
+      toast.error("❌ Lỗi khi lưu: " + err.message);
+    }
   };
 
   const conclusion = getConclusion();
@@ -224,7 +228,7 @@ const Test = () => {
 
             {/* Nút hành động */}
             <div className="result-actions">
-              <button className="btn-save" onClick={saveResultToLocalStorage}>
+              <button className="btn-save" onClick={saveResultToServer}>
                 💾 Lưu lại
               </button>
 
