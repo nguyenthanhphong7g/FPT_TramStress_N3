@@ -1,0 +1,172 @@
+.mood-container {
+  display: flex;
+  align-items: stretch;
+  gap: 20px;
+  border-bottom: 5px solid black;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  margin: 15px 20px 30px;
+  background-color: #fff;
+  padding: 15px 20px;
+}
+
+.left-box {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  flex: 0.8;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  padding: 0 20px 5px 5px;
+  min-height: 100%;
+  max-height: 100px;
+}
+
+.note-input {
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 12px 16px;
+  font-size: 14px;
+  resize: none;
+  outline: none;
+  height: 100%;
+  width: 80%;
+  background: #f9fafb;
+}
+
+.mood-container .save-btn {
+  padding: 5px 8px;
+  background: #B3DBFF;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  min-width: 90px;
+  height: auto;
+  align-self: flex-end;
+  font-size: 16px;
+}
+
+.mood-container.save-btn:hover {
+  background: #2a567a;
+}
+
+.tag-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  flex: 1;
+}
+
+.tag-row {
+  display: flex;
+  gap: 50px;
+}
+
+.tag-row:nth-child(2) {
+  margin-left: 80px;
+}
+
+
+.tag-btn {
+  padding: 8px 0;
+  border-radius: 8px;
+  width: 100px;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  font-weight: 500;
+  font-size: 16px;
+  transition: transform 0.2s, filter 0.2s;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.tag-btn:hover {
+  transform: scale(1.05);
+}
+
+.tag-btn.active {
+  transform: scale(1.1);
+  filter: brightness(1.1);
+  border: 2px solid red;
+}
+.save-btn-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.character-tooltip {
+  position: absolute;
+  top: 40%;
+  left: 30%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.character-img {
+  width: 70px;
+  height: auto;
+}
+
+.speech-bubble {
+  position: relative;
+  background: #fff;
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 6px 10px;
+  font-size: 13px;
+  color: #333;
+  min-width: 120px;
+  max-width: 120px;
+}
+
+
+
+
+
+@media (max-width: 1024px) and (min-width : 768px) {
+  .tag-grid {
+    flex: 0.5;
+  }
+
+  .tag-row {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .tag-row:nth-child(2) {
+    margin-left: 10px;
+  }
+
+  .tag-btn {
+    padding: 5px 0;
+    width: 80px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mood-container {
+    flex-direction: column;
+  }
+
+  .tag-btn {
+    padding: 10px 0;
+    width: 90px;
+    font-size: 12px;
+  }
+
+  .tag-grid {
+    justify-content: center;
+  }
+
+  .tag-row {
+    gap: 40px;
+  }
+
+  .tag-row:nth-child(2) {
+    margin-left: 100px;
+  }
+}

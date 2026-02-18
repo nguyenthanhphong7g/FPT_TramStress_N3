@@ -1,0 +1,47 @@
+/* NotFound.css */
+.NotFound-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #e6f7ff;
+  text-align: center;
+  padding : 20px;
+  margin: 0;
+}
+
+.NotFound-container img {
+  max-width: 1000px;
+  min-width: 600px;
+}
+.NotFound-container h1 {
+  font-size: 12rem;
+  font-weight: bold;
+  color: #0077cc; 
+  margin: 0;
+}
+
+.NotFound-container h2 {
+  font-size: 8rem;
+  color: #0099ff; 
+  margin: 10px 0 0 0;
+}
+
+@media screen and (max-width: 968px) {
+    .NotFound-container {
+        flex-direction: column;
+        /* height: 80vh; */
+    }
+    .NotFound-container img {
+        max-width: 500px;
+        min-width: 300px;
+    }
+    .NotFound-container h1 {
+        font-size: 6rem;
+    }
+
+    .NotFound-container h2 {
+        font-size: 4rem;
+        margin: 0;
+    }
+}

@@ -1,0 +1,31 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+.activity-content{
+    border:solid 1px #e0e2e7;
+    border-radius: 8px;
+    box-shadow: 0 1.5px 2px rgba(16, 24, 40, 0.1);
+}
+.activity-content .activity-content-header{
+    display:flex;
+    padding:18px 24px;
+    align-items: center;
+    justify-content: space-between;
+}
+.activity-content-header h5{
+    color:#333843;
+    margin:0;
+}
+.activity-content-header .filter-bar{
+    display:flex;
+    gap:16px;
+}
+.activity-content .admin-user-table{
+    border:none;
+    box-shadow: none;
+}
+.activity-content-footer button{
+    border:none;
+}

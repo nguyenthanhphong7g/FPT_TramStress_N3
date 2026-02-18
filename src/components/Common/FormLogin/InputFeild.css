@@ -1,0 +1,119 @@
+.input-header {
+  color: rgb(148, 145, 145);
+  font-size: 12px;
+}
+
+.input-wrapper {
+  height: 35px;
+  width: 100%;
+  position: relative;
+  margin-bottom: 12px;
+  background-color: #f0f8ff;
+}
+
+.input-wrapper .input-feild {
+  height: 100%;
+  width: 100%;
+  /* outline: none; */
+  font-size: 12px;
+  border-radius: 2.5px;
+  border: none;
+  background-color: rgba(179, 219, 255, 0.2) !important;
+  padding: 0 18px 0 50px !important;
+  transition: 0.2s ease;
+}
+
+.input-wrapper .input-feild::placeholder {
+  color: rgb(148, 145, 145);
+}
+
+.input-wrapper .input-feild:focus {
+  border-color: #2a567a;
+}
+
+.input-wrapper i {
+  color: black;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: 0.2s ease;
+  font-size: 18px;
+
+}
+
+.input-wrapper i:not(.eye-icon) {
+  left: 15px;
+  pointer-events: none;
+}
+
+.input-wrapper .input-feild:focus~i:not(.eye-icon) {
+  color: #2a567a;
+}
+
+.input-wrapper i.eye-icon {
+  font-size: 18px;
+  cursor: pointer;
+  right: 15px;
+  display: none;
+}
+
+.input-wrapper .input-feild:valid~i.eye-icon {
+  display: block;
+}
+
+.input-error {
+  border: 1px solid red !important;
+}
+
+.input-error-message {
+  color: red;
+  font-size: 12px !important;
+  margin-top: 4px;
+}
+
+.input-wrapper-error .input-icon,
+.input-wrapper-error .eye-icon {
+  color: red;
+}
+
+
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-feild {
+  width: 100%;
+  padding: 10px 40px 10px 40px; 
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: white;
+  font-size: 14px;
+  appearance: none;
+}
+
+.input-icon {
+  position: absolute;
+  left: 10px;
+  font-size: 20px;
+  color: #777;
+}
+
+.arrow-icon {
+  position: absolute;
+  right: 10px;
+  font-size: 22px;
+  color: #777;
+  pointer-events: none;
+}
+
+.input-error {
+  border-color: red;
+}

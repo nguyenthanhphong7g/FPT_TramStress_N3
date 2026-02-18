@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+.login-container {
+    max-width: 410px;
+    margin: 0 auto;
+    border-radius: 8px;
+    padding: 32px 24px;
+    background-color: #F9F8FF;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.login-container .form-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.login-container .sosial-login {
+    display: flex;
+    gap: 20px;
+}
+
+.sosial-login .sosial-button {
+    display: flex;
+    width: 100%;
+    padding: 12px 0;
+    align-self: center;
+    border-radius: 5px;
+    justify-content: center;
+    background: #F9F8FF;
+    border: 1px solid #D5CBFF;
+    transition: 0.3s ease;
+}
+
+.sosial-login .sosial-button:hover {
+    background: #f1eff9;
+    border-color: #2a567a;
+}
+
+
+.login-container .separator {
+    margin: 12px 0;
+    text-align: center;
+    position: relative;
+}
+
+.login-container .separator span {
+    position: relative;
+    z-index: 1;
+    background: #F9F8FF;
+    padding: 0 16px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.login-container .separator::after {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 50%;
+    width: 100%;
+    height: 1px;
+    background: black;
+}
+
+.login-form {
+    padding: 20px;
+}
+
+
+.login-form .forgot-pass-link {
+    display: block;
+    float: right;
+    width: fit-content;
+    margin-top: 8px;
+    color: #2a567a;
+    cursor: pointer;
+}
+
+.login-form .login-button {
+    width: 100%;
+    height: 40px;
+    cursor: pointer;
+    font-size: 16px;
+    outline: none;
+    border: none;
+    color: black;
+    font-weight: 600;
+    background: #B3DBFF;
+    margin-top: 16px;
+    border-radius: 5px;
+}
+
+.login-form .login-button:hover {
+    background: #2a567a;
+    color: #fff;
+}
+
+.login-container .signup-text {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 500;
+    margin: 32px 0 12px;
+}
+
+.login-container a {
+    color: #2a567a;
+    font-size: 12px;
+    font-weight: 400;
+    text-decoration: none;
+}
+
+.login-container a:hover {
+    text-decoration: underline;
+}
+
+.footer {
+    margin: 10px 20px;
+}
+
+.footer .left {
+    float: left;
+}
+
+.footer .right {
+    float: right;
+}
